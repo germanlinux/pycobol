@@ -32,22 +32,9 @@ class Zone:
          else:
             finpic = len(t_ligne) - 1
          pic = ' '.join(t_ligne[debpic:finpic +1])
-         if pic[0] == 'X' :
-                nature = 'ALN'
-         elif pic[0] == '9' :
-                nature = 'NUM'
-         elif pic[0] == 'S' :
-                nature = 'SNUM'
-                if 'V' in pic:
-                    nature = 'SFLOAT'
-         
-         elif pic[0] == 'A':
-                nature = 'ALP'
-         else:
-            raise('FORMAT NON SUPPORTE' , pic)
+         nature_ = Nature_pic(pic)
+         nature = nature_.nature
 
-         if nature == 'NUM' and   'V' in pic:
-                nature = 'FLOAT'
    
             
          tabv = re.findall(r'\(\d+\)', pic)
@@ -102,6 +89,53 @@ class Zone:
                  return value_,nature_value
          else: 
             return None, None
+
+class Nature_pic():
+    ''' Traitement du format d'une clause PIC 
+        :param str  pic : format pic à traiter
+        >>> obj = Nature_pic('999')
+        >>> obj.nature
+        'NUM'
+        >>> obj = Nature_pic('S999')
+        >>> obj.nature
+        'SNUM'
+        >>> obj.virgule
+        False
+        >>> obj = Nature_pic('99V9')
+        >>> obj.nature
+        'FLOAT'
+        >>> obj = Nature_pic('S99V9')
+        >>> obj.nature
+        'SFLOAT'
+        >>> obj.virgule
+        True
+        >>> obj = Nature_pic('XX')
+        >>> obj.nature
+        'ALN'
+
+
+    '''
+    support = {'X' :'ALN' , '9' :'NUM', 'S' :'SNUM' ,'A' :'ALP'}
+
+    def __init__(self, pic):
+        self.pic = pic
+        self.nature = self.support.get(self.pic[0])
+        if not self.nature :
+            raise('FORMAT NON SUPPORTE' , pic)
+        else:
+            self.pose_virgule()
+
+    def pose_virgule(self):
+        if self.nature[-3:] == 'NUM' and 'V' in self.pic :
+            self.virgule = True
+            self.nature = self.nature.replace('NUM', 'FLOAT')
+        else:
+            self.virgule = False 
+
+                    
+ 
+
+
 
 
 class ZoneIndependante(Zone):
@@ -209,4 +243,6 @@ if __name__ == '__main__':
     print("debut des tests internes")
     import doctest
     doctest.run_docstring_examples(ZoneIndependante.from_ligne,None, verbose = False)
+    doctest.run_docstring_examples(Nature_pic,None, verbose = False)
+
     print("fin des tests internes")
