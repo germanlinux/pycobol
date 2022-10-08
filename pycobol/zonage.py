@@ -240,9 +240,6 @@ class ZoneIndependante(Zone):
         ''
         
     '''
-        # enlever blanc en tete et fin
-        # remplace blancs par 1 blanc
-        # splitter la ligne
         if ligne[-1] == '\n':
             ligne= ligne[:-1]
         
@@ -259,6 +256,9 @@ class ZoneIndependante(Zone):
         (valeur, nature) = Zone.traite_value(tab) 
         
         return cls(tab[1] ,type_, longueur_interne,  longueur_interne, pic, valeur , nature)
+    
+    def move_from(self, emetteur):
+        pass    
 
 
 if __name__ == '__main__':
