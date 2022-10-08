@@ -63,3 +63,9 @@ Merci
 
 Eric German
 
+Journal
+=======
+Le 08/10/2022: 
+--------------
+Ajout d'un repertoire COBOL qui contiendra des sources COBOL pour étudier le comportement 
+de GnuCOBOL 
