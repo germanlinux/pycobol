@@ -12,7 +12,7 @@ class Zone:
     prec: int = 0
     suivant : int = 0    
     longueur_interne: int = 0  
-    longueur_externe: int = 0
+    valeur_externe: str = ''
     picture: str =  '' 
     value : str =  ''   
     nature_value : str = ''    
@@ -160,10 +160,13 @@ class Nature_pic():
 
 
 class ZoneIndependante(Zone):
-    
-    def __init__(self, nom,type_,  longueur_int, longueur_externe  , pic, valeur, nature_valeur ): 
-        super().__init__(nom, 77, 'WS', type_ , 'DISPLAY',0, 0, 0, longueur_int, longueur_externe, pic, valeur ,nature_valeur )
+    zone_77 = []
+
+    def __init__(self, nom,type_,  longueur_int, valeur_externe  , pic, valeur, nature_valeur ): 
+        super().__init__(nom, 77, 'WS', type_ , 'DISPLAY',0, 0, 0, longueur_int, valeur_externe, pic, valeur ,nature_valeur )
+        ZoneIndependante.zone_77.append(self)
        # print(self)
+
     @classmethod
     def  from_ligne(cls, ligne):
         ''' Prise en charge des zones elementaires de niveau 77
@@ -252,13 +255,20 @@ class ZoneIndependante(Zone):
         if tab[0] != '77':
             return None
         (type_,pic, longueur) =  Zone.traite_pic(tab)
-        longueur_interne  = longueur_externe = longueur
+        longueur_interne  = longueur
+        valeur_externe = None
         (valeur, nature) = Zone.traite_value(tab) 
         
-        return cls(tab[1] ,type_, longueur_interne,  longueur_interne, pic, valeur , nature)
+        return cls(tab[1] ,type_, longueur_interne,  valeur_externe, pic, valeur , nature)
     
     def move_from(self, emetteur):
         pass    
+
+    def init_variable(self):
+        if not self.valeur:
+            pass
+            
+
 
 
 if __name__ == '__main__':
