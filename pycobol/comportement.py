@@ -2,62 +2,75 @@ from dataclasses import dataclass, field
 
 @dataclass
 class Comportement():
-    type: str
-    longueur: int
-    valeur: str
-    valeur_externe : str
-    nature_valeur :str
-
-@dataclass
-class Comportement_aln(Comportement):
-    ''' Permet de cadrer les variable de type ALN 
-        >>> obj = Comportement_aln('ALN' , 10 , None, None , None)
+    ''' Permet de cadrer les variables de type ALN et NUM
+        >>> obj = Comportement('ALN' , 10 , None, None , None)
         >>> obj.initialize()
         >>> obj.valeur_externe
         '          '
-        >>> obj = Comportement_aln('ALN' , 10 , 'eric', None , None)
+        >>> obj = Comportement('ALN' , 10 , 'eric', None , None)
         >>> obj.initialize()
         >>> obj.valeur_externe
         'eric      '
         >>> len(obj.valeur_externe)
         10
-    '''
-    def __init__(self, *args ):
-        self.cadrage = 'LEFT'
-        super().__init__(*args)
-
-    def initialize(self):
-        if self.valeur == None :
-            self.valeur_externe = ' ' * self.longueur
-        else: 
-            self.valeur_externe = self.valeur
-            self.valeur_externe = self.valeur.ljust(self.longueur,' ')    
-@dataclass     
-class Comportement_num(Comportement):
-    ''' Permet de cadrer les variable de type NUM 
-        >>> obj = Comportement_num('NUM' , 10 , None, None , None)
+        >>> obj = Comportement('NUM' , 10 , None, None , None)
         >>> obj.initialize()
         >>> obj.valeur_externe
         '0000000000'
-        >>> obj = Comportement_num('NUM' , 10 , 50, None , None)
+        >>> obj = Comportement('NUM' , 10 , 50, None , None)
         >>> obj.initialize()
         >>> obj.valeur_externe
         '0000000050'
         >>> len(obj.valeur_externe)
         10
-    '''
-    def __init__(self, *args ):
-        self.cadrage = 'RIGHT'
-        super().__init__(*args)
+        >>> obj = Comportement('SNUM' , 10 , None, None , None)
+        >>> obj.initialize()
+        >>> obj.valeur_externe
+        '+0000000000'
+        >>> obj = Comportement('SNUM' , 10 , -50, None , None)
+        >>> obj.initialize()
+        >>> obj.valeur_externe
+        '-0000000050'
+        >>> len(obj.valeur_externe)
+        11
+    '''    
+    type_: str
+    longueur: int
+    valeur: str
+    valeur_externe : str
+    nature_valeur :str
+
+    def __post_init__(self):
+        if self.type_ in ['ALN', 'ALP'] :
+            self.padding = ' '
+            self.direction = 'left'
+            self.defaut =''
+        else:
+            self.padding = '0'
+            self.direction = 'right'
+            self.defaut = 0
+            
+                
 
     def initialize(self):
         if self.valeur == None :
-            self.valeur_externe = '0' * self.longueur
+            self.valeur_externe = self.padding * self.longueur
+            self.valeur = self.defaut
+            if self.type_[0] == 'S' and self.valeur >= 0:
+                self.valeur_externe = '+' + self.valeur_externe  
         else: 
-            self.valeur_externe = str(self.valeur)
-            self.valeur_externe = str(self.valeur).rjust(self.longueur,'0')    
+            if self.direction == 'left':
+                self.valeur_externe = str(self.valeur).ljust(self.longueur,self.padding)
+            else:
+                self.valeur_externe = str(abs(self.valeur)).rjust(self.longueur,self.padding) 
+                if self.type_[0] == 'S' and self.valeur < 0:
+                     self.valeur_externe = '-' + self.valeur_externe
+                elif self.type_[0] == 'S' and self.valeur >= 0:
+                     self.valeur_externe = '+' + self.valeur_externe  
+              
+
 
 if __name__ == '__main__':  
     import doctest          
-    doctest.run_docstring_examples(Comportement_aln,None, verbose = False)
-    doctest.run_docstring_examples(Comportement_num,None, verbose = False)
+    doctest.run_docstring_examples(Comportement,None, verbose = 0)
+    
