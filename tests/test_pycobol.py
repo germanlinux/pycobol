@@ -13,6 +13,7 @@ class TestStringMethods(unittest.TestCase):
                     ligne= ligne[:-1]
                     tabl = ligne.split('#')
                     obj_ = zn.ZoneIndependante.from_ligne(tabl[0])
+                    print(obj_)
                     self.assertEqual (tabl[1], obj_.son_type)
                     self.assertEqual (int(tabl[2]), obj_.longueur_interne)
 

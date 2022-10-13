@@ -162,8 +162,10 @@ class Nature_pic():
 class ZoneIndependante(Zone):
     zone_77 = []
 
-    def __init__(self, nom,type_,  longueur_int, valeur_externe  , pic, valeur, nature_valeur ): 
-        super().__init__(nom, 77, 'WS', type_ , 'DISPLAY',0, 0, 0, longueur_int, valeur_externe, pic, valeur ,nature_valeur )
+    def __init__(self, nom, pic, valeur, nature_valeur ): 
+        type_ = Nature_pic(pic).nature
+        longueur_interne = Nature_pic(pic).longueur
+        super().__init__(nom, 77, 'WS', type_ , 'DISPLAY',0, 0, 0, longueur_interne, None, pic, valeur ,nature_valeur )
         ZoneIndependante.zone_77.append(self)
        # print(self)
 
@@ -255,11 +257,11 @@ class ZoneIndependante(Zone):
         if tab[0] != '77':
             return None
         (type_,pic, longueur) =  Zone.traite_pic(tab)
-        longueur_interne  = longueur
+        #longueur_interne  = longueur
         valeur_externe = None
         (valeur, nature) = Zone.traite_value(tab) 
         
-        return cls(tab[1] ,type_, longueur_interne,  valeur_externe, pic, valeur , nature)
+        return cls(tab[1] ,  pic, valeur , nature)
     
     def move_from(self, emetteur):
         pass    
