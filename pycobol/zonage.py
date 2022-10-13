@@ -1,6 +1,6 @@
 import re
 from dataclasses import dataclass, field
-from  comportement import *
+from comportement  import *
 
 @dataclass
 class Zone:
