@@ -1,5 +1,6 @@
 import re
 from dataclasses import dataclass, field
+from  comportement import *
 
 @dataclass
 class Zone:
@@ -16,7 +17,13 @@ class Zone:
     picture: str =  '' 
     value : str =  ''   
     nature_value : str = ''    
-        
+    
+    def initialize(self):
+        comportement_ = Comportement(self.son_type , self.longueur_interne , self.value, self.valeur_externe, self.nature_value  )    
+        comportement_.initialize()
+        self.valeur_externe = comportement_.valeur_externe
+
+
     @staticmethod
     def traite_pic(t_ligne):
          debpic = -1
@@ -235,7 +242,7 @@ class ZoneIndependante(Zone):
         5
         >>> obj.nature_value
         'NUM'
-         >>> ligne = "      77  MAZONE PIC X(10) VALUE SPACE."
+        >>> ligne = "      77  MAZONE PIC X(10) VALUE SPACE."
         >>> obj =ZoneIndependante.from_ligne(ligne)
         >>> obj.son_type
         'ALN'
@@ -243,7 +250,17 @@ class ZoneIndependante(Zone):
         10
         >>> obj.value
         ''
-        
+        >>> ligne = "      77  MAZONE PIC X(10)."
+        >>> obj =ZoneIndependante.from_ligne(ligne)
+        >>> obj.initialize()
+        >>> obj.valeur_externe
+        '          '
+        >>> ligne = "      77  MANUM PIC 9(10)."
+        >>> obj =ZoneIndependante.from_ligne(ligne)
+        >>> obj.initialize()
+        >>> obj.valeur_externe
+        '0000000000'
+
     '''
         if ligne[-1] == '\n':
             ligne= ligne[:-1]
