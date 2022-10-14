@@ -18,10 +18,15 @@ class Zone:
     value : str =  ''   
     nature_value : str = ''    
     
+    def __post_init__(self):
+        self.initialize()
+
     def initialize(self):
         comportement_ = Comportement(self.son_type , self.longueur_interne , self.value, self.valeur_externe, self.nature_value  )    
         comportement_.initialize()
         self.valeur_externe = comportement_.valeur_externe
+        self.value = comportement_.valeur
+
 
 
     @staticmethod
@@ -175,6 +180,10 @@ class ZoneIndependante(Zone):
         super().__init__(nom, 77, 'WS', type_ , 'DISPLAY',0, 0, 0, longueur_interne, None, pic, valeur ,nature_valeur )
         ZoneIndependante.zone_77.append(self)
        # print(self)
+    @classmethod
+    def liste_ws(cls):
+        return ZoneIndependante.zone_77
+        
 
     @classmethod
     def  from_ligne(cls, ligne):
@@ -252,12 +261,10 @@ class ZoneIndependante(Zone):
         ''
         >>> ligne = "      77  MAZONE PIC X(10)."
         >>> obj =ZoneIndependante.from_ligne(ligne)
-        >>> obj.initialize()
         >>> obj.valeur_externe
         '          '
         >>> ligne = "      77  MANUM PIC 9(10)."
         >>> obj =ZoneIndependante.from_ligne(ligne)
-        >>> obj.initialize()
         >>> obj.valeur_externe
         '0000000000'
 

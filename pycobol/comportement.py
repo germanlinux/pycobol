@@ -56,6 +56,7 @@ class Comportement():
         if self.valeur == None :
             self.valeur_externe = self.padding * self.longueur
             self.valeur = self.defaut
+
             if self.type_[0] == 'S' and self.valeur >= 0:
                 self.valeur_externe = '+' + self.valeur_externe  
         else: 
