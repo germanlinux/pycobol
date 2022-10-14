@@ -69,6 +69,12 @@ class Comportement():
                 elif self.type_[0] == 'S' and self.valeur >= 0:
                      self.valeur_externe = '+' + self.valeur_externe  
               
+    @classmethod
+    def from_object(cls, obj ):
+        ''' Methode de classe retournant un objet comportement à partir d'une instance de zone
+            param: zone  objet zonage
+        '''   
+        return cls(obj.son_type , obj.longueur_interne, obj.value, obj.valeur_externe, obj.nature_value )
 
 
 if __name__ == '__main__':  
