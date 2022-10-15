@@ -55,3 +55,21 @@ class TestZonage(unittest.TestCase):
         self.assertEqual(objc_.valeur_externe, 'ERICXXXXXX')
         self.assertEqual(objc_.longueur, 10)
     
+    def test_77_move_valeur_comportement(self):                
+        ligne = "77 CTS01     PIC  9(6)  VALUE 100."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        objc_ = cp.Comportement.from_object(obj_)
+        objc_.move_value(3000)
+        print('eg', objc_)
+        self.assertEqual(objc_.valeur_externe, '003000')
+        self.assertEqual(objc_.longueur, 6)
+
+    def test_77_move_valeur_comportement(self):                
+        ligne = "77 CTS01     PIC  9(6)  VALUE 100."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        objc_ = cp.Comportement.from_object(obj_)
+        objc_.move_value(1234567)
+        print('eg', objc_)
+        self.assertEqual(objc_.valeur_externe, '234567')
+        self.assertEqual(objc_.longueur, 6)
+

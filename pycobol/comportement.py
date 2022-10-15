@@ -79,7 +79,15 @@ class Comportement():
                 lg_ = self.longueur 
             self.valeur_externe = valeur[:lg_] + self.valeur_externe[lg_:]
             self.valeur = self.valeur_externe   
-                  
+        else:
+            lg_ = len(str(abs(valeur)))
+            print('eg2', lg_)
+            if lg_ > self.longueur :
+                lg_ =lg_ - self.longueur
+            else:
+                lg_ = 0     
+            self.valeur_externe = str(abs(valeur))[lg_:].rjust(self.longueur,self.padding) 
+            self.valeur = int(self.valeur_externe)            
                
 
     @classmethod
