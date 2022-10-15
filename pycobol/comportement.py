@@ -68,7 +68,20 @@ class Comportement():
                      self.valeur_externe = '-' + self.valeur_externe
                 elif self.type_[0] == 'S' and self.valeur >= 0:
                      self.valeur_externe = '+' + self.valeur_externe  
-              
+    
+    def move_value(self, valeur):
+        ''' methode pour affecter une valeur à une zone
+            L'objet comportement est dejà instancié il connait la valeur de départ
+         '''
+        if self.direction == 'left' : 
+            lg_ = len(valeur)
+            if lg_ > self.longueur:
+                lg_ = self.longueur 
+            self.valeur_externe = valeur[:lg_] + self.valeur_externe[lg_:]
+            self.valeur = self.valeur_externe   
+                  
+               
+
     @classmethod
     def from_object(cls, obj ):
         ''' Methode de classe retournant un objet comportement à partir d'une instance de zone
