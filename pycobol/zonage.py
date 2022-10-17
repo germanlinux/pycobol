@@ -9,28 +9,27 @@ class Zone:
     section: str    
     son_type: str = 'ALN'
     usage: str = 'DISPLAY'
-    pere: int = 0
-    prec: int = 0
-    suivant : int = 0    
-    longueur_interne: int = 0  
+    longueur_utile: int = 0  
+    valeur_interne: str =''
     valeur_externe: str = ''
     picture: str =  '' 
-    value : str =  ''   
-    nature_value : str = ''    
+    valeur_initialisation : str =  ''     
     
+
+
     def __post_init__(self):
         self.initialize()
 
     def initialize(self):
-        comportement_ = Comportement(self.son_type , self.longueur_interne , self.value, self.valeur_externe, self.nature_value  )    
+       
+        comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_interne, self.valeur_externe )    
         comportement_.initialize()
         self.valeur_externe = comportement_.valeur_externe
-        self.value = comportement_.valeur
-
-
-
+        self.valeur_interne = comportement_.valeur
+     
     @staticmethod
     def traite_pic(t_ligne):
+         ''' return nature_.nature, pic, nature_.longueur , nature_.decimale'''
          debpic = -1
          finpic = -1
          for cp, val in  enumerate(t_ligne) :
@@ -44,11 +43,8 @@ class Zone:
          else:
             finpic = len(t_ligne) - 1
          pic = ' '.join(t_ligne[debpic:finpic +1])
-         nature_ = Nature_pic(pic)
-         nature = nature_.nature
-         nature_obj = nature_
-         long = nature_obj.longueur                  
-         return nature, pic, long
+         nature_ = Nature_pic(pic)             
+         return nature_.nature, pic, nature_.longueur , nature_.decimale
         
 
     def traite_value(t_ligne):
@@ -56,10 +52,10 @@ class Zone:
             :param str tableau mot de la ligne
             >>> ligne =   ['77', 'MAZONE', 'PIC', 'X(10)', 'VALUE', 'SPACE']
             >>> Zone.traite_value(ligne)
-            ('', 'STR')
+            ''
             >>> ligne =   ['77', 'MAZONE', 'PIC', 'X(10)', 'VALUE', "'er'"]
             >>> Zone.traite_value(ligne)
-            ('er', 'STR')
+            'er'
         '''    
 
         debval = -1
@@ -78,17 +74,24 @@ class Zone:
         else: 
             return None, None         
         value_ = value.translate(str.maketrans({"\'":'' ,'\"':'' }))
-        if value_ != value:
-            nature_value = 'STR'
-        else:    
+        if value_ == value:
             try: 
                 #print('try', value_)
                 (value_ , nature_value) = dico_[value_] 
             except: 
                 value_ = int(value)
-                nature_value  = 'NUM'
             
-        return value_,nature_value
+        return value_
+
+###############################
+###############################
+class Flottant(Zone):
+    def __init__(self, *args):
+        super()._init_(*args)
+        pass
+
+
+
 
 class Nature_pic():
     ''' Traitement du format d'une clause PIC 
@@ -131,6 +134,7 @@ class Nature_pic():
     def __init__(self, pic):
         self.pic = pic
         self.nature = self.support.get(self.pic[0])
+        self.decimale = 0
         if not self.nature :
             raise Exception(f"FORMAT Picture NON SUPPORTE: {pic}")
         else:
@@ -165,6 +169,7 @@ class Nature_pic():
                 tab_ = re.search(r'V(9+)' ,self.pic)
                 if tab_:
                     long += len(tab_[1])
+                    self.decimale = len(tab_[1])
         self.longueur = long
  
 
@@ -174,16 +179,16 @@ class Nature_pic():
 class ZoneIndependante(Zone):
     zone_77 = []
 
-    def __init__(self, nom, pic, valeur, nature_valeur ): 
+    def __init__(self, nom, pic, valeur, decimale ): 
         type_ = Nature_pic(pic).nature
         longueur_interne = Nature_pic(pic).longueur
-        super().__init__(nom, 77, 'WS', type_ , 'DISPLAY',0, 0, 0, longueur_interne, None, pic, valeur ,nature_valeur )
+        dec = Nature_pic(pic).decimale
+        super().__init__(nom, 77, 'WS', type_ , 'DISPLAY', longueur_interne,None, None , pic, valeur )
         ZoneIndependante.zone_77.append(self)
-       # print(self)
     @classmethod
     def liste_ws(cls):
         return ZoneIndependante.zone_77
-        
+
 
     @classmethod
     def  from_ligne(cls, ligne):
@@ -196,7 +201,7 @@ class ZoneIndependante(Zone):
         >>> obj =ZoneIndependante.from_ligne(ligne)
         >>> obj.son_type
         'ALN'
-        >>> obj.longueur_interne
+        >>> obj.longueur_utile
         10
         >>> obj.picture
         'X(10)'
@@ -205,59 +210,58 @@ class ZoneIndependante(Zone):
         >>> obj =ZoneIndependante.from_ligne(ligne)
         >>> obj.son_type
         'ALN'
-        >>> obj.longueur_interne
+        >>> obj.longueur_utile
         10
         >>> obj.picture
         'X(10)'
-        >>> obj.value
+        >>> obj.valeur_initialisation
         'er'
+        >>> obj.valeur_interne
+        'er'
+        
         >>> ligne = "      77  MAZONE PIC 999."
         >>> obj =ZoneIndependante.from_ligne(ligne)
         >>> obj.son_type
         'NUM'
-        >>> obj.longueur_interne
+        >>> obj.longueur_utile
         3
         
         >>> obj.picture
         '999'
         >>> obj=ZoneIndependante.from_ligne("77  NPAG PIC 9999 VALUE 0.")
-        >>> obj.value
+        >>> obj.valeur_interne
         0
-        >>> obj.nature_value
-        'NUM'
         
         >>> obj=ZoneIndependante.from_ligne("77  NPAG PIC 9999 VALUE ZERO.")
-        >>> obj.value
+        >>> obj.valeur_interne
         0
         >>> obj=ZoneIndependante.from_ligne("77  NPAG PIC S999V99 VALUE ZERO.")
-        >>> obj.value
+        >>> obj.valeur_interne
         0
         >>> obj.son_type
         'SFLOAT'
-        >>> obj.longueur_interne
+        >>> obj.longueur_utile
         5
         >>> obj=ZoneIndependante.from_ligne("77  NPAG PIC S999 VALUE ZERO.")
-        >>> obj.value
+        >>> obj.valeur_interne
         0
         >>> obj=ZoneIndependante.from_ligne("77  NPAG PIC S9(3) VALUE ZERO.")
-        >>> obj.value
+        >>> obj.valeur_interne
         0
         >>> obj=ZoneIndependante.from_ligne("77  NPAG PIC 9(3)V99 VALUE ZERO.")
-        >>> obj.value
+        >>> obj.valeur_interne
         0
         >>> obj.son_type
         'FLOAT'
-        >>> obj.longueur_interne
+        >>> obj.longueur_utile
         5
-        >>> obj.nature_value
-        'NUM'
-        >>> ligne = "      77  MAZONE PIC X(10) VALUE SPACE."
+         >>> ligne = "      77  MAZONE PIC X(10) VALUE SPACE."
         >>> obj =ZoneIndependante.from_ligne(ligne)
         >>> obj.son_type
         'ALN'
-        >>> obj.longueur_interne
+        >>> obj.longueur_utile
         10
-        >>> obj.value
+        >>> obj.valeur_interne
         ''
         >>> ligne = "      77  MAZONE PIC X(10)."
         >>> obj =ZoneIndependante.from_ligne(ligne)
@@ -280,12 +284,11 @@ class ZoneIndependante(Zone):
             tab[-1] = tab[-1][:-1]    
         if tab[0] != '77':
             return None
-        (type_,pic, longueur) =  Zone.traite_pic(tab)
+        (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
         #longueur_interne  = longueur
         valeur_externe = None
-        (valeur, nature) = Zone.traite_value(tab) 
-        
-        return cls(tab[1] ,  pic, valeur , nature)
+        valeur = Zone.traite_value(tab) 
+        return cls(tab[1] ,  pic, valeur , decimale)
     
     def move_from(self, emetteur):
         pass    

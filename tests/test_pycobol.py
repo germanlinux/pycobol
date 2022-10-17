@@ -14,16 +14,8 @@ class TestStringMethods(unittest.TestCase):
                     tabl = ligne.split('#')
                     obj_ = zn.ZoneIndependante.from_ligne(tabl[0])
                     self.assertEqual (tabl[1], obj_.son_type)
-                    self.assertEqual (int(tabl[2]), obj_.longueur_interne)
+                    self.assertEqual (int(tabl[2]), obj_.longueur_utile)
 
-                    if obj_.nature_value == 'NUM':
-                        val_ = int(tabl[3])
-                    else:
-                        val_ = tabl[3]
-                        if val_.isspace():
-                            val_=''
-                    if tabl[3] == 'None' :
-                        val_= None
                     
     def test_niveau77_init(self):
         with open('./tests/pic77init.txt') as file:
@@ -40,4 +32,4 @@ class TestStringMethods(unittest.TestCase):
                          val_ = int(val_)        
                     if val_ == 'None' :
                         val_= ''
-                    self.assertEqual (val_, obj_.value)
+                    self.assertEqual (val_, obj_.valeur_interne)

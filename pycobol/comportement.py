@@ -1,33 +1,33 @@
 from dataclasses import dataclass, field
-
+from decimal import *
 @dataclass
 class Comportement():
     ''' Permet de cadrer les variables de type ALN et NUM
-        >>> obj = Comportement('ALN' , 10 , None, None , None)
+        >>> obj = Comportement('ALN' , 10 , None, None )
         >>> obj.initialize()
         >>> obj.valeur_externe
         '          '
-        >>> obj = Comportement('ALN' , 10 , 'eric', None , None)
+        >>> obj = Comportement('ALN' , 10 , 'eric', None )
         >>> obj.initialize()
         >>> obj.valeur_externe
         'eric      '
         >>> len(obj.valeur_externe)
         10
-        >>> obj = Comportement('NUM' , 10 , None, None , None)
+        >>> obj = Comportement('NUM' , 10 , None, None )
         >>> obj.initialize()
         >>> obj.valeur_externe
         '0000000000'
-        >>> obj = Comportement('NUM' , 10 , 50, None , None)
+        >>> obj = Comportement('NUM' , 10 , 50, None )
         >>> obj.initialize()
         >>> obj.valeur_externe
         '0000000050'
         >>> len(obj.valeur_externe)
         10
-        >>> obj = Comportement('SNUM' , 10 , None, None , None)
+        >>> obj = Comportement('SNUM' , 10 , None, None )
         >>> obj.initialize()
         >>> obj.valeur_externe
         '+0000000000'
-        >>> obj = Comportement('SNUM' , 10 , -50, None , None)
+        >>> obj = Comportement('SNUM' , 10 , -50, None )
         >>> obj.initialize()
         >>> obj.valeur_externe
         '-0000000050'
@@ -38,14 +38,14 @@ class Comportement():
     longueur: int
     valeur: str
     valeur_externe : str
-    nature_valeur :str
 
     def __post_init__(self):
+        #print(self)
         if self.type_ in ['ALN', 'ALP'] :
             self.padding = ' '
             self.direction = 'left'
             self.defaut =''
-        else:
+        else:    
             self.padding = '0'
             self.direction = 'right'
             self.defaut = 0
@@ -80,22 +80,33 @@ class Comportement():
             self.valeur_externe = valeur[:lg_] + self.valeur_externe[lg_:]
             self.valeur = self.valeur_externe   
         else:
+            if self.valeur_externe[0] == '+' or self.valeur_externe[0] == '-':
+                self.valeur_externe = self.valeur_externe[1:]
             lg_ = len(str(abs(valeur)))
-            print('eg2', lg_)
             if lg_ > self.longueur :
                 lg_ =lg_ - self.longueur
             else:
                 lg_ = 0     
             self.valeur_externe = str(abs(valeur))[lg_:].rjust(self.longueur,self.padding) 
-            self.valeur = int(self.valeur_externe)            
-               
+                    
+            if self.type_[0] == 'S' and valeur < 0:
+                     self.valeur_externe = '-' + self.valeur_externe
+            elif self.type_[0] == 'S' and valeur >= 0:
+                     self.valeur_externe = '+' + self.valeur_externe
+            self.valeur = int(self.valeur_externe)                  
 
     @classmethod
     def from_object(cls, obj ):
         ''' Methode de classe retournant un objet comportement à partir d'une instance de zone
             param: zone  objet zonage
         '''   
-        return cls(obj.son_type , obj.longueur_interne, obj.value, obj.valeur_externe, obj.nature_value )
+        return cls(obj.son_type , obj.longueur_utile, obj.valeur_interne, obj.valeur_externe)
+
+class ComportementFloat(Comportement):
+    def initialize(self):
+        if self.valeur == None :
+            nombre =  self.padding * self.longueur + '.' + self.padding * self.decimale
+            self.valeur = decimale(nombre)
 
 
 if __name__ == '__main__':  
