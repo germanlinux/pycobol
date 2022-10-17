@@ -22,7 +22,8 @@ class Zone:
 
     def initialize(self):
        
-        comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_interne, self.valeur_externe )    
+        comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_initialisation )  
+       # print(comportement_)  
         comportement_.initialize()
         self.valeur_externe = comportement_.valeur_externe
         self.valeur_interne = comportement_.valeur
@@ -72,7 +73,7 @@ class Zone:
                  value = ' '.join(t_ligne[debval:])
                  break
         else: 
-            return None, None         
+            return None        
         value_ = value.translate(str.maketrans({"\'":'' ,'\"':'' }))
         if value_ == value:
             try: 

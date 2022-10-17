@@ -37,7 +37,6 @@ class Comportement():
     type_: str
     longueur: int
     valeur: str
-    valeur_externe : str
 
     def __post_init__(self):
         #print(self)
@@ -53,6 +52,7 @@ class Comportement():
                 
 
     def initialize(self):
+        self.valeur_externe = None 
         if self.valeur == None :
             self.valeur_externe = self.padding * self.longueur
             self.valeur = self.defaut
@@ -63,44 +63,46 @@ class Comportement():
             if self.direction == 'left':
                 self.valeur_externe = str(self.valeur).ljust(self.longueur,self.padding)
             else:
+               # print('STOP4', self)
                 self.valeur_externe = str(abs(self.valeur)).rjust(self.longueur,self.padding) 
                 if self.type_[0] == 'S' and self.valeur < 0:
                      self.valeur_externe = '-' + self.valeur_externe
                 elif self.type_[0] == 'S' and self.valeur >= 0:
                      self.valeur_externe = '+' + self.valeur_externe  
     
-    def move_value(self, valeur):
+
+    def move_value(self,objetzone,  newvaleur):
         ''' methode pour affecter une valeur à une zone
             L'objet comportement est dejà instancié il connait la valeur de départ
          '''
         if self.direction == 'left' : 
-            lg_ = len(valeur)
+            lg_ = len(newvaleur)
             if lg_ > self.longueur:
                 lg_ = self.longueur 
-            self.valeur_externe = valeur[:lg_] + self.valeur_externe[lg_:]
-            self.valeur = self.valeur_externe   
+            objetzone.valeur_externe = newvaleur[:lg_] + objetzone.valeur_externe[lg_:]
+            objetzone.interne = objetzone.valeur_externe   
         else:
-            if self.valeur_externe[0] == '+' or self.valeur_externe[0] == '-':
-                self.valeur_externe = self.valeur_externe[1:]
-            lg_ = len(str(abs(valeur)))
+            if objetzone.valeur_externe[0] == '+' or objetzone.valeur_externe[0] == '-':
+                objetzone.valeur_externe = objetzone.valeur_externe[1:]
+            lg_ = len(str(abs(newvaleur)))
             if lg_ > self.longueur :
                 lg_ =lg_ - self.longueur
             else:
                 lg_ = 0     
-            self.valeur_externe = str(abs(valeur))[lg_:].rjust(self.longueur,self.padding) 
+            objetzone.valeur_externe = str(abs(newvaleur))[lg_:].rjust(self.longueur,self.padding) 
                     
-            if self.type_[0] == 'S' and valeur < 0:
-                     self.valeur_externe = '-' + self.valeur_externe
-            elif self.type_[0] == 'S' and valeur >= 0:
-                     self.valeur_externe = '+' + self.valeur_externe
-            self.valeur = int(self.valeur_externe)                  
+            if self.type_[0] == 'S' and newvaleur < 0:
+                     objetzone.valeur_externe = '-' + objetzone.valeur_externe
+            elif self.type_[0] == 'S' and newvaleur >= 0:
+                     objetzone.valeur_externe = '+' + objetzone.valeur_externe
+            objetzone.valeur_interne = int(objetzone.valeur_externe)                  
 
     @classmethod
     def from_object(cls, obj ):
         ''' Methode de classe retournant un objet comportement à partir d'une instance de zone
             param: zone  objet zonage
         '''   
-        return cls(obj.son_type , obj.longueur_utile, obj.valeur_interne, obj.valeur_externe)
+        return cls(obj.son_type , obj.longueur_utile, obj.valeur_initialisation)
 
 class ComportementFloat(Comportement):
     def initialize(self):
