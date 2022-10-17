@@ -12,7 +12,7 @@ class TestZonage(unittest.TestCase):
         obj_ = zn.ZoneIndependante('essai','X(4)', None , None)
         self.assertEqual (obj_.valeur_interne ,'')
         self.assertEqual (obj_.valeur_externe ,'    ')
-'''
+
 
     def test_77_avec_value(self):                
         ligne = "77 CTS01     PIC  9(4)  VALUE ZERO."
@@ -84,4 +84,3 @@ class TestZonage(unittest.TestCase):
         self.assertEqual(obj_.valeur_externe, '+234567')
         self.assertEqual(obj_.longueur_utile, 6)
 
-'''
