@@ -87,9 +87,10 @@ class Zone:
 ###############################
 ###############################
 class Flottant(Zone):
-    def __init__(self, *args):
-        super()._init_(*args)
-        pass
+    def __init__(self,decimale,  *args):
+        self.decimale = decimale
+        super().__init__(*args)
+        
 
 
 
@@ -180,7 +181,7 @@ class Nature_pic():
 class ZoneIndependante(Zone):
     zone_77 = []
 
-    def __init__(self, nom, pic, valeur, decimale ): 
+    def __init__(self, nom, pic, valeur ): 
         type_ = Nature_pic(pic).nature
         longueur_interne = Nature_pic(pic).longueur
         dec = Nature_pic(pic).decimale
@@ -289,7 +290,10 @@ class ZoneIndependante(Zone):
         #longueur_interne  = longueur
         valeur_externe = None
         valeur = Zone.traite_value(tab) 
-        return cls(tab[1] ,  pic, valeur , decimale)
+        if decimale:        
+            return Flottant(decimale, tab[1] ,  pic, valeur)
+        else:
+            return cls(tab[1] ,  pic, valeur)
     
     def move_from(self, emetteur):
         pass    
