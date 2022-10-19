@@ -89,9 +89,22 @@ class Zone:
 class Flottant(Zone):
     def __init__(self,decimale,  *args):
         self.decimale = decimale
-        super().__init__(*args)
-        
+        nom = args[0]
+        pic = args[1]
+        valeur_initiale = args[2]
+        type_ = Nature_pic(pic).nature
+        longueur_interne = Nature_pic(pic).longueur
+        dec = Nature_pic(pic).decimale
+        super().__init__(nom, 77, 'WS', type_ , 'DISPLAY', longueur_interne,None, None , pic, valeur_initiale)
+        print(self)
 
+    def initialize(self):
+        comportement_ = ComportementFloat( self.decimale, self.son_type , self.longueur_utile , self.valeur_initialisation )  
+        print(comportement_)  
+        comportement_.initialize()
+        self.valeur_externe = comportement_.valeur_externe
+        self.valeur_interne = comportement_.valeur_interne       
+        print(self)  
 
 
 

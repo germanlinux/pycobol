@@ -105,10 +105,25 @@ class Comportement():
         return cls(obj.son_type , obj.longueur_utile, obj.valeur_initialisation)
 
 class ComportementFloat(Comportement):
+
+    def __init__(self,decimale, *args ):
+         self.decimale = decimale
+         super().__init__(*args)
+         self.padding = '0'
+         self.direction = 'right'
+         self.defaut = 0
+         self.valeur_externe ='0'
+         self.valeur_interne =0.
+
+
+
     def initialize(self):
         if self.valeur == None :
-            nombre =  self.padding * self.longueur + '.' + self.padding * self.decimale
-            self.valeur = decimale(nombre)
+            longueur_entier = self.longueur - self.decimale
+            decimale_str = self.padding  *  self.decimale
+            longueur_entier_str =  self.padding  *  longueur_entier
+            self.valeur_externe = longueur_entier_str + ',' +  decimale_str
+            self.valeur_interne = float(self.defaut)
 
 
 if __name__ == '__main__':  
