@@ -62,6 +62,7 @@ class Comportement():
                 self.valeur_externe = '+' + self.valeur_externe  
         else: 
             if self.direction == 'left':
+                self.valeur = str(self.valeur)
                 lg_ = len(self.valeur)
                 chaine = self.valeur
                 if lg_ > self.longueur:

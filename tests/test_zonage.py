@@ -116,6 +116,12 @@ class TestZonage(unittest.TestCase):
         obj_ = zn.ZoneIndependante.from_ligne(ligne)
         self.assertEqual(obj_.son_type, 'ALN')
         self.assertEqual(obj_.valeur_externe, 'ABCD')
+    
+    def test_77_classmethod_comportement304(self):                
+        ligne = "77 CTS0101     PIC  XXXX VALUE 99421."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        self.assertEqual(obj_.son_type, 'ALN')
+        self.assertEqual(obj_.valeur_externe, '9942')
 
 
 
