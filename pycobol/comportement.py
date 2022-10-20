@@ -132,7 +132,8 @@ class ComportementFloat(Comportement):
             self.valeur_externe = longueur_entier_str + ',' +  decimale_str
             self.valeur_interne = float(self.defaut)
         else:
-            value_str = str(self.valeur)
+            value_str = abs(self.valeur)
+            value_str = str(value_str)
             tb_ = []
             if '.' in value_str :
                 tb_ = value_str.split('.')
@@ -151,7 +152,13 @@ class ComportementFloat(Comportement):
             self.valeur_externe = tb_[0] + ',' + tb_[1]
             str_ = self.valeur_externe.replace(',', '.')
             self.valeur_interne = float(str_)
-        
+            print('STOP9', self)
+            if self.type_[0] == 'S' and self.valeur < 0:
+                     self.valeur_externe = '-' + self.valeur_externe
+                     self.valeur_interne = -1 * self.valeur_interne
+            elif self.type_[0] == 'S' and self.valeur >= 0:
+                     self.valeur_externe = '+' + self.valeur_externe  
+    
             
         
 

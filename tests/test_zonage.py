@@ -123,5 +123,15 @@ class TestZonage(unittest.TestCase):
         self.assertEqual(obj_.son_type, 'ALN')
         self.assertEqual(obj_.valeur_externe, '9942')
 
+    def test_77_classmethod_comportement403(self):                
+        ligne = "77 CTS0101     PIC  S9(4)V99 VALUE +1234,5678."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        self.assertEqual(obj_.son_type, 'SFLOAT')
+        self.assertEqual(obj_.valeur_externe, '+1234,78')  
 
+    def test_77_classmethod_comportement404(self):                
+        ligne = "77 CTS0101     PIC  S9(4)V99 VALUE -34,56."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        self.assertEqual(obj_.son_type, 'SFLOAT')
+        self.assertEqual(obj_.valeur_externe, '-0034,56')    
 
