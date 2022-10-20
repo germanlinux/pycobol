@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from decimal import *
+import re
 @dataclass
 class Comportement():
     ''' Permet de cadrer les variables de type ALN et NUM
@@ -61,7 +62,11 @@ class Comportement():
                 self.valeur_externe = '+' + self.valeur_externe  
         else: 
             if self.direction == 'left':
-                self.valeur_externe = str(self.valeur).ljust(self.longueur,self.padding)
+                lg_ = len(self.valeur)
+                chaine = self.valeur
+                if lg_ > self.longueur:
+                    chaine = self.valeur[:self.longueur]
+                self.valeur_externe = str(chaine).ljust(self.longueur,self.padding)
             else:
                # print('STOP4', self)
                 self.valeur_externe = str(abs(self.valeur)).rjust(self.longueur,self.padding) 
@@ -118,12 +123,39 @@ class ComportementFloat(Comportement):
 
 
     def initialize(self):
+        longueur_entier = self.longueur - self.decimale
         if self.valeur == None :
             longueur_entier = self.longueur - self.decimale
             decimale_str = self.padding  *  self.decimale
             longueur_entier_str =  self.padding  *  longueur_entier
             self.valeur_externe = longueur_entier_str + ',' +  decimale_str
             self.valeur_interne = float(self.defaut)
+        else:
+            value_str = str(self.valeur)
+            tb_ = []
+            if '.' in value_str :
+                tb_ = value_str.split('.')
+                tb_[1] = tb_[1].ljust(2, '0')
+                if len(tb_[1]) > self.decimale:
+                    lg_ = len(tb_[1])  - self.decimale 
+                    tb_[1] = tb_[1][lg_:]
+            else:
+                tb_.append(value_str)
+                tb_.append( '0' * self.decimale)
+            tb_[0] = tb_[0].rjust(longueur_entier,'0')
+            if len(tb_[0]) > longueur_entier:
+                lg_ = len(tb_[0])  - longueur_entier 
+                tb_[0] = tb_[0][lg_:]
+
+            self.valeur_externe = tb_[0] + ',' + tb_[1]
+            str_ = self.valeur_externe.replace(',', '.')
+            self.valeur_interne = float(str_)
+        
+            
+        
+
+
+
 
 
 if __name__ == '__main__':  

@@ -84,3 +84,38 @@ class TestZonage(unittest.TestCase):
         self.assertEqual(obj_.valeur_externe, '+234567')
         self.assertEqual(obj_.longueur_utile, 6)
 
+    def test_77_classmethod_comportement101(self):                
+        ligne = "77 CTS0101     PIC  9(4)V99."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        self.assertEqual(obj_.son_type, 'FLOAT')
+        self.assertEqual(obj_.longueur_utile, 6)
+
+    def test_77_classmethod_comportement200(self):                
+        ligne = "77 CTS0101     PIC  9(4)V99 VALUE ZERO."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        self.assertEqual(obj_.son_type, 'FLOAT')
+        self.assertEqual(obj_.valeur_externe, '0000,00')
+    
+    def test_77_classmethod_comportement201(self):                
+        ligne = "77 CTS0101     PIC  9(4)V99 VALUE 1234,56."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        self.assertEqual(obj_.son_type, 'FLOAT')
+        self.assertEqual(obj_.valeur_externe, '1234,56')
+    def test_77_classmethod_comportement202(self):                
+        ligne = "77 CTS0101     PIC  9(4)V99 VALUE 123456,56."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        self.assertEqual(obj_.son_type, 'FLOAT')
+        self.assertEqual(obj_.valeur_externe, '3456,56')
+    def test_77_classmethod_comportement203(self):                
+        ligne = "77 CTS0101     PIC  9(4)V99 VALUE 1234,5678."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        self.assertEqual(obj_.son_type, 'FLOAT')
+        self.assertEqual(obj_.valeur_externe, '1234,78')
+    def test_77_classmethod_comportement303(self):                
+        ligne = "77 CTS0101     PIC  XXXX VALUE 'ABCDEFGH."
+        obj_ = zn.ZoneIndependante.from_ligne(ligne)
+        self.assertEqual(obj_.son_type, 'ALN')
+        self.assertEqual(obj_.valeur_externe, 'ABCD')
+
+
+

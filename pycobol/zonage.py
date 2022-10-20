@@ -80,7 +80,11 @@ class Zone:
                 #print('try', value_)
                 (value_ , nature_value) = dico_[value_] 
             except: 
-                value_ = int(value)
+                if ','  in value:
+                    value = value.replace(',','.')
+                    value_ = float(value)
+                else:
+                    value_ = int(value)
             
         return value_
 
