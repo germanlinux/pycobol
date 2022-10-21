@@ -195,16 +195,17 @@ class ComportementFloat(Comportement):
             lg_ = 0
         tabl[1] =  str(newvl_[1])[lg_:].rjust(self.decimale,self.padding)   
         objetzone.valeur_externe = tabl[0] + ',' + tabl[1]
-        str_v = objetzone.valeur_externe.replace(',', '.')
-        objetzone.valeur_interne = float(str_v)  
+        
   
-        '''         
+                 
         if self.type_[0] == 'S' and newvaleur < 0:
                  objetzone.valeur_externe = '-' + objetzone.valeur_externe
         elif self.type_[0] == 'S' and newvaleur >= 0:
                  objetzone.valeur_externe = '+' + objetzone.valeur_externe
-        objetzone.valeur_interne = int(objetzone.valeur_externe)                  
-        '''
+        str_v = objetzone.valeur_externe.replace(',', '.')
+        objetzone.valeur_interne = float(str_v)           
+                  
+        
         
 
 
