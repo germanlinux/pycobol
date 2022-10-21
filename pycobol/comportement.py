@@ -112,6 +112,13 @@ class Comportement():
 
 class ComportementFloat(Comportement):
 
+    @classmethod
+    def from_object(cls, obj ):
+        ''' Methode de classe retournant un objet comportement à partir d'une instance de zone
+            param: zone  objet zonage
+        '''   
+        return cls(obj.decimale, obj.son_type , obj.longueur_utile, obj.valeur_initialisation)
+
     def __init__(self,decimale, *args ):
          self.decimale = decimale
          super().__init__(*args)
@@ -152,14 +159,52 @@ class ComportementFloat(Comportement):
             self.valeur_externe = tb_[0] + ',' + tb_[1]
             str_ = self.valeur_externe.replace(',', '.')
             self.valeur_interne = float(str_)
-            print('STOP9', self)
             if self.type_[0] == 'S' and self.valeur < 0:
                      self.valeur_externe = '-' + self.valeur_externe
                      self.valeur_interne = -1 * self.valeur_interne
             elif self.type_[0] == 'S' and self.valeur >= 0:
                      self.valeur_externe = '+' + self.valeur_externe  
     
-            
+    def move_value(self,objetzone,  newvaleur):
+        ''' methode pour affecter une valeur à une zone
+            L'objet comportement est dejà instancié il connait la valeur de départ
+            :newvaleur float ou int 
+         '''
+        longueur_entier = self.longueur - self.decimale
+        newvaleur_str  = str(abs(newvaleur))
+        tabl = objetzone.valeur_externe.split(',')
+        newvl_ = []
+        if '.' in newvaleur_str:
+            newvl_ = newvaleur_str.split(',')
+        else:
+            newvl_.append(newvaleur_str)
+            newvl_.append('0' * self.decimale)
+        
+        if tabl[0] == '+'  or  tabl[0] == '-':
+            tabl[0] = tabl[0][1:]
+        lg_ =   len(newvl_[0])  
+        if lg_ > longueur_entier:
+            lg_ = lg_ - longueur_entier
+        else:
+            lg_ = 0
+        tabl[0] =  str(newvl_[0])[lg_:].rjust(longueur_entier,self.padding)   
+        lg_ =   len(newvl_[1])  
+        if lg_ > self.decimale:
+            lg_ = lg_ - self.decimale
+        else:
+            lg_ = 0
+        tabl[1] =  str(newvl_[1])[lg_:].rjust(self.decimale,self.padding)   
+        objetzone.valeur_externe = tabl[0] + ',' + tabl[1]
+        str_v = objetzone.valeur_externe.replace(',', '.')
+        objetzone.valeur_interne = float(str_v)  
+  
+        '''         
+        if self.type_[0] == 'S' and newvaleur < 0:
+                 objetzone.valeur_externe = '-' + objetzone.valeur_externe
+        elif self.type_[0] == 'S' and newvaleur >= 0:
+                 objetzone.valeur_externe = '+' + objetzone.valeur_externe
+        objetzone.valeur_interne = int(objetzone.valeur_externe)                  
+        '''
         
 
 
