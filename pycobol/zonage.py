@@ -14,7 +14,7 @@ class Zone:
     valeur_externe: str = ''
     picture: str =  '' 
     valeur_initialisation : str =  ''     
-    
+    comportement_associe: object = None
 
 
     def __post_init__(self):
@@ -27,7 +27,16 @@ class Zone:
         comportement_.initialize()
         self.valeur_externe = comportement_.valeur_externe
         self.valeur_interne = comportement_.valeur
+        self.comportement_associe = comportement_
      
+    def move_value(self, newvalue ):
+        ''' Cette methode permet d affecter des valeurs à une zone.
+        Elle utilise les objets de la classe comportement.
+        '''
+        self.comportement_associe.move_value(self,newvalue)
+
+
+
     @staticmethod
     def traite_pic(t_ligne):
          ''' return nature_.nature, pic, nature_.longueur , nature_.decimale'''
@@ -104,13 +113,12 @@ class Flottant(Zone):
 
     def initialize(self):
         comportement_ = ComportementFloat( self.decimale, self.son_type , self.longueur_utile , self.valeur_initialisation )  
-        print(comportement_)  
         comportement_.initialize()
         self.valeur_externe = comportement_.valeur_externe
-        self.valeur_interne = comportement_.valeur_interne       
-        print(self)  
-
-
+        self.valeur_interne = comportement_.valeur_interne 
+        self.comportement_associe = comportement_      
+      
+    
 
 class Nature_pic():
     ''' Traitement du format d'une clause PIC 
