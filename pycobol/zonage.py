@@ -47,16 +47,28 @@ class Zone:
                     debpic = cp + 1
                     break
          for cp, val in  enumerate(t_ligne[debpic:], start = debpic) :
-                if val == 'VALUE' :
+                if val == 'VALUE' or val =='COMP' :
                     finpic = cp - 1
                     break    
          else:
             finpic = len(t_ligne) - 1
+
+
          pic = ' '.join(t_ligne[debpic:finpic +1])
          nature_ = Nature_pic(pic)             
          return nature_.nature, pic, nature_.longueur , nature_.decimale
-        
+    
+    @staticmethod
+    def traite_usage(t_ligne):
+        usage = 'DISPLAY'
+        for cp, val in  enumerate(t_ligne) :
+            if val == 'COMP' :
+                 usage = 'COMP'
+                 break
 
+        return usage                   
+
+    @staticmethod
     def traite_value(t_ligne):
         ''' Traitement des values dans la working storage
             :param str tableau mot de la ligne
@@ -100,16 +112,13 @@ class Zone:
 ###############################
 ###############################
 class Flottant(Zone):
-    def __init__(self,decimale,  *args):
+    def __init__(self,decimale,  nom , pic ,valeur_initiale = None , usage = 'DISPLAY'):
         self.decimale = decimale
-        nom = args[0]
-        pic = args[1]
-        valeur_initiale = args[2]
         type_ = Nature_pic(pic).nature
         longueur_interne = Nature_pic(pic).longueur
         dec = Nature_pic(pic).decimale
-        super().__init__(nom, 77, 'WS', type_ , 'DISPLAY', longueur_interne,None, None , pic, valeur_initiale)
-        print(self)
+        super().__init__(nom, 77, 'WS', type_ , usage, longueur_interne,None, None , pic, valeur_initiale)
+        #print(self)
 
     def initialize(self):
         comportement_ = ComportementFloat( self.decimale, self.son_type , self.longueur_utile , self.valeur_initialisation )  
@@ -206,11 +215,11 @@ class Nature_pic():
 class ZoneIndependante(Zone):
     zone_77 = []
 
-    def __init__(self, nom, pic, valeur ): 
+    def __init__(self, nom, pic, valeur = None ,usage= 'DISPLAY'  ): 
         type_ = Nature_pic(pic).nature
         longueur_interne = Nature_pic(pic).longueur
         dec = Nature_pic(pic).decimale
-        super().__init__(nom, 77, 'WS', type_ , 'DISPLAY', longueur_interne,None, None , pic, valeur )
+        super().__init__(nom, 77, 'WS', type_ , usage, longueur_interne,None, None , pic, valeur )
         ZoneIndependante.zone_77.append(self)
     @classmethod
     def liste_ws(cls):
@@ -277,7 +286,7 @@ class ZoneIndependante(Zone):
         0
         >>> obj=ZoneIndependante.from_ligne("77  NPAG PIC 9(3)V99 VALUE ZERO.")
         >>> obj.valeur_interne
-        0
+        0.0
         >>> obj.son_type
         'FLOAT'
         >>> obj.longueur_utile
@@ -314,11 +323,12 @@ class ZoneIndependante(Zone):
         (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
         #longueur_interne  = longueur
         valeur_externe = None
-        valeur = Zone.traite_value(tab) 
+        valeur = Zone.traite_value(tab)
+        usage = Zone.traite_usage(tab)
         if decimale:        
-            return Flottant(decimale, tab[1] ,  pic, valeur)
+            return Flottant(decimale, tab[1] ,  pic, valeur, usage )
         else:
-            return cls(tab[1] ,  pic, valeur)
+            return cls(tab[1] ,  pic, valeur, usage)
     
     def move_from(self, emetteur):
         pass    

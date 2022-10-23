@@ -6,10 +6,10 @@ import unittest
 class TestZonage(unittest.TestCase):
 
     def test_niveau77(self):    
-        obj_ = zn.ZoneIndependante('essai','9(10)', None )
+        obj_ = zn.ZoneIndependante('essai','9(10)', None , None)
         self.assertEqual (obj_.valeur_interne ,0)
         self.assertEqual (obj_.valeur_externe ,'0000000000')
-        obj_ = zn.ZoneIndependante('essai','X(4)', None )
+        obj_ = zn.ZoneIndependante('essai','X(4)', None , None)
         self.assertEqual (obj_.valeur_interne ,'')
         self.assertEqual (obj_.valeur_externe ,'    ')
 

@@ -4,31 +4,31 @@ import re
 @dataclass
 class Comportement():
     ''' Permet de cadrer les variables de type ALN et NUM
-        >>> obj = Comportement('ALN' , 10 , None, None )
+        >>> obj = Comportement('ALN' , 10 , None)
         >>> obj.initialize()
         >>> obj.valeur_externe
         '          '
-        >>> obj = Comportement('ALN' , 10 , 'eric', None )
+        >>> obj = Comportement('ALN' , 10 , 'eric' )
         >>> obj.initialize()
         >>> obj.valeur_externe
         'eric      '
         >>> len(obj.valeur_externe)
         10
-        >>> obj = Comportement('NUM' , 10 , None, None )
+        >>> obj = Comportement('NUM' , 10 , None )
         >>> obj.initialize()
         >>> obj.valeur_externe
         '0000000000'
-        >>> obj = Comportement('NUM' , 10 , 50, None )
+        >>> obj = Comportement('NUM' , 10 , 50 )
         >>> obj.initialize()
         >>> obj.valeur_externe
         '0000000050'
         >>> len(obj.valeur_externe)
         10
-        >>> obj = Comportement('SNUM' , 10 , None, None )
+        >>> obj = Comportement('SNUM' , 10 , None )
         >>> obj.initialize()
         >>> obj.valeur_externe
         '+0000000000'
-        >>> obj = Comportement('SNUM' , 10 , -50, None )
+        >>> obj = Comportement('SNUM' , 10 , -50 )
         >>> obj.initialize()
         >>> obj.valeur_externe
         '-0000000050'
