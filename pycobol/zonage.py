@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass, field
 from comportement  import *
-
+from typing import ClassVar
 @dataclass
 class Zone:
     nom: str
@@ -15,7 +15,7 @@ class Zone:
     picture: str =  '' 
     valeur_initialisation : str =  ''     
     comportement_associe: object = None
-
+    zone_77 :ClassVar[list] = []
 
     def __post_init__(self):
         self.initialize()
@@ -119,7 +119,7 @@ class Flottant(Zone):
         dec = Nature_pic(pic).decimale
         super().__init__(nom, 77, 'WS', type_ , usage, longueur_interne,None, None , pic, valeur_initiale)
         #print(self)
-
+        Zone.zone_77.append(self)
     def initialize(self):
         comportement_ = ComportementFloat( self.decimale, self.son_type , self.longueur_utile , self.valeur_initialisation )  
         comportement_.initialize()
@@ -213,14 +213,13 @@ class Nature_pic():
 
 
 class ZoneIndependante(Zone):
-    zone_77 = []
 
     def __init__(self, nom, pic, valeur = None ,usage= 'DISPLAY'  ): 
         type_ = Nature_pic(pic).nature
         longueur_interne = Nature_pic(pic).longueur
         dec = Nature_pic(pic).decimale
         super().__init__(nom, 77, 'WS', type_ , usage, longueur_interne,None, None , pic, valeur )
-        ZoneIndependante.zone_77.append(self)
+        Zone.zone_77.append(self)
     @classmethod
     def liste_ws(cls):
         return ZoneIndependante.zone_77
