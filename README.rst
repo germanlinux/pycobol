@@ -55,9 +55,10 @@ et en ajoutant des cas de test dans le fichier pic77ok.txt
 Feuille de route.
 =================
 
-- Developper la prise en charge des formats non pris en charge (exemple COMP )
-- Developper la prise en charge des clauses de formatage (exemple BLANK WHEN ZERO)
-- concevoir la classe des zones groupes
+- Developper la prise en charge des formats non pris en charge (exemple COMP ) FAIT
+- concevoir la classe des zones groupes: A FAIRE
+- Developper la prise en charge des clauses de formatage (exemple BLANK WHEN ZERO):  A FAIRE
+
 
 Merci
 
@@ -69,3 +70,5 @@ Le 08/10/2022:
 --------------
 Ajout d'un repertoire COBOL qui contiendra des sources COBOL pour étudier le comportement 
 de GnuCOBOL 
+
+Developpement du premier exemple de programme utilisant pycobol qui mnanipule des zones de niveau 77
