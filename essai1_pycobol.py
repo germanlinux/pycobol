@@ -14,4 +14,15 @@ print((obj5.valeur_externe))
 for item in zn.Zone.zone_77:
     print(item.nom , item.son_type, item.valeur_externe, item.valeur_interne)
 
-
+'''
+000000
+200
+200,00
++200
+-200,00
+MANUM NUM 000000 0
+MAZONE1 NUM 200 200
+MAZONE1V FLOAT 200,00 200.0
+MAZONE2 SNUM +200 200
+MAZONE2V SFLOAT -200,00 -200.0
+'''
