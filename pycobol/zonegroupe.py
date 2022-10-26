@@ -7,27 +7,20 @@ from inspect import *
 class ZoneGroupe:
     nom: str
     rang : int
-    pere: int 
-    frere: int
-    fils : list    
+    pere: int = 0
+    fils : list =[]   
     son_type: str = 'GRP'
     usage: str = 'DISPLAY'
     longueur_utile: int = 0  
     valeur_interne: str =''
     valeur_externe: str = ''
     picture_resume: str =  '' 
-    section: str = 'NON RENSEIGNER'
+    section: str = 'NON RENSEIGNE'
     
-    def add_fils(self, fils):
+    def append_fils(self, fils):
         self.fils.append(fils)
 
-    @staticmethod
-    def affiche():
-        print('static')
     
-    def affiche_x():
-        print('sans static')
-
 
 if __name__ == '__main__':
     print("debut des tests internes")
