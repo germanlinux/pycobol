@@ -3,6 +3,7 @@ from dataclasses import dataclass, field
 from comportement  import *
 from typing import ClassVar
 from inspect import *
+from zonage import *
 @dataclass
 class ZoneGroupe:
     ''' Cette classe prend en charge la creation d'une zone groupe 
@@ -73,18 +74,24 @@ class ZoneFilsSimple:
     picture: str =  '' 
     valeur_initialisation : str =  ''     
     comportement_associe: object = None
+    decimale : int = 0
 
     def __post_init__(self):
         self.initialize()
 
     def initialize(self):
-       
-        comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_initialisation )  
-       # print(comportement_)  
-        comportement_.initialize()
-        self.valeur_externe = comportement_.valeur_externe
-        self.valeur_interne = comportement_.valeur
-        self.comportement_associe = comportement_
+        nature_ = Nature_pic(self.picture)
+        self.son_type = nature_.nature
+        self.longueur_utile =nature_.longueur
+        if nature_.virgule:
+            self.decimale = nature_.decimale
+        print('STOP4', self)    
+        #comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_initialisation )  
+        # print(comportement_)  
+        #comportement_.initialize()
+        #self.valeur_externe = comportement_.valeur_externe
+        #self.valeur_interne = comportement_.valeur
+        #self.comportement_associe = comportement_
     
 if __name__ == '__main__':  
     import doctest          
