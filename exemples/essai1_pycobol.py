@@ -1,4 +1,7 @@
 ## essai de pycobol 
+import sys
+print(sys.path)
+sys.path.insert(0, "../pycobol")
 from pycobol import zonage as zn
 ligne = "      77  MANUM PIC 9(6)."
 obj = zn.ZoneIndependante.from_ligne(ligne)
