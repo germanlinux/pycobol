@@ -66,9 +66,20 @@ Eric German
 
 Journal
 =======
+
+Le 28/10/2022:
+--------------
+Refactorisation du code.
+
+Reorganisation du dépot.
+
+Début du developpement des zones groupes.
+
+
 Le 08/10/2022: 
 --------------
 Ajout d'un repertoire COBOL qui contiendra des sources COBOL pour étudier le comportement 
 de GnuCOBOL 
 
 Developpement du premier exemple de programme utilisant pycobol qui mnanipule des zones de niveau 77
+
