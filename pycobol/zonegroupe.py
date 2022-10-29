@@ -6,8 +6,8 @@ from inspect import *
 from zonage import *
 @dataclass
 class ZoneGroupe:
-    ''' Cette classe prend en charge la creation d'une zone groupe 
-    par nature cette zone est de type ALN.
+    ''' Cette classe prend en charge la creation d'une zone groupe. 
+    Par nature cette zone est de type ALN.
     Sa longueur est la somme des longueurs des composants qui la composent
     >>> obj = ZoneGroupe('zoneessai', 1, 0)
     >>> obj.nom
@@ -58,7 +58,14 @@ class ZoneGroupe:
         self.longueur_utile += other.longueur_utile
         self.fils.append(other)
 
-        
+    def maj_valeur(self):
+        '''normalement tous les ajouts de zones provoquent la mise à jour de la longueur
+        les zones simples sont initialisées , il faut repercuter l'init  sur les zones groupes meres
+        La zone groupe doit etre parcourue: pour toute zone simple on reprendra la valeur , si c est une zone
+        groupe il faut elle aussi la parcourir. L'objectif est de mettre à jour les valueurs resultantes. 
+        '''
+     
+
 @dataclass
 class ZoneFilsSimple:
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
