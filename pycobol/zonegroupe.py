@@ -23,7 +23,10 @@ class ZoneGroupe:
     >>> obj.ajout_fils_groupe(objfils2)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
-
+    >>> objfilsimp = ZoneFilsSimple('essaifils', 5, picture = '999')
+    >>> obj.ajout_fils_simple(objfilsimp)
+    >>> obj.longueur_utile
+    3
     '''
 
     nom: str
@@ -35,7 +38,6 @@ class ZoneGroupe:
     longueur_utile: int = 0  
     valeur_interne: str =''
     valeur_externe: str = ''
-    picture_resume: str =  '' 
     section: str = 'NON RENSEIGNE'
     zone_groupe :ClassVar[list] = []
 
@@ -56,6 +58,7 @@ class ZoneGroupe:
         self.longueur_utile += other.longueur_utile
         self.fils.append(other)
 
+        
 @dataclass
 class ZoneFilsSimple:
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
@@ -72,7 +75,7 @@ class ZoneFilsSimple:
     valeur_interne: str =''
     valeur_externe: str = ''
     picture: str =  '' 
-    valeur_initialisation : str =  ''     
+    valeur_initialisation : str =  None     
     comportement_associe: object = None
     decimale : int = 0
 
@@ -85,14 +88,14 @@ class ZoneFilsSimple:
         self.longueur_utile =nature_.longueur
         if nature_.virgule:
             self.decimale = nature_.decimale
-        print('STOP4', self)    
-        #comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_initialisation )  
-        # print(comportement_)  
+        comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_initialisation )  
+        comportement_.initialize()  
         #comportement_.initialize()
-        #self.valeur_externe = comportement_.valeur_externe
-        #self.valeur_interne = comportement_.valeur
-        #self.comportement_associe = comportement_
-    
+        self.valeur_externe = comportement_.valeur_externe
+        self.valeur_interne = comportement_.valeur
+        self.comportement_associe = comportement_
+        print('STOP4', self)    
+        
 if __name__ == '__main__':  
     import doctest          
     doctest.run_docstring_examples(ZoneGroupe,None, verbose = 1)
