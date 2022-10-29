@@ -62,10 +62,17 @@ class ZoneGroupe:
         '''normalement tous les ajouts de zones provoquent la mise à jour de la longueur
         les zones simples sont initialisées , il faut repercuter l'init  sur les zones groupes meres
         La zone groupe doit etre parcourue: pour toute zone simple on reprendra la valeur , si c est une zone
-        groupe il faut elle aussi la parcourir. L'objectif est de mettre à jour les valueurs resultantes. 
+        groupe il faut elle aussi la parcourir. L'objectif est de mettre à jour les valeurs resultantes. 
         '''
-     
-
+        valeur_str_ =''
+        for item in self.fils:
+             if item.son_type == 'GRP':
+                valeur_str_ +=  item.maj_valeur()
+             else:
+                valeur_str_ += item.valeur_externe    
+        self.valeur_externe = valeur_str_
+        return self.valeur_externe
+        
 @dataclass
 class ZoneFilsSimple:
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
