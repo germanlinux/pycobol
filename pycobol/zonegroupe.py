@@ -27,6 +27,9 @@ class ZoneGroupe:
     >>> obj.ajout_fils_simple(objfilsimp)
     >>> obj.longueur_utile
     3
+    >>> obj.maj_valeur()
+    >>> obj.valeur_externe
+    '000'
     '''
 
     nom: str
@@ -72,7 +75,7 @@ class ZoneGroupe:
                 valeur_str_ += item.valeur_externe    
         self.valeur_externe = valeur_str_
         return self.valeur_externe
-        
+
 @dataclass
 class ZoneFilsSimple:
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
