@@ -204,8 +204,13 @@ class ComportementFloat(Comportement):
                  objetzone.valeur_externe = '+' + objetzone.valeur_externe
         str_v = objetzone.valeur_externe.replace(',', '.')
         objetzone.valeur_interne = float(str_v)           
-                  
+    
+    @dataclass              
+    class Value():
+        origine: str
+        non_signe: str = ''
         
+
         
 
 
