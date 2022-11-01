@@ -208,8 +208,19 @@ class ComportementFloat(Comportement):
     @dataclass              
     class Value():
         origine: str
-        non_signe: str = ''
-        
+        non_signe: str  = field(init = False)
+        numerique: bool = field(init = False)
+        def __post_init__(self):
+            origine_ = str(self.origine)
+            if '\"' in self.origine: 
+                 self.numerique = False
+            else: 
+                self.numerique = True
+                if '-' in origine_ or '+' in origine_ :
+                    self.non_signe = False
+                else:
+                    self.non_signe = True
+                             
 
         
 
