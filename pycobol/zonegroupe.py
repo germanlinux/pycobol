@@ -30,6 +30,8 @@ class ZoneGroupe:
     >>> obj.maj_valeur()
     >>> obj.valeur_externe
     '000'
+    >>> obj.move_value('ERIC')
+    >>> obj.valeur_externe
     '''
 
     nom: str
@@ -76,6 +78,22 @@ class ZoneGroupe:
         self.valeur_externe = valeur_str_
         return self.valeur_externe
 
+    def move_value(self, valeur):valeur
+        obj_valeur = Value(valeur)
+        comportement_ = Comportement(self.son_type , self.longueur_utile , valeur )
+        comportement_.initialize()
+
+    def propage(self, valeur):
+        for fils in self.fils:
+            if fils.son_type == 'GRP':
+                valeur =fils.propage(valeur)
+            else:
+                lg_cible = fils.longueur_utile
+                if len(valeur) > lg_cible:
+                    fils.move_value(valeur[:lg_cible])
+                    valeur =  valeur[lg_cible:]
+        return valeur            
+
 @dataclass
 class ZoneFilsSimple:
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
@@ -111,7 +129,7 @@ class ZoneFilsSimple:
         self.valeur_externe = comportement_.valeur_externe
         self.valeur_interne = comportement_.valeur
         self.comportement_associe = comportement_
-        print('STOP4', self)    
+    
         
 if __name__ == '__main__':  
     import doctest          

@@ -1,6 +1,10 @@
 from dataclasses import dataclass, field
 from decimal import *
 import re
+#######################
+####  Comportement ####
+#######################
+
 @dataclass
 class Comportement():
     ''' Permet de cadrer les variables de type ALN et NUM
@@ -41,7 +45,7 @@ class Comportement():
 
     def __post_init__(self):
         #print(self)
-        if self.type_ in ['ALN', 'ALP'] :
+        if self.type_ in ['ALN', 'ALP', 'GRP'] :
             self.padding = ' '
             self.direction = 'left'
             self.defaut =''
@@ -112,6 +116,10 @@ class Comportement():
             param: zone  objet zonage
         '''   
         return cls(obj.son_type , obj.longueur_utile, obj.valeur_initialisation)
+
+############################
+####  ComportementFloat ####
+############################  
 
 class ComportementFloat(Comportement):
 
@@ -207,18 +215,30 @@ class ComportementFloat(Comportement):
                  objetzone.valeur_externe = '+' + objetzone.valeur_externe
         str_v = objetzone.valeur_externe.replace(',', '.')
         objetzone.valeur_interne = float(str_v)           
-    
-    @dataclass              
-    class Value():
+################
+####  Value ####
+################    
+@dataclass              
+class Value():
+        ''' Cette classe prend en charge les valeurs : type str ou numerique 
+        presence d 'un signe , partie entiere ou decimale
+        >>> obj = Value("eric")
+        >>> obj.numerique
+        False
+        >>> obj = Value(1961)
+        >>> obj.numerique
+        True 
+        
+        '''
         origine: str
-        formate :str
+        formate :str    = field(init = False)
         non_signe: str  = field(init = False)
         numerique: bool = field(init = False)
         def __post_init__(self):
             self.formate = self.origine
             origine_ = str(self.origine)
-            if '\"' in self.origine: 
-                 self.numerique = False
+            if type(self.origine) == str:
+               self.numerique = False 
             else: 
                 self.numerique = True
                 if '-' in origine_ or '+' in origine_ :
@@ -233,8 +253,11 @@ class ComportementFloat(Comportement):
                     self.non_signe = True
                 if ',' in origine_:
                     self.formate = self.formate.replace(',' , '.')                             
-                    #self.entier = re.search(r'(.+')\. 
-        
+                    tab_  = re.search(r'(\d+)\.(\d+)' , self.formate) 
+                    self.entier = tab_[1]
+                    self.decimale = tab_[2]
+                    
+
 
 
 
@@ -243,4 +266,5 @@ class ComportementFloat(Comportement):
 if __name__ == '__main__':  
     import doctest          
     doctest.run_docstring_examples(Comportement,None, verbose = 0)
+    doctest.run_docstring_examples(Value,None, verbose = 1)
     
