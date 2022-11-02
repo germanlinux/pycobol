@@ -85,7 +85,10 @@ class Comportement():
             lg_ = len(newvaleur)
             if lg_ > self.longueur:
                 lg_ = self.longueur 
-            objetzone.valeur_externe = newvaleur[:lg_] + objetzone.valeur_externe[lg_:]
+            else:
+                newvaleur= newvaleur.ljust(self.longueur,self.padding)   
+                lg_ = len(newvaleur)
+            objetzone.valeur_externe = newvaleur[:lg_] 
             objetzone.interne = objetzone.valeur_externe   
         else:
             if objetzone.valeur_externe[0] == '+' or objetzone.valeur_externe[0] == '-':
@@ -208,9 +211,11 @@ class ComportementFloat(Comportement):
     @dataclass              
     class Value():
         origine: str
+        formate :str
         non_signe: str  = field(init = False)
         numerique: bool = field(init = False)
         def __post_init__(self):
+            self.formate = self.origine
             origine_ = str(self.origine)
             if '\"' in self.origine: 
                  self.numerique = False
@@ -218,10 +223,17 @@ class ComportementFloat(Comportement):
                 self.numerique = True
                 if '-' in origine_ or '+' in origine_ :
                     self.non_signe = False
+                    if '-' in self.origine:
+                        self.formate = self.formate.repplace('-', '')
+                        self.signe ='-'
+                    elif '-' in self.origine:
+                        self.formate = self.formate.repplace('+', '')
+                        self.signe ='+'        
                 else:
                     self.non_signe = True
-                             
-
+                if ',' in origine_:
+                    self.formate = self.formate.replace(',' , '.')                             
+                    #self.entier = re.search(r'(.+')\. 
         
 
 
