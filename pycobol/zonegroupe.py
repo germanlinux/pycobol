@@ -32,6 +32,20 @@ class ZoneGroupe:
     '000'
     >>> obj.move_value('ERIC')
     >>> obj.valeur_externe
+    >>> obj = ZoneGroupe('zoneessai', 1, 0)
+    >>> obj.nom
+    'zoneessai'
+    >>> print(obj)
+    >>> objfilsimp = ZoneFilsSimple('essaifils', 5, picture = '999')
+    >>> obj.ajout_fils_simple(objfilsimp)
+    >>> objfilsimp2 = ZoneFilsSimple('essaifils2',5 , picture = '99')
+    >>> obj.ajout_fils_simple(objfilsimp2)
+    >>> obj.init_groupe()
+    >>> obj.valeur_externe
+    '00000'
+    >>> obj.move_value('ERIC')
+    >>> obj.valeur_externe
+    'ERIC '
     '''
 
     nom: str
@@ -48,6 +62,7 @@ class ZoneGroupe:
 
     def __post_init__(self):
         ZoneGroupe.zone_groupe.append(self)
+
 
     def ajout_fils_groupe(self, other):
         if other.rang <= self.rang :
@@ -77,22 +92,15 @@ class ZoneGroupe:
                 valeur_str_ += item.valeur_externe    
         self.valeur_externe = valeur_str_
         return self.valeur_externe
+    def init_groupe(self):
+        self.maj_valeur()
+        comportement_ = Comportement(self.son_type , self.longueur_utile , None )
+        self.comportement_associe = comportement_
 
-    def move_value(self, valeur):valeur
+    def move_value(self, valeur):
         obj_valeur = Value(valeur)
-        comportement_ = Comportement(self.son_type , self.longueur_utile , valeur )
-        comportement_.initialize()
-
-    def propage(self, valeur):
-        for fils in self.fils:
-            if fils.son_type == 'GRP':
-                valeur =fils.propage(valeur)
-            else:
-                lg_cible = fils.longueur_utile
-                if len(valeur) > lg_cible:
-                    fils.move_value(valeur[:lg_cible])
-                    valeur =  valeur[lg_cible:]
-        return valeur            
+        self.comportement_associe.move_value(self,valeur)
+          
 
 @dataclass
 class ZoneFilsSimple:
