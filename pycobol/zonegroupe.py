@@ -99,7 +99,7 @@ class ZoneGroupe:
         self.longueur_utile += other.longueur_utile
         self.fils.append(other)
 
-    def maj_valeur(self):
+    def maj_valeur(self): ### TO DO attaquer les longueurs pas les valeurs
         '''normalement tous les ajouts de zones provoquent la mise à jour de la longueur
         les zones simples sont initialisées , il faut repercuter l'init  sur les zones groupes meres
         La zone groupe doit etre parcourue: pour toute zone simple on reprendra la valeur , si c est une zone
@@ -118,7 +118,6 @@ class ZoneGroupe:
         self.maj_valeur()
         comportement_ = Comportement(self.son_type , self.longueur_utile , None )
         self.comportement_associe = comportement_
-        print('RTY2', self.longueur_utile)
 
     def move_value(self, valeur):
         obj_valeur = Value(valeur)
