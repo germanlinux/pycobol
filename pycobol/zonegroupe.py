@@ -12,7 +12,6 @@ class ZoneGroupe:
     >>> obj = ZoneGroupe('zoneessai', 1, 0)
     >>> obj.nom
     'zoneessai'
-    >>> print(obj)
     >>> objfils = ZoneGroupe('zonefils', 2)
     >>> obj.ajout_fils_groupe(objfils)
     >>> len(obj.fils)
@@ -28,14 +27,16 @@ class ZoneGroupe:
     >>> obj.longueur_utile
     3
     >>> obj.maj_valeur()
+    '000'
+    >>> obj.init_groupe()
     >>> obj.valeur_externe
     '000'
     >>> obj.move_value('ERIC')
     >>> obj.valeur_externe
+    'ERI'
     >>> obj = ZoneGroupe('zoneessai', 1, 0)
     >>> obj.nom
     'zoneessai'
-    >>> print(obj)
     >>> objfilsimp = ZoneFilsSimple('essaifils', 5, picture = '999')
     >>> obj.ajout_fils_simple(objfilsimp)
     >>> objfilsimp2 = ZoneFilsSimple('essaifils2',5 , picture = '99')
@@ -46,27 +47,23 @@ class ZoneGroupe:
     >>> obj.move_value('ERIC')
     >>> obj.valeur_externe
     'ERIC '
-    >>> obj.fils
-
     >>> obj = ZoneGroupe('zoneessai', 1)
     >>> obj.nom
     'zoneessai'
-    >>> print(obj)
     >>> objfilgrp = ZoneGroupe('essaifils', 2)
-    
     >>> objfilsimp2 = ZoneFilsSimple('essaifils2',5 , picture = '99')
     >>> objfilgrp.ajout_fils_simple(objfilsimp2)
     >>> obj.ajout_fils_simple(objfilgrp)
     >>> objfilsimp3 = ZoneFilsSimple('essaifils5',5 , picture = 'XXXXX')
     >>> obj.ajout_fils_simple(objfilsimp3)
-    >>> obj.maj_valeur()
-    >>> obj.init_groupe()
-    >>> len(obj.valeur_externe)
+    >>> obj.maj_longueur()
     7
+    >>> obj.longueur_utile
+    7
+    >>> obj.init_groupe()
     >>> obj.move_value('ERIC')
     >>> obj.valeur_externe
-    'ERIC '
-    >>> obj.fils
+    'ERIC   '
     '''
 
     nom: str
@@ -114,6 +111,24 @@ class ZoneGroupe:
         self.valeur_externe = valeur_str_
         return self.valeur_externe
     
+    def maj_longueur(self): ### TO DO attaquer les longueurs pas les valeurs
+        '''normalement tous les ajouts de zones provoquent la mise à jour de la longueur
+        les zones simples sont initialisées , il faut repercuter l'init  sur les zones groupes meres
+        La zone groupe doit etre parcourue: pour toute zone simple on reprendra la valeur , si c est une zone
+        groupe il faut elle aussi la parcourir. L'objectif est de mettre à jour les valeurs resultantes. 
+        '''
+        longueur_ = 0
+        for item in self.fils:
+             if item.son_type == 'GRP':
+                longueur_ +=  item.maj_longueur()
+
+             else:
+                longueur_ += item.longueur_utile
+                item.comportement_associe = Comportement(item.son_type,item.longueur_utile, None )    
+        self.longueur_utile = longueur_
+        self.comportement_associe = Comportement(self.son_type,self.longueur_utile, None )
+        return self.longueur_utile
+    
     def init_groupe(self):
         self.maj_valeur()
         comportement_ = Comportement(self.son_type , self.longueur_utile , None )
@@ -122,12 +137,10 @@ class ZoneGroupe:
     def move_value(self, valeur):
         obj_valeur = Value(valeur)
         self.comportement_associe.move_value(self,valeur)
-        print('RTY', self.valeur_externe, self.longueur_utile)
         self.propage(self.valeur_externe)
     
     def propage(self, valeur):
         for un_fils in self.fils : 
-            print('SRT', valeur, len(valeur))
             if un_fils.son_type == 'GRP':
                 valeur = un_fils.propage(valeur) 
             else:
@@ -141,8 +154,6 @@ class ZoneGroupe:
 class ZoneFilsSimple:
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
     >>> obj = ZoneFilsSimple('essaifils', 5, picture = '999')
-    >>> print(obj) 
-
     '''
     nom: str
     rang : int 
