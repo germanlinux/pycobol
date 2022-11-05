@@ -56,10 +56,10 @@ class ZoneGroupe:
     >>> obj.ajout_fils_simple(objfilgrp)
     >>> objfilsimp3 = ZoneFilsSimple('essaifils5',5 , picture = 'XXXXX')
     >>> obj.ajout_fils_simple(objfilsimp3)
-    >>> obj.maj_longueur()
-    7
-    >>> obj.longueur_utile
-    7
+    #>>> obj.maj_longueur()
+    #7
+    #>>> obj.longueur_utile
+    #7
     >>> obj.init_groupe()
     >>> obj.move_value('ERIC')
     >>> obj.valeur_externe
@@ -130,9 +130,11 @@ class ZoneGroupe:
         return self.longueur_utile
     
     def init_groupe(self):
+        self.maj_longueur()
         self.maj_valeur()
-        comportement_ = Comportement(self.son_type , self.longueur_utile , None )
-        self.comportement_associe = comportement_
+        #comportement_ = Comportement(self.son_type , self.longueur_utile , None )
+
+        #self.comportement_associe = comportement_
 
     def move_value(self, valeur):
         obj_valeur = Value(valeur)
