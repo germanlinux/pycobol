@@ -4,6 +4,9 @@ from comportement  import *
 from typing import ClassVar
 from inspect import *
 from zonage import *
+
+
+
 @dataclass
 class ZoneGroupe:
     ''' Cette classe prend en charge la creation d'une zone groupe. 
@@ -151,6 +154,13 @@ class ZoneGroupe:
                 valeur = valeur[un_fils.longueur_utile:]
         return valeur        
 
+#####################
+# methodes statiques#
+#####################
+    @staticmethod
+    def read_groupe_from_code(code):
+        pass    
+
 
 @dataclass
 class ZoneFilsSimple:
@@ -186,6 +196,8 @@ class ZoneFilsSimple:
         self.valeur_interne = comportement_.valeur
         self.comportement_associe = comportement_
     
+
+
         
 if __name__ == '__main__':  
     import doctest          
