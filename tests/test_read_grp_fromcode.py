@@ -1,3 +1,10 @@
+from pycobol import zonegroupe as zn 
+from pycobol import comportement as cp
+
+import unittest  
+
+
+
 zg1 ='''
 10            WW04-DAECH.                                   
       11            WW04-AECH   PICTURE  9(4).                 
@@ -20,4 +27,8 @@ zg3= '''
       11            OA00-CNAEM  PICTURE  9(5).               
       11            OA00-NUPEN  PICTURE  X(9). 
 '''  
-    
+class TestZonegroupeline(unittest.TestCase):
+      def test_lecture_groupe1(self):    
+        '''obj_ = zn.ZoneGroupe('essai',1, 0)
+        self.assertEqual (obj_.fils,[
+        '''
