@@ -158,8 +158,23 @@ class ZoneGroupe:
 # methodes statiques#
 #####################
     @staticmethod
-    def read_groupe_from_code(code):
-        pass    
+    def read_groupe_from_code(tcode):
+        _zonegrp_active = ''
+        for ligne in tcode:
+            if ' PIC ' in ligne:
+                ## ligne simple ###
+                ## controler les niveaux
+                ## creer zone simple
+                ## la rattacher à la zone groupe active
+                pass  
+            else: 
+                ## zone groupe
+                ## prendre le niveau 
+                ## est ce le niveau le plus haut ?
+                ##  ca peut etre une zone groupe dans une zone groupe
+                pass 
+                
+
 
 
 @dataclass
