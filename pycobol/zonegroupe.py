@@ -183,7 +183,8 @@ class ZoneGroupe:
             if ' PIC '  in ligne  or ' PICTURE ' in ligne:
                 ## ligne simple ###
                 (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
-                print('EEEEEEE', type_, pic, longueur)
+                niv = Zone.extract_niveau(tab)
+                print('EEEEEEE', type_, pic, longueur, niv)
                 ## controler les niveaux
                 ## creer zone simple
                 ## la rattacher à la zone groupe active

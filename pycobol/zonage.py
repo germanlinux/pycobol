@@ -35,7 +35,15 @@ class Zone:
         '''
         self.comportement_associe.move_value(self,newvalue)
 
-
+    ######################
+    # methodes statiques #
+    ######################
+    @staticmethod
+    def extract_niveau(t_ligne):
+        if tniv := re.search('(\d+)', t_ligne[0]) :
+            return tniv[1]
+        else:
+            return 0
 
     @staticmethod
     def traite_pic(t_ligne):
