@@ -159,10 +159,31 @@ class ZoneGroupe:
 #####################
     @staticmethod
     def read_groupe_from_code(tcode):
+        ''' cette fonction prend comme parametre en entrée un tableau de ligne
+        et en fonction du contenu active un constructeur de groupe ou de zone simple
+        >>> tlignes = ZoneGroupe.fake_read_file()
+        >>> len(tlignes)
+        4
+        >>> ZoneGroupe.read_groupe_from_code(tlignes)
+
+        '''
         _zonegrp_active = ''
+        _niveaux_max = 99
+        ### to do : mutualiser
         for ligne in tcode:
-            if ' PIC ' in ligne:
+            if ligne[-1] == '\n':
+                ligne= ligne[:-1]
+        
+            ligne = ligne.strip()
+            result = re.sub(' +', ' ', ligne)
+            if result:
+                tab = result.split(' ')
+                if tab[-1][-1] == '.' :
+                    tab[-1] = tab[-1][:-1]
+            if ' PIC '  in ligne  or ' PICTURE ' in ligne:
                 ## ligne simple ###
+                (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
+                print('EEEEEEE', type_, pic, longueur)
                 ## controler les niveaux
                 ## creer zone simple
                 ## la rattacher à la zone groupe active
@@ -173,9 +194,17 @@ class ZoneGroupe:
                 ## est ce le niveau le plus haut ?
                 ##  ca peut etre une zone groupe dans une zone groupe
                 pass 
-                
 
-
+    def fake_read_file():
+        zg1 ='''
+                10            WW04-DAECH.                                   
+                    11            WW04-AECH   PICTURE  9(4).                 
+                    11            WW04-MECH   PICTURE  99.                      
+                    11            WW04-JECH   PICTURE  99.                 
+        '''            
+        t_zg1 = zg1.split('\n')
+        lignes = [item  for item in t_zg1 if item]
+        return(lignes)
 
 @dataclass
 class ZoneFilsSimple:
@@ -216,7 +245,8 @@ class ZoneFilsSimple:
         
 if __name__ == '__main__':  
     import doctest          
-    doctest.run_docstring_examples(ZoneGroupe,None, verbose = 1)
-    doctest.run_docstring_examples(ZoneFilsSimple,None, verbose = 1)
-    
-    
+    #doctest.run_docstring_examples(ZoneGroupe,None, verbose = 1)
+    #doctest.run_docstring_examples(ZoneFilsSimple,None, verbose = 1)
+    doctest.run_docstring_examples(ZoneGroupe.read_groupe_from_code,None, verbose = 1)
+    #tlignes = ZoneGroupe.fake_read_file()
+    #ZoneGroupe.read_groupe_from_code(tlignes)
