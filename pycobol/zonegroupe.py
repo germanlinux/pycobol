@@ -165,7 +165,8 @@ class ZoneGroupe:
         >>> len(tlignes)
         4
         >>> ZoneGroupe.read_groupe_from_code(tlignes)
-
+        >>> len(ZoneGroupe.zone_groupe[0].fils)
+        3
         '''
         _zonegrp_active = ''
         _niveaux_max = 99
@@ -180,7 +181,11 @@ class ZoneGroupe:
                 tab = result.split(' ')
                 if tab[-1][-1] == '.' :
                     tab[-1] = tab[-1][:-1]
+            else:
+                break
+
             if ' PIC '  in ligne  or ' PICTURE ' in ligne:
+
                 ## ligne simple ###
                 (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
                 niv = Zone.extract_niveau(tab)
@@ -192,7 +197,7 @@ class ZoneGroupe:
                 ## prendre le niveau 
                 ## creer zone simple
                 ## la rattacher à la zone groupe active
-                pass  
+                  
             else: 
                 ## zone groupe
                 niv = Zone.extract_niveau(tab)
