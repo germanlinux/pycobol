@@ -28,7 +28,8 @@ zg3= '''
       11            OA00-NUPEN  PICTURE  X(9). 
 '''  
 class TestZonegroupeline(unittest.TestCase):
-      def test_lecture_groupe1(self):    
-        '''obj_ = zn.ZoneGroupe('essai',1, 0)
-        self.assertEqual (obj_.fils,[
-        '''
+      def test_lecture_groupe1(self):
+            for cp, extrait in enumerate([zg1, zg2, zg3]):
+                  tlignes = zn.ZoneGroupe.fake_read_file(extrait)
+                  zn.ZoneGroupe.read_groupe_from_code(tlignes)
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[cp].fils),len(tlignes) - 1) 

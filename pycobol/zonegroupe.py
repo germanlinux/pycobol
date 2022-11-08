@@ -206,15 +206,18 @@ class ZoneGroupe:
 
                 ## est ce le niveau le plus haut ?
                 ##  ca peut etre une zone groupe dans une zone groupe  
-
-    def fake_read_file():
+    @staticmethod            
+    def fake_read_file(data= None):
         zg1 ='''
                 10            WW04-DAECH.                                   
                     11            WW04-AECH   PICTURE  9(4).                 
                     11            WW04-MECH   PICTURE  99.                      
                     11            WW04-JECH   PICTURE  99.                 
         '''            
-        t_zg1 = zg1.split('\n')
+        
+        if not data:
+          data = zg1
+        t_zg1 = data.split('\n')
         lignes = [item  for item in t_zg1 if item]
         return(lignes)
 
