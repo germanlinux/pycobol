@@ -187,7 +187,9 @@ class ZoneGroupe:
                 if niv < _niveaux_max : 
                     _niveaux_max = niv
                 _nom =  Zone.extract_nom(tab)
-                print('EEEEEEEEEE', niv,_nom )   
+                obj_s = ZoneFilsSimple(_nom,niv ,picture = pic )
+                obj_p.ajout_fils_simple(obj_s)
+                ## prendre le niveau 
                 ## creer zone simple
                 ## la rattacher à la zone groupe active
                 pass  
@@ -195,11 +197,10 @@ class ZoneGroupe:
                 ## zone groupe
                 niv = Zone.extract_niveau(tab)
                 _nom =  Zone.extract_nom(tab)
-                print('FFFFFFFFFFFF', niv,_nom )  
-                ## prendre le niveau 
+                obj_p = ZoneGroupe(_nom, niv)
+
                 ## est ce le niveau le plus haut ?
-                ##  ca peut etre une zone groupe dans une zone groupe
-                pass 
+                ##  ca peut etre une zone groupe dans une zone groupe  
 
     def fake_read_file():
         zg1 ='''
