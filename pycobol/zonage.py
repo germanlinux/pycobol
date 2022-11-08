@@ -40,10 +40,28 @@ class Zone:
     ######################
     @staticmethod
     def extract_niveau(t_ligne):
-        if tniv := re.search('(\d+)', t_ligne[0]) :
-            return tniv[1]
+        ''' retourne le niveau cobol de la ligne
+        >>> Zone.extract_niveau(['10'] ,'WW04-DAEC'.])
+        10
+        >>> Zone.extract_niveau(['11'] ,'WW04-DAEC'.])
+        11
+        '''
+        if  tniv := re.search('(\d+)', t_ligne[0]) :
+            return int(tniv[1])
         else:
             return 0
+    @staticmethod
+    def extract_nom(t_ligne):
+        ''' retourne le nom de la zone
+        >>> Zone.extract_niveau(['10'] ,'WW04-DAEC.'])
+        'WW04-DAEC'
+        >>> Zone.extract_niveau(['11'] ,'WW04-DAEC'])
+        'WW04-DAEC'
+        '''
+        if  tniv := re.search('(.+).?', t_ligne[1]) :
+            return tniv[1]
+        else:
+            return None
 
     @staticmethod
     def traite_pic(t_ligne):
@@ -353,4 +371,5 @@ if __name__ == '__main__':
     doctest.run_docstring_examples(ZoneIndependante.from_ligne,None, verbose = False)
     doctest.run_docstring_examples(Nature_pic,None, verbose = False)
     doctest.run_docstring_examples(Zone.traite_value,None, verbose = False)
+    doctest.run_docstring_examples(Zone.extract_niveau, None, verbose = False)
     print("fin des tests internes")

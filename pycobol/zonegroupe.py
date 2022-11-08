@@ -184,13 +184,18 @@ class ZoneGroupe:
                 ## ligne simple ###
                 (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
                 niv = Zone.extract_niveau(tab)
-                print('EEEEEEE', type_, pic, longueur, niv)
-                ## controler les niveaux
+                if niv < _niveaux_max : 
+                    _niveaux_max = niv
+                _nom =  Zone.extract_nom(tab)
+                print('EEEEEEEEEE', niv,_nom )   
                 ## creer zone simple
                 ## la rattacher à la zone groupe active
                 pass  
             else: 
                 ## zone groupe
+                niv = Zone.extract_niveau(tab)
+                _nom =  Zone.extract_nom(tab)
+                print('FFFFFFFFFFFF', niv,_nom )  
                 ## prendre le niveau 
                 ## est ce le niveau le plus haut ?
                 ##  ca peut etre une zone groupe dans une zone groupe
