@@ -84,17 +84,28 @@ class ZoneGroupe:
     def __post_init__(self):
         ZoneGroupe.zone_groupe.append(self)
 
-
+    def __str__(self):
+        if self.pere == 0:
+            pere = 'ROOT'
+        else:
+            pere = self.pere.nom    
+        chaine = f"{self.nom} - {self.rang} - {pere}  {len(self.fils)}:\n"
+        for item in self.fils:
+            if item.son_type == 'GRP':
+                chaine += f"{item.nom} - {item.rang}  {item.pere.nom}\n"
+            else:
+                chaine += f"{item.nom} - {item.rang}- {item.picture}\n"
+        return chaine        
     def ajout_fils_groupe(self, other):
         if other.rang <= self.rang :
-            raise RuntimeError('Erreur sur le rang') 
+            raise RuntimeError(f'Erreur sur le rang   {self.nom} >> {other.nom}') 
         other.pere = self        
         self.longueur_utile += other.longueur_utile
         self.fils.append(other)
 
     def ajout_fils_simple(self, other):
         if other.rang <= self.rang :
-            raise RuntimeError('Erreur sur le rang') 
+            raise RuntimeError(f'Erreur sur le rang   {self.nom} >> {other.nom}') 
         other.pere = self        
         self.longueur_utile += other.longueur_utile
         self.fils.append(other)
@@ -189,20 +200,13 @@ class ZoneGroupe:
                     niveaux_max = 0
                 else: 
                     niveaux_max = ZoneGroupe.zone_groupe[-1].rang    
-                ## ligne simple ###
                 (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
                 niv = Zone.extract_niveau(tab)
-                if niv < niveaux_max:
-                    obj_p = ZoneGroupe.zone_groupe[-2]
-                else: 
-                    obj_p = ZoneGroupe.zone_groupe[-1]
+                obt = ZoneGroupe.recherche_rang(niv)
                 _nom =  Zone.extract_nom(tab)
                 obj_s = ZoneFilsSimple(_nom,niv ,picture = pic )
-                obj_p.ajout_fils_simple(obj_s)
-                ## prendre le niveau 
-                ## creer zone simple
-                ## la rattacher à la zone groupe active
-                  
+                obt.ajout_fils_simple(obj_s)
+               
             else: 
                 ## zone groupe
                 niv = Zone.extract_niveau(tab)
@@ -210,11 +214,12 @@ class ZoneGroupe:
                 if len(ZoneGroupe.zone_groupe) == 0:
                     obj_p = ZoneGroupe(_nom, niv)
                 else:
-                    if niv >  ZoneGroupe.zone_groupe[-1].rang :
-                        obj_s  = ZoneGroupe(_nom, niv)
-                        obj_p.ajout_fils_simple(obj_s)
-                    else: 
-                       obj_p = ZoneGroupe(_nom, niv)
+                    ### niveau inferieur
+                    ###  ou niveau frere
+                    obt = ZoneGroupe.recherche_rang(niv)
+                    obj_s  = ZoneGroupe(_nom, niv)
+                    obt.ajout_fils_simple(obj_s)
+                    
 
                 ## est ce le niveau le plus haut ?
                 ##  ca peut etre une zone groupe dans une zone groupe  
@@ -232,6 +237,18 @@ class ZoneGroupe:
         t_zg1 = data.split('\n')
         lignes = [item  for item in t_zg1 if item]
         return(lignes)
+    @staticmethod
+    def recherche_rang(n):
+        a = ZoneGroupe.zone_groupe[:]
+        a.reverse()
+        for item in a:
+            print(item.nom , item.rang)
+            if n > item.rang:
+                return item
+            if n == item.rang:
+                return item.pere
+        return a[-1]
+                     
 
 @dataclass
 class ZoneFilsSimple:

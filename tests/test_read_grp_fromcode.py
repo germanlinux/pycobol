@@ -35,8 +35,32 @@ zg4 = '''
       12            OA00-CNAEM  PICTURE  9(5).               
       12            OA00-NUPEN  PICTURE  X(9). 
 '''  
-
-
+zg5 = '''
+10            OA00-IDNCN.                              
+      11            OA00-NUPSI  PICTURE  X(15). 
+      11            DEUXIEME.
+       12            OA00-CNAEM  PICTURE  9(5).               
+       12            OA00-NUPEN  PICTURE  X(9).
+      11            troisieme.
+       12            AAAA  PIC XXX     
+'''  
+zg6 = '''
+10            OA00-IDNCN.                               
+      11            DEUXIEME.
+      12            OA00-CNAEM  PICTURE  9(5).               
+      12            OA00-NUPEN  PICTURE  X(9). 
+      11            troisieme.
+      12            AAAA  PIC XXX       
+'''  
+zg7 = '''
+10            OA00-IDNCN.                               
+      11            DEUXIEME.
+      12            OA00-CNAEM  PICTURE  9(5).               
+      12            OA00-NUPEN  PICTURE  X(9). 
+      11            troisieme.
+      12            AAAA  PIC XXX.
+      11            SIMPLE PIC 99.       
+'''  
 class TestZonegroupeline(unittest.TestCase):
       def test_lecture_groupe1(self):
             for cp, extrait in enumerate([zg1, zg2, zg3]):
@@ -48,10 +72,42 @@ class TestZonegroupeline(unittest.TestCase):
       def test_lecture_groupe2(self):
                   tlignes = zn.ZoneGroupe.fake_read_file(zg4)
                   zn.ZoneGroupe.read_groupe_from_code(tlignes)
-                  print(zn.ZoneGroupe.zone_groupe[0])
-                  print('------------------------------')
-                  print(zn.ZoneGroupe.zone_groupe[1])
                   
                   self.assertEqual (len(zn.ZoneGroupe.zone_groupe[0].fils),2) 
                   self.assertEqual (len(zn.ZoneGroupe.zone_groupe[1].fils),2) 
 
+      def test_lecture_groupe3(self):
+                  zn.ZoneGroupe.zone_groupe =[]
+                  tlignes = zn.ZoneGroupe.fake_read_file(zg5)
+                  zn.ZoneGroupe.read_groupe_from_code(tlignes)
+                  print(zn.ZoneGroupe.zone_groupe[0])
+                  print(zn.ZoneGroupe.zone_groupe[1])
+                  print(zn.ZoneGroupe.zone_groupe[2])
+
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[0].fils),3) 
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[1].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[2].fils),1) 
+
+      def test_lecture_groupe4(self):
+                  zn.ZoneGroupe.zone_groupe =[]
+                  tlignes = zn.ZoneGroupe.fake_read_file(zg6)
+                  zn.ZoneGroupe.read_groupe_from_code(tlignes)
+                  print(zn.ZoneGroupe.zone_groupe[0])
+                  print(zn.ZoneGroupe.zone_groupe[1])
+                  print(zn.ZoneGroupe.zone_groupe[2])
+
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[0].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[1].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[2].fils),1) 
+
+      def test_lecture_groupe5(self):
+                  zn.ZoneGroupe.zone_groupe =[]
+                  tlignes = zn.ZoneGroupe.fake_read_file(zg7)
+                  zn.ZoneGroupe.read_groupe_from_code(tlignes)
+                  print(zn.ZoneGroupe.zone_groupe[0])
+                  print(zn.ZoneGroupe.zone_groupe[1])
+                  print(zn.ZoneGroupe.zone_groupe[2])
+
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[0].fils),3) 
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[1].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[2].fils),1) 
