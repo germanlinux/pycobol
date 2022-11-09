@@ -185,12 +185,17 @@ class ZoneGroupe:
                 break
 
             if ' PIC '  in ligne  or ' PICTURE ' in ligne:
-
+                if len(ZoneGroupe.zone_groupe) == 0:
+                    niveaux_max = 0
+                else: 
+                    niveaux_max = ZoneGroupe.zone_groupe[-1].rang    
                 ## ligne simple ###
                 (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
                 niv = Zone.extract_niveau(tab)
-                if niv < _niveaux_max : 
-                    _niveaux_max = niv
+                if niv < niveaux_max:
+                    obj_p = ZoneGroupe.zone_groupe[-2]
+                else: 
+                    obj_p = ZoneGroupe.zone_groupe[-1]
                 _nom =  Zone.extract_nom(tab)
                 obj_s = ZoneFilsSimple(_nom,niv ,picture = pic )
                 obj_p.ajout_fils_simple(obj_s)
@@ -202,7 +207,14 @@ class ZoneGroupe:
                 ## zone groupe
                 niv = Zone.extract_niveau(tab)
                 _nom =  Zone.extract_nom(tab)
-                obj_p = ZoneGroupe(_nom, niv)
+                if len(ZoneGroupe.zone_groupe) == 0:
+                    obj_p = ZoneGroupe(_nom, niv)
+                else:
+                    if niv >  ZoneGroupe.zone_groupe[-1].rang :
+                        obj_s  = ZoneGroupe(_nom, niv)
+                        obj_p.ajout_fils_simple(obj_s)
+                    else: 
+                       obj_p = ZoneGroupe(_nom, niv)
 
                 ## est ce le niveau le plus haut ?
                 ##  ca peut etre une zone groupe dans une zone groupe  
