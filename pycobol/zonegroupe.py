@@ -226,10 +226,10 @@ class ZoneGroupe:
     @staticmethod            
     def fake_read_file(data= None):
         zg1 ='''
-                10            WW04-DAECH.                                   
-                    11            WW04-AECH   PICTURE  9(4).                 
-                    11            WW04-MECH   PICTURE  99.                      
-                    11            WW04-JECH   PICTURE  99.                 
+                10            DAECH.                                   
+                    11            AECH   PICTURE  9(4).                 
+                    11            MECH   PICTURE  99.                      
+                    11            JECH   PICTURE  99.                 
         '''            
         
         if not data:
@@ -237,6 +237,7 @@ class ZoneGroupe:
         t_zg1 = data.split('\n')
         lignes = [item  for item in t_zg1 if item]
         return(lignes)
+
     @staticmethod
     def recherche_rang(n):
         a = ZoneGroupe.zone_groupe[:]
@@ -249,7 +250,36 @@ class ZoneGroupe:
                 return item.pere
         return a[-1]
                      
+    @classmethod
+    def recherche_nom(cls, nom):
+        ''' retourne l'objet Zonegroupe ou ZonefilsSimple correpondant au nom 
+        :nom str
 
+        >>> tlignes = ZoneGroupe.fake_read_file()
+        >>> len(tlignes)
+        4
+        >>> ZoneGroupe.read_groupe_from_code(tlignes)
+        >>> len(ZoneGroupe.zone_groupe[0].fils)
+        3
+        >>> z1 = ZoneGroupe.recherche_nom('DAECH')
+        >>> z1.longueur_utile
+        8
+        >>> z2 = ZoneGroupe.recherche_nom('JECH')
+        >>> z2.longueur_utile
+        2
+
+
+        '''
+        for item in cls.zone_groupe:
+            if item.nom == nom: 
+                return item
+
+        for item in  cls.zone_groupe:
+            for fils in item.fils:
+                if fils.nom == nom:
+                    return fils 
+        return None
+                           
 @dataclass
 class ZoneFilsSimple:
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
@@ -291,6 +321,7 @@ if __name__ == '__main__':
     import doctest          
     #doctest.run_docstring_examples(ZoneGroupe,None, verbose = 1)
     #doctest.run_docstring_examples(ZoneFilsSimple,None, verbose = 1)
-    doctest.run_docstring_examples(ZoneGroupe.read_groupe_from_code,None, verbose = 1)
+    #doctest.run_docstring_examples(ZoneGroupe.read_groupe_from_code,None, verbose = 1)
     #tlignes = ZoneGroupe.fake_read_file()
     #ZoneGroupe.read_groupe_from_code(tlignes)
+    doctest.run_docstring_examples(ZoneGroupe.recherche_nom,None, verbose = 1)
