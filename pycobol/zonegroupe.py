@@ -103,12 +103,8 @@ class ZoneGroupe:
         self.longueur_utile += other.longueur_utile
         self.fils.append(other)
 
-    def ajout_fils_simple(self, other):
-        if other.rang <= self.rang :
-            raise RuntimeError(f'Erreur sur le rang   {self.nom} >> {other.nom}') 
-        other.pere = self        
-        self.longueur_utile += other.longueur_utile
-        self.fils.append(other)
+    ajout_fils_simple = ajout_fils_groupe
+        
 
     def maj_valeur(self): ### TO DO attaquer les longueurs pas les valeurs
         '''normalement tous les ajouts de zones provoquent la mise à jour de la longueur
