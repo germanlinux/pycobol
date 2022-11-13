@@ -8,7 +8,7 @@ zg5 = '''
       11            NUPSI  PICTURE  X(15). 
       11            DEUXIEME.
        12               CNAEM  PICTURE  9(5).               
-       12            NUPEN  PICTURE  X(9).
+       12               NUPEN  PICTURE  X(9).
       11            TROISIEME.
        12            AAAA  PIC XXX     
 '''  
