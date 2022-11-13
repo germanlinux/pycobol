@@ -241,7 +241,6 @@ class ZoneGroupe:
         a = ZoneGroupe.zone_groupe[:]
         a.reverse()
         for item in a:
-            print(item.nom , item.rang)
             if n > item.rang:
                 return item
             if n == item.rang:

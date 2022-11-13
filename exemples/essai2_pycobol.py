@@ -1,6 +1,5 @@
 ## essai de pycobol 
 import sys
-print(sys.path)
 sys.path.insert(0, "../pycobol")
 from pycobol import zonegroupe as zngrp
 zg5 = '''
