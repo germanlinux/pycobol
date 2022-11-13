@@ -158,6 +158,8 @@ class ZoneGroupe:
     def propage(self, valeur):
         for un_fils in self.fils : 
             if un_fils.son_type == 'GRP':
+                valeur_= valeur[:un_fils.longueur_utile]
+                un_fils.valeur_externe = valeur_
                 valeur = un_fils.propage(valeur) 
             else:
                 valeur_= valeur[:un_fils.longueur_utile]
