@@ -96,6 +96,7 @@ class ZoneGroupe:
             else:
                 chaine += f"{item.nom} - {item.rang}- {item.picture}\n"
         return chaine        
+    
     def ajout_fils_groupe(self, other):
         if other.rang <= self.rang :
             raise RuntimeError(f'Erreur sur le rang   {self.nom} >> {other.nom}') 
@@ -103,6 +104,16 @@ class ZoneGroupe:
         self.longueur_utile += other.longueur_utile
         self.fils.append(other)
 
+    def move_to(self, other):
+        valeur = self.valeur_externe
+        if type(other) == str :
+            other= ZoneGroupe.recherche_nom(other)
+
+        other.move_value(valeur)
+
+
+    #####  Alias #####
+        
     ajout_fils_simple = ajout_fils_groupe
         
 
@@ -247,8 +258,8 @@ class ZoneGroupe:
                 return item.pere
         return a[-1]
                      
-    @classmethod
-    def recherche_nom(cls, nom):
+    @staticmethod
+    def recherche_nom( nom):
         ''' retourne l'objet Zonegroupe ou ZonefilsSimple correpondant au nom 
         :nom str
 
@@ -267,11 +278,11 @@ class ZoneGroupe:
 
 
         '''
-        for item in cls.zone_groupe:
+        for item in ZoneGroupe.zone_groupe:
             if item.nom == nom: 
                 return item
 
-        for item in  cls.zone_groupe:
+        for item in   ZoneGroupe.zone_groupe:
             for fils in item.fils:
                 if fils.nom == nom:
                     return fils 
