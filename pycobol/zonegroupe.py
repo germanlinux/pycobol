@@ -322,7 +322,12 @@ class ZoneFilsSimple:
         self.valeur_interne = comportement_.valeur
         self.comportement_associe = comportement_
     
+    def move_to(self, other):   
+        valeur = self.valeur_externe
+        if type(other) == str :
+            other= ZoneGroupe.recherche_nom(other)
 
+        other.move_value(valeur)
 
         
 if __name__ == '__main__':  
