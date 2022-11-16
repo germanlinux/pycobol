@@ -329,6 +329,11 @@ class ZoneFilsSimple:
 
         other.move_value(valeur)
 
+    def move_value(self, valeur):
+        obj_valeur = Value(valeur)
+        self.comportement_associe.move_value(self,valeur)
+        #self.propage(self.valeur_externe)
+        
         
 if __name__ == '__main__':  
     import doctest          
