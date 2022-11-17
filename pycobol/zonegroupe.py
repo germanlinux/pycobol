@@ -335,12 +335,13 @@ class ZoneFilsSimple:
         #self.propage(self.valeur_externe)
 
 class ZoneSimpleRedefine(ZoneFilsSimple):
-    
-
+    ''' Cette classe gère les clauses redefines de type zone simple
+    Le constructeur doit comporter la cible à redefinir
+    '''
     def __init__(self, cible, *args):
         self.cible = cible
         super().__int__(args)
-        
+
 
 if __name__ == '__main__':  
     import doctest          
