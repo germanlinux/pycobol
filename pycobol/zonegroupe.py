@@ -333,8 +333,15 @@ class ZoneFilsSimple:
         obj_valeur = Value(valeur)
         self.comportement_associe.move_value(self,valeur)
         #self.propage(self.valeur_externe)
+
+class ZoneSimpleRedefine(ZoneFilsSimple):
+    
+
+    def __init__(self, cible, *args):
+        self.cible = cible
+        super().__int__(args)
         
-        
+
 if __name__ == '__main__':  
     import doctest          
     #doctest.run_docstring_examples(ZoneGroupe,None, verbose = 1)
