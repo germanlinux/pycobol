@@ -339,6 +339,8 @@ class ZoneSimpleRedefine(ZoneFilsSimple):
     Le constructeur doit comporter la cible à redefinir
     '''
     def __init__(self, cible, *args):
+        if type(cible)  == str:
+            cible = ZoneGroupe.recherche_nom(cible)    
         self.cible = cible
         super().__int__(args)
 
