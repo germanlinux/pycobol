@@ -310,6 +310,7 @@ class ZoneFilsSimple:
         self.initialize()
 
     def initialize(self):
+        print('eric' ,self)
         nature_ = Nature_pic(self.picture)
         self.son_type = nature_.nature
         self.longueur_utile =nature_.longueur
@@ -337,19 +338,22 @@ class ZoneFilsSimple:
 class ZoneSimpleRedefine(ZoneFilsSimple):
     ''' Cette classe gère les clauses redefines de type zone simple
     Le constructeur doit comporter la cible à redefinir
+    >>> obj = ZoneFilsSimple('essaifils', 5, picture = '999')
+    >>> obj2 = ZoneSimpleRedefine('essaifils', 'essairedefines' ,5, picture = 'XXX' )
     '''
-    def __init__(self, cible, *args):
+    def __init__(self, cible, *args, **kwargs):
         if type(cible)  == str:
             cible = ZoneGroupe.recherche_nom(cible)    
         self.cible = cible
-        super().__int__(args)
+        super().__init__(*args, **kwargs)
 
 
 if __name__ == '__main__':  
     import doctest          
     #doctest.run_docstring_examples(ZoneGroupe,None, verbose = 1)
     #doctest.run_docstring_examples(ZoneFilsSimple,None, verbose = 1)
+    doctest.run_docstring_examples(ZoneSimpleRedefine,None, verbose = 1)
     #doctest.run_docstring_examples(ZoneGroupe.read_groupe_from_code,None, verbose = 1)
     #tlignes = ZoneGroupe.fake_read_file()
     #ZoneGroupe.read_groupe_from_code(tlignes)
-    doctest.run_docstring_examples(ZoneGroupe.recherche_nom,None, verbose = 1)
+    #doctest.run_docstring_examples(ZoneGroupe.recherche_nom,None, verbose = 1)
