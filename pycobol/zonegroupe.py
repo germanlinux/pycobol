@@ -161,6 +161,7 @@ class ZoneGroupe:
         obj_valeur = Value(valeur)
         self.comportement_associe.move_value(self,valeur)
         self.propage(self.valeur_externe)
+        self.retro_propagation(self, valeur)
     
     def propage(self, valeur):
         for un_fils in self.fils : 
@@ -172,7 +173,13 @@ class ZoneGroupe:
                 valeur_= valeur[:un_fils.longueur_utile]
                 un_fils.valeur_externe = valeur_
                 valeur = valeur[un_fils.longueur_utile:]
-        return valeur        
+        return valeur   
+
+    def retro_propagation(self, valeur):
+        for item in ZoneGroupe.zone_groupe:
+            if self in item.fils: 
+                 item.maj_valeur(valeur)
+        
 
 #####################
 # methodes statiques#
@@ -308,6 +315,7 @@ class ZoneFilsSimple:
 
     def __post_init__(self):
         self.initialize()
+        ZoneGroupe.zone_groupe.append(self)
 
     def initialize(self):
         print('eric' ,self)
@@ -329,11 +337,19 @@ class ZoneFilsSimple:
             other= ZoneGroupe.recherche_nom(other)
 
         other.move_value(valeur)
+        ### si besoin propagation avant et arriere
+
 
     def move_value(self, valeur):
         obj_valeur = Value(valeur)
         self.comportement_associe.move_value(self,valeur)
-        #self.propage(self.valeur_externe)
+        self.retro_propagation(self, valeur)
+
+    def retro_propagation(self, valeur):
+        for item in ZoneGroupe.zone_groupe:
+            if self in item.fils: 
+                 item.maj_valeur(valeur)    
+
 
 class ZoneSimpleRedefine(ZoneFilsSimple):
     ''' Cette classe gère les clauses redefines de type zone simple

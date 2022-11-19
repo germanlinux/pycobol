@@ -37,3 +37,6 @@ print('______________________________')
 print(cnaem.valeur_externe, len(cnaem.valeur_externe)) 
 cnaem.move_to(AAAA)
 print(AAAA.valeur_externe, len(AAAA.valeur_externe)) 
+print(principale.valeur_externe)
+for item in zngrp.ZoneGroupe.zone_groupe:
+      print(item.nom, item.son_type)
