@@ -161,7 +161,7 @@ class ZoneGroupe:
         obj_valeur = Value(valeur)
         self.comportement_associe.move_value(self,valeur)
         self.propage(self.valeur_externe)
-        self.retro_propagation(self, valeur)
+        self.retro_propagation(self.valeur_externe)
     
     def propage(self, valeur):
         for un_fils in self.fils : 
@@ -177,9 +177,11 @@ class ZoneGroupe:
 
     def retro_propagation(self, valeur):
         for item in ZoneGroupe.zone_groupe:
-            if self in item.fils: 
-                 item.maj_valeur(valeur)
-        
+            try:
+                if self in item.fils: 
+                     item.maj_valeur(valeur)
+            except:
+                pass
 
 #####################
 # methodes statiques#
@@ -343,12 +345,15 @@ class ZoneFilsSimple:
     def move_value(self, valeur):
         obj_valeur = Value(valeur)
         self.comportement_associe.move_value(self,valeur)
-        self.retro_propagation(self, valeur)
+        self.retro_propagation(self.valeur_externe)
 
     def retro_propagation(self, valeur):
         for item in ZoneGroupe.zone_groupe:
-            if self in item.fils: 
-                 item.maj_valeur(valeur)    
+            try:
+                if self in item.fils: 
+                     item.maj_valeur(valeur)    
+            except:
+                pass
 
 
 class ZoneSimpleRedefine(ZoneFilsSimple):
