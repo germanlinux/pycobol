@@ -311,11 +311,18 @@ class ZoneGroupe:
                         ZoneGroupe.arbreInverse[_fils.nom].append(item.nom)
             except:
                 pass 
-        for cle,value  in  ZoneGroupe.arbreInverse.items():
-            for _fils in value:
-                 if _fils in ZoneGroupe.arbreInverse:
-                    if ZoneGroupe.arbreInverse[_fils] not in value: 
-                       ZoneGroupe.arbreInverse[cle].extend(ZoneGroupe.arbreInverse[_fils])
+        _compteur = 0
+        while 1:
+            _compteur =0    
+            for cle,value  in  ZoneGroupe.arbreInverse.items():
+                for _fils in value:
+                     if _fils in ZoneGroupe.arbreInverse:
+                        if ZoneGroupe.arbreInverse[_fils] not in value: 
+                        ZoneGroupe.arbreInverse[cle].extend(ZoneGroupe.arbreInverse[_fils])
+                        _compteur+= 1
+            if _compteur == 0:
+                 break            
+
 
 
 @dataclass
