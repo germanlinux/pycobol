@@ -35,6 +35,11 @@ AAAA = zngrp.ZoneGroupe.recherche_nom('TROIS1')
 print(AAAA.valeur_externe, len(AAAA.valeur_externe)) 
 print('______________________________')
 print(cnaem.valeur_externe, len(cnaem.valeur_externe)) 
+zngrp.ZoneGroupe.retroArbre()
+print("debut")
+for cle in zngrp.ZoneGroupe.arbreInverse:
+      print(cle,zngrp.ZoneGroupe.arbreInverse[cle] )
+
 cnaem.move_to(AAAA)
 print(AAAA.valeur_externe, len(AAAA.valeur_externe)) 
 print(principale.valeur_externe)

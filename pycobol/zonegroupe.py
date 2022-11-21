@@ -1,5 +1,6 @@
 import re
 from dataclasses import dataclass, field
+from collections import defaultdict
 from comportement  import *
 from typing import ClassVar
 from inspect import *
@@ -80,6 +81,7 @@ class ZoneGroupe:
     valeur_externe: str = ''
     section: str = 'NON RENSEIGNE'
     zone_groupe :ClassVar[list] = []
+    arbreInverse :ClassVar[list] = []
 
     def __post_init__(self):
         ZoneGroupe.zone_groupe.append(self)
@@ -179,7 +181,7 @@ class ZoneGroupe:
         for item in ZoneGroupe.zone_groupe:
             try:
                 if self in item.fils: 
-                     item.maj_valeur(valeur)
+                     item.maj_valeur()
             except:
                 pass
 
@@ -296,7 +298,26 @@ class ZoneGroupe:
                 if fils.nom == nom:
                     return fils 
         return None
-                           
+        
+    @staticmethod
+    def retroArbre():
+        ''' Reconstitution des dependances des zones en partant des zones élémentaires
+        '''
+        ZoneGroupe.arbreInverse = defaultdict(list)
+        for item in ZoneGroupe.zone_groupe:
+            try:
+                if item.fils: 
+                   for _fils in item.fils:
+                        ZoneGroupe.arbreInverse[_fils.nom].append(item.nom)
+            except:
+                pass 
+        for cle,value  in  ZoneGroupe.arbreInverse.items():
+            for _fils in value:
+                 if _fils in ZoneGroupe.arbreInverse:
+                    if ZoneGroupe.arbreInverse[_fils] not in value: 
+                       ZoneGroupe.arbreInverse[cle].extend(ZoneGroupe.arbreInverse[_fils])
+
+
 @dataclass
 class ZoneFilsSimple:
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
@@ -351,7 +372,7 @@ class ZoneFilsSimple:
         for item in ZoneGroupe.zone_groupe:
             try:
                 if self in item.fils: 
-                     item.maj_valeur(valeur)    
+                     item.maj_valeur()    
             except:
                 pass
 
