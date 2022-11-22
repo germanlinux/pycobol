@@ -215,8 +215,7 @@ class ZoneGroupe():
                         ZoneGroupe.arbreInverse[_fils.nom].append(item.nom)
             except:
                 pass 
-        
-        print("je passe")   
+         
         for cle,value  in  ZoneGroupe.arbreInverse.items():
             for _fils in value:
                  if _fils in ZoneGroupe.arbreInverse:
@@ -226,7 +225,6 @@ class ZoneGroupe():
     def autonomme(cls,glob ):
         for item in ZoneGroupe.zone_groupe:
             glob['_' + item.nom] = item
-            print('_' + item.nom)
 
 
 ######################
