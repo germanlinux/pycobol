@@ -16,6 +16,9 @@ tlignes = zngrp.ZoneGroupe.fake_read_file(zg5)
 zngrp.ZoneGroupe.read_groupe_from_code(tlignes) 
 principale = zngrp.ZoneGroupe.zone_groupe[0]
 principale.init_groupe()
+zngrp.ZoneGroupe.autonomme(globals())
+
+
 print(principale.longueur_utile)
 principale.move_value('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 print('123456789012345678901234')
@@ -35,13 +38,15 @@ AAAA = zngrp.ZoneGroupe.recherche_nom('TROIS1')
 print(AAAA.valeur_externe, len(AAAA.valeur_externe)) 
 print('______________________________')
 print(cnaem.valeur_externe, len(cnaem.valeur_externe)) 
-zngrp.ZoneGroupe.retroArbre()
+#zngrp.ZoneGroupe.retroArbre()
 print("debut")
-for cle in zngrp.ZoneGroupe.arbreInverse:
-      print(cle,zngrp.ZoneGroupe.arbreInverse[cle] )
+#for cle in zngrp.ZoneGroupe.arbreInverse:
+#      print(cle,zngrp.ZoneGroupe.arbreInverse[cle] )
 
-cnaem.move_to(AAAA)
-print(AAAA.valeur_externe, len(AAAA.valeur_externe)) 
-print(principale.valeur_externe)
+#cnaem.move_to(AAAA)
+#print(AAAA.valeur_externe, len(AAAA.valeur_externe)) 
+#print(principale.valeur_externe)
 for item in zngrp.ZoneGroupe.zone_groupe:
-      print(item.nom, item.son_type, item.valeur_externe)
+      print(item.nom)
+      if item.nom == 'DEUX2':
+            print(item.picture)

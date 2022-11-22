@@ -27,6 +27,7 @@ class ZoneGroupe():
     >>> obj.ajout_fils_simple(objfilsimp)
     >>> obj.longueur_utile
     3
+    >>> obj.init_groupe()
     >>> obj.move_value('ERIC')
     >>> obj.valeur_externe
     'ERI'
@@ -36,10 +37,10 @@ class ZoneGroupe():
     >>> obj.ajout_fils_simple(objfilgrp)
     >>> objfilsimp3 = ZoneFilsSimple('essaifils5',5 , picture = 'XXXXX')
     >>> obj.ajout_fils_simple(objfilsimp3)
-    #>>> obj.maj_longueur()
-    #7
-    #>>> obj.longueur_utile
-    #7
+    >>> obj.maj_longueur()
+    10
+    >>> obj.longueur_utile
+    10
     >>> obj.init_groupe()
     '''
 
@@ -53,14 +54,14 @@ class ZoneGroupe():
     valeur_interne: str =''
     valeur_externe: str = ''
     section: str = 'NON RENSEIGNE'
-    comportement_associe: object None
+    comportement_associe: object = None
     zone_groupe :ClassVar[list] = []
     arbreInverse :ClassVar[list] = []
 
     def __post_init__(self):
         ZoneGroupe.zone_groupe.append(self)
 
-    def __str__(self):
+    def __str(self):
         if self.pere == 0:
             pere = 'ROOT'
         else:
@@ -221,8 +222,13 @@ class ZoneGroupe():
                  if _fils in ZoneGroupe.arbreInverse:
                         ZoneGroupe.arbreInverse[cle].extend(ZoneGroupe.arbreInverse[_fils])
                         break
-            
-                         
+    @classmethod        
+    def autonomme(cls,glob ):
+        for item in ZoneGroupe.zone_groupe:
+            glob['_' + item.nom] = item
+            print('_' + item.nom)
+
+
 ######################
 # methodes statiques #
 ######################
@@ -350,9 +356,9 @@ class ZoneSimpleRedefine(ZoneFilsSimple):
 
 if __name__ == '__main__':  
     import doctest          
-    #doctest.run_docstring_examples(ZoneGroupe,None, verbose = 1)
-    #doctest.run_docstring_examples(ZoneFilsSimple,None, verbose = 1)
-    doctest.run_docstring_examples(ZoneSimpleRedefine,None, verbose = 1)
+    doctest.run_docstring_examples(ZoneGroupe,None, verbose = 1)
+    doctest.run_docstring_examples(ZoneFilsSimple,None, verbose = 1)
+    #doctest.run_docstring_examples(ZoneSimpleRedefine,None, verbose = 1)
     #doctest.run_docstring_examples(ZoneGroupe.read_groupe_from_code,None, verbose = 1)
     #tlignes = ZoneGroupe.fake_read_file()
     #ZoneGroupe.read_groupe_from_code(tlignes)
