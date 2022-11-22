@@ -6,10 +6,13 @@ from typing import ClassVar
 from inspect import *
 from zonage import *
 
+#################################
+#   classe ZoneGroupe           #
+#################################
 
 
 @dataclass
-class ZoneGroupe:
+class ZoneGroupe():
     ''' Cette classe prend en charge la creation d'une zone groupe. 
     Par nature cette zone est de type ALN.
     Sa longueur est la somme des longueurs des composants qui la composent
@@ -20,40 +23,13 @@ class ZoneGroupe:
     >>> obj.ajout_fils_groupe(objfils)
     >>> len(obj.fils)
     1
-    >>> objfils.pere # doctest: +ELLIPSIS
-    ZoneGroupe(nom='zoneessai'...
-    >>> objfils2 = ZoneGroupe('zonefils2', 1)
-    >>> obj.ajout_fils_groupe(objfils2)  # doctest: +ELLIPSIS
-    Traceback (most recent call last):
-    ...
     >>> objfilsimp = ZoneFilsSimple('essaifils', 5, picture = '999')
     >>> obj.ajout_fils_simple(objfilsimp)
     >>> obj.longueur_utile
     3
-    >>> obj.maj_valeur()
-    '000'
-    >>> obj.init_groupe()
-    >>> obj.valeur_externe
-    '000'
     >>> obj.move_value('ERIC')
     >>> obj.valeur_externe
     'ERI'
-    >>> obj = ZoneGroupe('zoneessai', 1, 0)
-    >>> obj.nom
-    'zoneessai'
-    >>> objfilsimp = ZoneFilsSimple('essaifils', 5, picture = '999')
-    >>> obj.ajout_fils_simple(objfilsimp)
-    >>> objfilsimp2 = ZoneFilsSimple('essaifils2',5 , picture = '99')
-    >>> obj.ajout_fils_simple(objfilsimp2)
-    >>> obj.init_groupe()
-    >>> obj.valeur_externe
-    '00000'
-    >>> obj.move_value('ERIC')
-    >>> obj.valeur_externe
-    'ERIC '
-    >>> obj = ZoneGroupe('zoneessai', 1)
-    >>> obj.nom
-    'zoneessai'
     >>> objfilgrp = ZoneGroupe('essaifils', 2)
     >>> objfilsimp2 = ZoneFilsSimple('essaifils2',5 , picture = '99')
     >>> objfilgrp.ajout_fils_simple(objfilsimp2)
@@ -65,9 +41,6 @@ class ZoneGroupe:
     #>>> obj.longueur_utile
     #7
     >>> obj.init_groupe()
-    >>> obj.move_value('ERIC')
-    >>> obj.valeur_externe
-    'ERIC   '
     '''
 
     nom: str
@@ -80,6 +53,7 @@ class ZoneGroupe:
     valeur_interne: str =''
     valeur_externe: str = ''
     section: str = 'NON RENSEIGNE'
+    comportement_associe: object None
     zone_groupe :ClassVar[list] = []
     arbreInverse :ClassVar[list] = []
 
@@ -163,7 +137,7 @@ class ZoneGroupe:
         obj_valeur = Value(valeur)
         self.comportement_associe.move_value(self,valeur)
         self.propage(self.valeur_externe)
-        self.retro_propagation(self.valeur_externe)
+        self.retro_propagation()
     
     def propage(self, valeur):
         for un_fils in self.fils : 
@@ -177,17 +151,81 @@ class ZoneGroupe:
                 valeur = valeur[un_fils.longueur_utile:]
         return valeur   
 
-    def retro_propagation(self, valeur):
+    def retro_propagation(self):
+        if self.nom in ZoneGroupe.arbreInverse:
+            for item in ZoneGroupe.arbreInverse[self.nom]:
+                print('ERRRRR' , item)
+                     #item.maj_valeur()
+######################
+# methodes de classe #
+######################
+
+
+    @classmethod
+    def recherche_rang(cls,n):
+        a = ZoneGroupe.zone_groupe[:]
+        a.reverse()
+        for item in a:
+            if n > item.rang:
+                return item
+            if n == item.rang:
+                return item.pere
+        return a[-1]
+
+    @classmethod    
+    def recherche_nom(cls,nom):
+        ''' retourne l'objet Zonegroupe ou ZonefilsSimple correpondant au nom 
+        :nom str
+
+        >>> tlignes = ZoneGroupe.fake_read_file()
+        >>> len(tlignes)
+        4
+        >>> ZoneGroupe.read_groupe_from_code(tlignes)
+        >>> len(ZoneGroupe.zone_groupe[0].fils)
+        3
+        >>> z1 = ZoneGroupe.recherche_nom('DAECH')
+        >>> z1.longueur_utile
+        8
+        >>> z2 = ZoneGroupe.recherche_nom('JECH')
+        >>> z2.longueur_utile
+        2
+
+
+        '''
+        for item in ZoneGroupe.zone_groupe:
+            if item.nom == nom: 
+                return item
+
+        for item in   ZoneGroupe.zone_groupe:
+            for fils in item.fils:
+                if fils.nom == nom:
+                    return fils 
+        return None
+    
+    @classmethod        
+    def retroArbre():
+        ''' Reconstitution des dependances des zones en partant des zones élémentaires
+        '''
+        ZoneGroupe.arbreInverse = defaultdict(list)
         for item in ZoneGroupe.zone_groupe:
             try:
-                if self in item.fils: 
-                     item.maj_valeur()
+                if item.fils: 
+                   for _fils in item.fils:
+                        ZoneGroupe.arbreInverse[_fils.nom].append(item.nom)
             except:
-                pass
-
-#####################
-# methodes statiques#
-#####################
+                pass 
+        
+        print("je passe")   
+        for cle,value  in  ZoneGroupe.arbreInverse.items():
+            for _fils in value:
+                 if _fils in ZoneGroupe.arbreInverse:
+                        ZoneGroupe.arbreInverse[cle].extend(ZoneGroupe.arbreInverse[_fils])
+                        break
+            
+                         
+######################
+# methodes statiques #
+######################
     @staticmethod
     def read_groupe_from_code(tcode):
         ''' cette fonction prend comme parametre en entrée un tableau de ligne
@@ -258,93 +296,26 @@ class ZoneGroupe:
         lignes = [item  for item in t_zg1 if item]
         return(lignes)
 
-    @staticmethod
-    def recherche_rang(n):
-        a = ZoneGroupe.zone_groupe[:]
-        a.reverse()
-        for item in a:
-            if n > item.rang:
-                return item
-            if n == item.rang:
-                return item.pere
-        return a[-1]
-                     
-    @staticmethod
-    def recherche_nom( nom):
-        ''' retourne l'objet Zonegroupe ou ZonefilsSimple correpondant au nom 
-        :nom str
-
-        >>> tlignes = ZoneGroupe.fake_read_file()
-        >>> len(tlignes)
-        4
-        >>> ZoneGroupe.read_groupe_from_code(tlignes)
-        >>> len(ZoneGroupe.zone_groupe[0].fils)
-        3
-        >>> z1 = ZoneGroupe.recherche_nom('DAECH')
-        >>> z1.longueur_utile
-        8
-        >>> z2 = ZoneGroupe.recherche_nom('JECH')
-        >>> z2.longueur_utile
-        2
-
-
-        '''
-        for item in ZoneGroupe.zone_groupe:
-            if item.nom == nom: 
-                return item
-
-        for item in   ZoneGroupe.zone_groupe:
-            for fils in item.fils:
-                if fils.nom == nom:
-                    return fils 
-        return None
-        
-    @staticmethod
-    def retroArbre():
-        ''' Reconstitution des dependances des zones en partant des zones élémentaires
-        '''
-        ZoneGroupe.arbreInverse = defaultdict(list)
-        for item in ZoneGroupe.zone_groupe:
-            try:
-                if item.fils: 
-                   for _fils in item.fils:
-                        ZoneGroupe.arbreInverse[_fils.nom].append(item.nom)
-            except:
-                pass 
-        
-        print("je passe")   
-        for cle,value  in  ZoneGroupe.arbreInverse.items():
-            for _fils in value:
-                 if _fils in ZoneGroupe.arbreInverse:
-                        ZoneGroupe.arbreInverse[cle].extend(ZoneGroupe.arbreInverse[_fils])
-                        break
-            
-
+    
+#################################
+#   classe Zonefilssimple       #
+#################################
 
 @dataclass
-class ZoneFilsSimple:
+class ZoneFilsSimple(ZoneGroupe):
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
     >>> obj = ZoneFilsSimple('essaifils', 5, picture = '999')
     '''
-    nom: str
-    rang : int 
-    section: str = 'NON RENSEIGNE'
-    son_type: str = 'ALN'
-    usage: str = 'DISPLAY'
-    longueur_utile: int = 0  
-    valeur_interne: str =''
-    valeur_externe: str = ''
+    
     picture: str =  '' 
     valeur_initialisation : str =  None     
-    comportement_associe: object = None
     decimale : int = 0
-
+    
     def __post_init__(self):
         self.initialize()
         ZoneGroupe.zone_groupe.append(self)
 
     def initialize(self):
-        print('eric' ,self)
         nature_ = Nature_pic(self.picture)
         self.son_type = nature_.nature
         self.longueur_utile =nature_.longueur
@@ -352,32 +323,16 @@ class ZoneFilsSimple:
             self.decimale = nature_.decimale
         comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_initialisation )  
         comportement_.initialize()  
-        #comportement_.initialize()
         self.valeur_externe = comportement_.valeur_externe
         self.valeur_interne = comportement_.valeur
         self.comportement_associe = comportement_
     
-    def move_to(self, other):   
-        valeur = self.valeur_externe
-        if type(other) == str :
-            other= ZoneGroupe.recherche_nom(other)
 
-        other.move_value(valeur)
-        ### si besoin propagation avant et arriere
-
-
-    def move_value(self, valeur):
-        obj_valeur = Value(valeur)
-        self.comportement_associe.move_value(self,valeur)
-        self.retro_propagation(self.valeur_externe)
-
-    def retro_propagation(self, valeur):
-        for item in ZoneGroupe.zone_groupe:
-            try:
-                if self in item.fils: 
-                     item.maj_valeur()    
-            except:
-                pass
+    def retro_propagation(self):
+        if self.nom in ZoneGroupe.arbreInverse:
+            for item in ZoneGroupe.arbreInverse[self.nom]:
+                print('ERRRRR' , item)
+                     #item.maj_valeur()
 
 
 class ZoneSimpleRedefine(ZoneFilsSimple):
