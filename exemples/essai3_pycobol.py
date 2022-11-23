@@ -3,6 +3,8 @@ import sys
 sys.path.insert(0, "../pycobol")
 from pycobol import zonegroupe as zngrp
 from pycobol import zonesimple as zngrps
+from pycobol import arbrezone as arbre
+
 
 zg5 = '''
 10            PRINCIPALE.                              
@@ -13,15 +15,14 @@ zg5 = '''
       11            TROISIEME.
        12            TROIS1  PIC XXX     
 '''  
-
+arbre = arbre.ArbreZone('essai3')
 tlignes = zngrp.ZoneGroupe.fake_read_file(zg5)
 zngrp.ZoneGroupe.read_groupe_from_code(tlignes) 
-principale = zngrp.ZoneGroupe.zone_groupe[0]
-principale.init_groupe()
-zngrp.ZoneGroupe.autonomme(globals())
+print(len(arbre.zone))
+arbre.autonomme(globals())
+_principale.init_groupe()
 
-
-print(principale.longueur_utile)
+print(_principale.longueur_utile)
 principale.move_value('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 print('123456789012345678901234')
 print(principale.valeur_externe,len(principale.valeur_externe) )

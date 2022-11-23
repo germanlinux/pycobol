@@ -2,17 +2,17 @@ import re
 from dataclasses import dataclass, field
 from collections import defaultdict
 from comportement  import *
-import zonegroupe
+from zonegroupe import *
 from typing import ClassVar
 from inspect import *
 from zonage import *
-
+from arbrezone import *
 #################################
 #   classe Zonefilssimple       #
 #################################
 
 @dataclass
-class ZoneFilsSimple(zonegroupe.ZoneGroupe):
+class ZoneFilsSimple(ZoneGroupe):
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
     >>> obj = ZoneFilsSimple('essaifils', 5, picture = '999')
     '''
@@ -24,8 +24,9 @@ class ZoneFilsSimple(zonegroupe.ZoneGroupe):
     def __post_init__(self):
         self.initialize()
         print('eg',self.nom )
-        zonegroupe.ZoneGroupe.zone_groupe.append(self)
-        print('er', zonegroupe.ZoneGroupe.zone_groupe)
+        arbre = ArbreZone()
+        arbre.zone.append(self)
+      
     def initialize(self):
         nature_ = Nature_pic(self.picture)
         self.son_type = nature_.nature
@@ -57,7 +58,8 @@ class ZoneSimpleRedefine(ZoneFilsSimple):
     '''
     def __init__(self, cible, *args, **kwargs):
         if type(cible)  == str:
-            cible = ZoneGroupe.recherche_nom(cible)    
+            arbre = ArbreZone()
+            cible = arbre.recherche_nom(cible)    
         self.cible = cible
         super().__init__(*args, **kwargs)
 

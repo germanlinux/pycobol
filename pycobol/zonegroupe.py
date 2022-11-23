@@ -6,7 +6,7 @@ from zonesimple import *
 from typing import ClassVar
 from inspect import *
 from zonage import *
-
+from arbrezone import *
 #################################
 #   classe ZoneGroupe           #
 #################################
@@ -56,12 +56,12 @@ class ZoneGroupe():
     valeur_externe: str = ''
     section: str = 'NON RENSEIGNE'
     comportement_associe: object = None
-    zone_groupe :ClassVar[list] = []
     arbreInverse :ClassVar[list] = []
 
     def __post_init__(self):
-        ZoneGroupe.zone_groupe.append(self)
-        print('xy', type(ZoneGroupe.zone_groupe))
+        arbre = ArbreZone()
+        arbre.zone.append(self)
+
     def __str(self):
         if self.pere == 0:
             pere = 'ROOT'
@@ -85,7 +85,8 @@ class ZoneGroupe():
     def move_to(self, other):
         valeur = self.valeur_externe
         if type(other) == str :
-            other= ZoneGroupe.recherche_nom(other)
+            arbre = ArbreZone()
+            other= arbre.recherche_nom(other)
 
         other.move_value(valeur)
 
@@ -163,51 +164,12 @@ class ZoneGroupe():
 ######################
 
 
-    @classmethod
-    def recherche_rang(cls,n):
-        a = ZoneGroupe.zone_groupe[:]
-        a.reverse()
-        for item in a:
-            if n > item.rang:
-                return item
-            if n == item.rang:
-                return item.pere
-        return a[-1]
-
-    @classmethod    
-    def recherche_nom(cls,nom):
-        ''' retourne l'objet Zonegroupe ou ZonefilsSimple correpondant au nom 
-        :nom str
-
-        >>> tlignes = ZoneGroupe.fake_read_file()
-        >>> len(tlignes)
-        4
-        >>> ZoneGroupe.read_groupe_from_code(tlignes)
-        >>> len(ZoneGroupe.zone_groupe[0].fils)
-        3
-        >>> z1 = ZoneGroupe.recherche_nom('DAECH')
-        >>> z1.longueur_utile
-        8
-        >>> z2 = ZoneGroupe.recherche_nom('JECH')
-        >>> z2.longueur_utile
-        2
-
-
-        '''
-        for item in ZoneGroupe.zone_groupe:
-            if item.nom == nom: 
-                return item
-
-        for item in   ZoneGroupe.zone_groupe:
-            for fils in item.fils:
-                if fils.nom == nom:
-                    return fils 
-        return None
+    
     
     @classmethod        
     def retroArbre():
         ''' Reconstitution des dependances des zones en partant des zones élémentaires
-        '''
+        
         ZoneGroupe.arbreInverse = defaultdict(list)
         for item in ZoneGroupe.zone_groupe:
             try:
@@ -222,12 +184,8 @@ class ZoneGroupe():
                  if _fils in ZoneGroupe.arbreInverse:
                         ZoneGroupe.arbreInverse[cle].extend(ZoneGroupe.arbreInverse[_fils])
                         break
-    @staticmethod       
-    def autonomme(glob ):
-        for item in ZoneGroupe.zone_groupe:
-            print('EG', item.nom)
-            glob['_' + item.nom] = item
-
+        '''
+        pass
 
 ######################
 # methodes statiques #
@@ -260,13 +218,15 @@ class ZoneGroupe():
                 break
 
             if ' PIC '  in ligne  or ' PICTURE ' in ligne:
-                if len(ZoneGroupe.zone_groupe) == 0:
+                arbre = ArbreZone()
+                if len(arbre.zone) == 0:
                     niveaux_max = 0
                 else: 
-                    niveaux_max = ZoneGroupe.zone_groupe[-1].rang    
+                    niveaux_max = arbre.zone[-1].rang    
                 (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
                 niv = Zone.extract_niveau(tab)
-                obt = ZoneGroupe.recherche_rang(niv)
+                arbre = ArbreZone()
+                obt = arbre.recherche_rang(niv)
                 _nom =  Zone.extract_nom(tab)
                 obj_s = ZoneFilsSimple(_nom,niv ,picture = pic )
                 obt.ajout_fils_simple(obj_s)
@@ -275,12 +235,14 @@ class ZoneGroupe():
                 ## zone groupe
                 niv = Zone.extract_niveau(tab)
                 _nom =  Zone.extract_nom(tab)
-                if len(ZoneGroupe.zone_groupe) == 0:
+                arbre = ArbreZone()
+                if len(arbre.zone) == 0:
                     obj_p = ZoneGroupe(_nom, niv)
                 else:
                     ### niveau inferieur
                     ###  ou niveau frere
-                    obt = ZoneGroupe.recherche_rang(niv)
+                    arbre = ArbreZone()
+                    obt = arbre.recherche_rang(niv)
                     obj_s  = ZoneGroupe(_nom, niv)
                     obt.ajout_fils_simple(obj_s)
                     
