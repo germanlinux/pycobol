@@ -11,12 +11,14 @@ class ArbreZone:
 
 
     '''
+    _instance = None
 
     def __new__(cls, *args):
-        if not hasattr(cls, 'instance'):
+        if not cls._instance:
+          #  if not hasattr(cls, 'instance'):
           print('je passe')  
-          cls.instance = super(ArbreZone, cls).__new__(cls)
-        return cls.instance
+          cls._instance = super(ArbreZone, cls).__new__(cls)
+        return cls._instance
     
     def __init__(self, *args):
         try:
@@ -24,7 +26,8 @@ class ArbreZone:
         except :    
             self.zone = []
         finally:
-           print('TOTO', len(self.zone))    
+           pass 
+           #print('TOTO', len(self.zone))    
     def recherche_nom(self, nom):
         ''' retourne l'objet Zonegroupe ou ZonefilsSimple correpondant au nom 
         :nom str
