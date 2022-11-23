@@ -2,6 +2,8 @@
 import sys
 sys.path.insert(0, "../pycobol")
 from pycobol import zonegroupe as zngrp
+from pycobol import zonesimple as zngrps
+
 zg5 = '''
 10            PRINCIPALE.                              
       11            UNE  PICTURE  X(5). 

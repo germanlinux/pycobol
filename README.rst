@@ -69,7 +69,7 @@ Journal
 Le 23/11/2022:
 --------------
 Refactorisation encore et encore
-Fin du developpement des zones groupess mais il reste le probleme de la retropropagation
+Fin du developpement des zones groupes mais il reste le probleme de la retropropagation
 Developpment d'une méthode d ajout dynamique à l'espace de nommage: les zones COBOL sont accessibles préfixées par un '_'
 
 
