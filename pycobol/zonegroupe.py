@@ -61,7 +61,7 @@ class ZoneGroupe():
 
     def __post_init__(self):
         ZoneGroupe.zone_groupe.append(self)
-        print('xy', ZoneGroupe.zone_groupe)
+        print('xy', type(ZoneGroupe.zone_groupe))
     def __str(self):
         if self.pere == 0:
             pere = 'ROOT'
@@ -222,8 +222,8 @@ class ZoneGroupe():
                  if _fils in ZoneGroupe.arbreInverse:
                         ZoneGroupe.arbreInverse[cle].extend(ZoneGroupe.arbreInverse[_fils])
                         break
-    @classmethod        
-    def autonomme(cls,glob ):
+    @staticmethod       
+    def autonomme(glob ):
         for item in ZoneGroupe.zone_groupe:
             print('EG', item.nom)
             glob['_' + item.nom] = item
