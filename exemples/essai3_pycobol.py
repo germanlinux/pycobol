@@ -18,17 +18,19 @@ zg5 = '''
 tlignes = zngrp.ZoneGroupe.fake_read_file(zg5)
 monarbre = zngrp.ZoneGroupe.read_groupe_from_code(tlignes) 
 print(len(monarbre.zone))
+print(len(zngrp.ZoneGroupe.get_arbre()))
+
 monarbre.autonomme(globals())
-_PRINCIPALE.init_groupe()
-print(_PRINCIPALE.longueur_utile)
-_PRINCIPALE.move_value('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+_principale.init_groupe()
+print(_principale.longueur_utile)
+_principale.move_value('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 print('123456789012345678901234')
-print(_PRINCIPALE.valeur_externe,len(_PRINCIPALE.valeur_externe) )
-print(_UNE.valeur_externe, len(_UNE.valeur_externe), 'UNE') 
-print(_DEUXIEME.valeur_externe, len(_DEUXIEME.valeur_externe), 'deuxieme') 
-print(_DEUX1.valeur_externe, len(_DEUX1.valeur_externe)) 
-print(_DEUX2.valeur_externe, len(_DEUX2.valeur_externe))  
-print('trois', _TROISIEME.valeur_externe, len(_TROISIEME.valeur_externe)) 
+print(_principale.valeur_externe,len(_principale.valeur_externe) )
+print(_une.valeur_externe, len(_une.valeur_externe), 'UNE') 
+print(_deuxieme.valeur_externe, len(_deuxieme.valeur_externe), 'deuxieme') 
+print(_deux1.valeur_externe, len(_deux1.valeur_externe)) 
+print(_deux2.valeur_externe, len(_deux2.valeur_externe))  
+print('trois', _troisieme.valeur_externe, len(_troisieme.valeur_externe)) 
 
 print("debut")
 #for cle in zngrp.ZoneGroupe.arbreInverse:
@@ -37,7 +39,11 @@ print("debut")
 #cnaem.move_to(AAAA)
 #print(AAAA.valeur_externe, len(AAAA.valeur_externe)) 
 #print(principale.valeur_externe)
-for item in zngrp.ZoneGroupe.zone_groupe:
+for item in monarbre.zone:
       print(item.nom)
       if item.nom == 'DEUX2':
             print(item.picture)
+
+monarbre.retroArbre()
+for item, value in monarbre.inverse.items():
+      print(item , value )

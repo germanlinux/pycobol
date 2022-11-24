@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class ArbreZone:
     ''' cette classe est in conteneur pour stocker des objets de 
         classe mere et de classe fille
@@ -7,9 +9,6 @@ class ArbreZone:
     >>> obj2 = ArbreZone()
     >>> print(obj2.zone)
     ['1']
-
-
-
     '''
     _instance = None
 
@@ -24,8 +23,13 @@ class ArbreZone:
             self.zone
         except :    
             self.zone = []
+            self.inverse = []
         finally:
-           print('TOTO', len(self.zone))    
+           pass
+
+    def reset(self):
+        self.zone =[]
+        self.inverse = []
     def recherche_nom(self, nom):
         ''' retourne l'objet Zonegroupe ou ZonefilsSimple correpondant au nom 
         :nom str
@@ -58,7 +62,7 @@ class ArbreZone:
 
     def autonomme(self, glob ):
         for item in self.zone:
-            glob['_' + item.nom] = item      
+            glob['_' + item.nom.lower()] = item      
 
 
     def recherche_rang(self, n):
@@ -71,8 +75,25 @@ class ArbreZone:
                 return item.pere
         return a[-1]
 
-               
-
+    def retroArbre(self):
+        ''' Reconstitution des dependances des zones en partant des zones élémentaires
+        
+        '''
+        self.inverse = defaultdict(list)
+        for item in self.zone:
+            try:
+                if item.fils: 
+                   for _fils in item.fils:
+                        self.inverse[_fils.nom].append(item.nom)
+            except:
+                pass 
+         
+        for cle,value  in  self.inverse.items():
+            for _fils in value:
+                 if _fils in self.inverse:
+                        self.inverse[cle].extend(self.inverse[_fils])
+                        break
+        
 if __name__ == '__main__':  
     import doctest          
     doctest.run_docstring_examples(ArbreZone,None, verbose = 1)

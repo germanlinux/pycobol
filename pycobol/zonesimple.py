@@ -23,7 +23,7 @@ class ZoneFilsSimple(ZoneGroupe):
     
     def __post_init__(self):
         self.initialize()
-        print('eg',self.nom )
+        
         arbre = ArbreZone()
         arbre.zone.append(self)
       

@@ -1,6 +1,6 @@
 import re
 from dataclasses import dataclass, field
-from collections import defaultdict
+
 from comportement  import *
 from zonesimple import *
 from typing import ClassVar
@@ -166,26 +166,7 @@ class ZoneGroupe():
 
     
     
-    @classmethod        
-    def retroArbre():
-        ''' Reconstitution des dependances des zones en partant des zones élémentaires
-        
-        ZoneGroupe.arbreInverse = defaultdict(list)
-        for item in ZoneGroupe.zone_groupe:
-            try:
-                if item.fils: 
-                   for _fils in item.fils:
-                        ZoneGroupe.arbreInverse[_fils.nom].append(item.nom)
-            except:
-                pass 
-         
-        for cle,value  in  ZoneGroupe.arbreInverse.items():
-            for _fils in value:
-                 if _fils in ZoneGroupe.arbreInverse:
-                        ZoneGroupe.arbreInverse[cle].extend(ZoneGroupe.arbreInverse[_fils])
-                        break
-        '''
-        pass
+    
 
 ######################
 # methodes statiques #
@@ -268,7 +249,11 @@ class ZoneGroupe():
     def get_arbre():
         arbre = ArbreZone()
         return arbre.zone
-        
+    
+    @staticmethod            
+    def reset_arbre():
+        arbre = ArbreZone()
+        arbre.reset()    
     
 
 if __name__ == '__main__':  

@@ -1,6 +1,5 @@
 from pycobol import zonegroupe as zn 
 from pycobol import comportement as cp
-
 import unittest  
 
 
@@ -66,48 +65,35 @@ class TestZonegroupeline(unittest.TestCase):
             for cp, extrait in enumerate([zg1, zg2, zg3]):
                   tlignes = zn.ZoneGroupe.fake_read_file(extrait)
                   zn.ZoneGroupe.read_groupe_from_code(tlignes)
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[0].fils),len(tlignes) - 1)
-                  zn.ZoneGroupe.zone_groupe =[]
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),len(tlignes) - 1)
+                  zn.ZoneGroupe.reset_arbre()
 
       def test_lecture_groupe2(self):
                   tlignes = zn.ZoneGroupe.fake_read_file(zg4)
                   zn.ZoneGroupe.read_groupe_from_code(tlignes)
-                  
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[0].fils),2) 
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[1].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[2].fils),2) 
 
       def test_lecture_groupe3(self):
-                  zn.ZoneGroupe.zone_groupe =[]
+                  zn.ZoneGroupe.reset_arbre()
                   tlignes = zn.ZoneGroupe.fake_read_file(zg5)
                   zn.ZoneGroupe.read_groupe_from_code(tlignes)
-                  print(zn.ZoneGroupe.zone_groupe[0])
-                  print(zn.ZoneGroupe.zone_groupe[1])
-                  print(zn.ZoneGroupe.zone_groupe[2])
-
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[0].fils),3) 
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[1].fils),2) 
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[2].fils),1) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),3) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[2].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[5].fils),1) 
 
       def test_lecture_groupe4(self):
-                  zn.ZoneGroupe.zone_groupe =[]
+                  zn.ZoneGroupe.reset_arbre()
                   tlignes = zn.ZoneGroupe.fake_read_file(zg6)
                   zn.ZoneGroupe.read_groupe_from_code(tlignes)
-                  print(zn.ZoneGroupe.zone_groupe[0])
-                  print(zn.ZoneGroupe.zone_groupe[1])
-                  print(zn.ZoneGroupe.zone_groupe[2])
-
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[0].fils),2) 
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[1].fils),2) 
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[2].fils),1) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[1].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[4].fils),1) 
 
       def test_lecture_groupe5(self):
-                  zn.ZoneGroupe.zone_groupe =[]
+                  zn.ZoneGroupe.reset_arbre()
                   tlignes = zn.ZoneGroupe.fake_read_file(zg7)
                   zn.ZoneGroupe.read_groupe_from_code(tlignes)
-                  print(zn.ZoneGroupe.zone_groupe[0])
-                  print(zn.ZoneGroupe.zone_groupe[1])
-                  print(zn.ZoneGroupe.zone_groupe[2])
-
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[0].fils),3) 
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[1].fils),2) 
-                  self.assertEqual (len(zn.ZoneGroupe.zone_groupe[2].fils),1) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),3) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[1].fils),2) 
+                  self.assertEqual (len(zn.ZoneGroupe.get_arbre()[4].fils),1) 
