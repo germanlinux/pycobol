@@ -160,18 +160,12 @@ class ZoneGroupe():
         if self.nom in ZoneGroupe.arbreInverse:
             for item in ZoneGroupe.arbreInverse[self.nom]:
                      #item.maj_valeur()
-######################
-# methodes de classe #
-######################
-
-
-    
-    
+                pass
     
 
-######################
-# methodes statiques #
-######################
+    ######################
+    # methodes statiques #
+    ######################
     @staticmethod
     def read_groupe_from_code(tcode):
         ''' cette fonction prend comme parametre en entrée un tableau de ligne
