@@ -155,9 +155,10 @@ class ZoneGroupe():
         return valeur   
 
     def retro_propagation(self):
+        arbre = ArbreZone()
+        _inverse = arbre.inverse
         if self.nom in ZoneGroupe.arbreInverse:
             for item in ZoneGroupe.arbreInverse[self.nom]:
-                print('ERRRRR' , item)
                      #item.maj_valeur()
 ######################
 # methodes de classe #
