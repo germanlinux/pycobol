@@ -264,6 +264,13 @@ class ZoneGroupe():
         lignes = [item  for item in t_zg1 if item]
         return(lignes)
 
+    @staticmethod            
+    def get_arbre():
+        arbre = ArbreZone()
+        return arbre.zone
+        
+    
+
 if __name__ == '__main__':  
     import doctest          
     
