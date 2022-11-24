@@ -15,8 +15,7 @@ class ArbreZone:
 
     def __new__(cls, *args):
         if not cls._instance:
-          #  if not hasattr(cls, 'instance'):
-          print('je passe')  
+          #  if not hasattr(cls, 'instance'): 
           cls._instance = super(ArbreZone, cls).__new__(cls)
         return cls._instance
     
@@ -26,8 +25,7 @@ class ArbreZone:
         except :    
             self.zone = []
         finally:
-           pass 
-           #print('TOTO', len(self.zone))    
+           print('TOTO', len(self.zone))    
     def recherche_nom(self, nom):
         ''' retourne l'objet Zonegroupe ou ZonefilsSimple correpondant au nom 
         :nom str
@@ -60,7 +58,6 @@ class ArbreZone:
 
     def autonomme(self, glob ):
         for item in self.zone:
-            print('EG', item.nom)
             glob['_' + item.nom] = item      
 
 

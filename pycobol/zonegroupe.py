@@ -246,7 +246,7 @@ class ZoneGroupe():
                     obj_s  = ZoneGroupe(_nom, niv)
                     obt.ajout_fils_simple(obj_s)
                     
-
+        return arbre            
                 ## est ce le niveau le plus haut ?
                 ##  ca peut etre une zone groupe dans une zone groupe  
     @staticmethod            

@@ -15,24 +15,19 @@ zg5 = '''
       11            TROISIEME.
        12            TROIS1  PIC XXX     
 '''  
-arbre = arbre.ArbreZone('essai3')
 tlignes = zngrp.ZoneGroupe.fake_read_file(zg5)
-zngrp.ZoneGroupe.read_groupe_from_code(tlignes) 
-print(len(arbre.zone))
-arbre.autonomme(globals())
-_principale.init_groupe()
-
-print(_principale.longueur_utile)
-principale.move_value('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+monarbre = zngrp.ZoneGroupe.read_groupe_from_code(tlignes) 
+print(len(monarbre.zone))
+monarbre.autonomme(globals())
+_PRINCIPALE.init_groupe()
+print(_PRINCIPALE.longueur_utile)
+_PRINCIPALE.move_value('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 print('123456789012345678901234')
-print(principale.valeur_externe,len(principale.valeur_externe) )
-
+print(_PRINCIPALE.valeur_externe,len(_PRINCIPALE.valeur_externe) )
 print(_UNE.valeur_externe, len(_UNE.valeur_externe), 'UNE') 
 print(_DEUXIEME.valeur_externe, len(_DEUXIEME.valeur_externe), 'deuxieme') 
 print(_DEUX1.valeur_externe, len(_DEUX1.valeur_externe)) 
-
 print(_DEUX2.valeur_externe, len(_DEUX2.valeur_externe))  
-trois = zngrp.ZoneGroupe.recherche_nom('TROISIEME') 
 print('trois', _TROISIEME.valeur_externe, len(_TROISIEME.valeur_externe)) 
 
 print("debut")
