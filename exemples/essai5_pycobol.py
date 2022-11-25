@@ -39,3 +39,4 @@ monarbre.retroArbre()
 for item, value in monarbre.inverse.items():
       print(item , value )
 print(_une.valeur_externe)
+print(_principale.valeur_externe)

@@ -40,11 +40,7 @@ class ZoneFilsSimple(ZoneGroupe):
         self.comportement_associe = comportement_
     
 
-    def retro_propagation(self):
-        if self.nom in ZoneGroupe.arbreInverse:
-            for item in ZoneGroupe.arbreInverse[self.nom]:
-                print('ERRRRR' , item)
-                     #item.maj_valeur()
+    
 
 #################################
 #   class  redefine       #
