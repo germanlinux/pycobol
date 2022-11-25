@@ -97,7 +97,14 @@ class Comportement():
         else:
             if objetzone.valeur_externe[0] == '+' or objetzone.valeur_externe[0] == '-':
                 objetzone.valeur_externe = objetzone.valeur_externe[1:]
-            lg_ = len(str(abs(newvaleur)))
+            try :
+                lg_ = len(str(abs(newvaleur)))
+            except: 
+                newvaleur = int(newvaleur)
+                lg_ = len(str(abs(newvaleur))) 
+                # warning int ou float ? TODO
+
+
             if lg_ > self.longueur :
                 lg_ =lg_ - self.longueur
             else:

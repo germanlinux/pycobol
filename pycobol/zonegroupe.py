@@ -157,12 +157,12 @@ class ZoneGroupe():
     def retro_propagation(self):
         arbre = ArbreZone()
         arbre.retroArbre()
-        print('je passe')
         _inverse = arbre.inverse
         if self.nom in _inverse:
             for item in _inverse[self.nom]:
                 print('suite', item)
-                #item.maj_valeur()
+                r_item = arbre.recherche_nom(item)
+                r_item.maj_valeur()
                 
     
 

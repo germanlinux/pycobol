@@ -40,3 +40,5 @@ for item, value in monarbre.inverse.items():
       print(item , value )
 print(_une.valeur_externe)
 print(_principale.valeur_externe)
+_deux1.move_value('12')
+print(_principale.valeur_externe)
