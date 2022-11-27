@@ -9,9 +9,9 @@ obj2.move_value(12)
 print(obj2.valeur_externe)
 obj2.move_value('12')
 print(obj2.valeur_externe)
-obj3.move_value(12)
+obj3.move_value('e')
 print(obj3.valeur_externe)
-obj3.move_value('12')
+obj3.move_value('eg')
 print(obj3.valeur_externe)
 
 '''
