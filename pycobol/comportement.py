@@ -85,8 +85,9 @@ class Comportement():
         ''' methode pour affecter une valeur à une zone
             L'objet comportement est dejà instancié il connait la valeur de départ
          '''
-        if self.direction == 'left' : 
-            lg_ = len(newvaleur)
+        if self.direction == 'left' :
+            newvaleur = str(newvaleur) 
+            lg_ = len(newvaleur)      
             if lg_ > self.longueur:
                 lg_ = self.longueur 
             else:
