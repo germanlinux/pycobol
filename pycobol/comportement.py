@@ -100,24 +100,35 @@ class Comportement():
                 objetzone.valeur_externe = objetzone.valeur_externe[1:]
             try :
                 lg_ = len(str(abs(newvaleur)))
+                _valeur = str(abs(newvaleur))
+                # la zone n est pas numerique
+                # est elle numerique ?
             except: 
-                newvaleur = int(newvaleur)
-                lg_ = len(str(abs(newvaleur))) 
+                try: 
+                    newvaleur = int(newvaleur)
+                    lg_ = len(str(abs(newvaleur)))
+                    _valeur =  str(abs(newvaleur))
                 # warning int ou float ? TODO
-
+                except:
+                    lg_ = len(newvaleur)
+                    _valeur = newvaleur
+                    ### c est de l'alpha
 
             if lg_ > self.longueur :
                 lg_ =lg_ - self.longueur
             else:
                 lg_ = 0     
-            objetzone.valeur_externe = str(abs(newvaleur))[lg_:].rjust(self.longueur,self.padding) 
+            objetzone.valeur_externe = _valeur[lg_:].rjust(self.longueur,self.padding) 
                     
             if self.type_[0] == 'S' and newvaleur < 0:
                      objetzone.valeur_externe = '-' + objetzone.valeur_externe
             elif self.type_[0] == 'S' and newvaleur >= 0:
                      objetzone.valeur_externe = '+' + objetzone.valeur_externe
-            objetzone.valeur_interne = int(objetzone.valeur_externe)                  
-
+            try: 
+                objetzone.valeur_interne = int(objetzone.valeur_externe)                  
+            except: 
+                objetzone.valeur_interne = objetzone.valeur_externe
+                
     @classmethod
     def from_object(cls, obj ):
         ''' Methode de classe retournant un objet comportement à partir d'une instance de zone
