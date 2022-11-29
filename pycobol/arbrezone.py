@@ -24,12 +24,17 @@ class ArbreZone:
         except :    
             self.zone = []
             self.inverse = []
+            self.redefine= {}
+            self.inv_redefine= {}
         finally:
            pass
 
     def reset(self):
         self.zone =[]
         self.inverse = []
+        self.redefine= {}
+        self.inv_redefine= {}
+
     def recherche_nom(self, nom):
         ''' retourne l'objet Zonegroupe ou ZonefilsSimple correpondant au nom 
         :nom str

@@ -1,4 +1,4 @@
-from pycobol import zonegroupe as zn 
+from pycobol import zonage as zn 
 from pycobol import comportement as cp
 import sys
 sys.path.insert(0, "../pycobol")
