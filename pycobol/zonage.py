@@ -146,6 +146,7 @@ class Flottant(Zone):
         super().__init__(nom, 77, 'WS', type_ , usage, longueur_interne,None, None , pic, valeur_initiale)
         #print(self)
         Zone.zone_77.append(self)
+        
     def initialize(self):
         comportement_ = ComportementFloat( self.decimale, self.son_type , self.longueur_utile , self.valeur_initialisation )  
         comportement_.initialize()

@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass, field
 
 from comportement  import *
-from zonesimple import *
+
 from typing import ClassVar
 from inspect import *
 from zonage import *
@@ -13,7 +13,7 @@ from arbrezone import *
 
 
 @dataclass
-class ZoneGroupe():
+class ZoneGroupe:
     ''' Cette classe prend en charge la creation d'une zone groupe. 
     Par nature cette zone est de type ALN.
     Sa longueur est la somme des longueurs des composants qui la composent
@@ -24,6 +24,7 @@ class ZoneGroupe():
     >>> obj.ajout_fils_groupe(objfils)
     >>> len(obj.fils)
     1
+    >>> from zonesimple import *
     >>> objfilsimp = ZoneFilsSimple('essaifils', 5, picture = '999')
     >>> obj.ajout_fils_simple(objfilsimp)
     >>> obj.longueur_utile
@@ -180,6 +181,7 @@ class ZoneGroupe():
         >>> len(ZoneGroupe.zone_groupe[0].fils)
         3
         '''
+        import zonesimple
         _zonegrp_active = ''
         _niveaux_max = 99
         ### to do : mutualiser
@@ -207,7 +209,7 @@ class ZoneGroupe():
                 arbre = ArbreZone()
                 obt = arbre.recherche_rang(niv)
                 _nom =  Zone.extract_nom(tab)
-                obj_s = ZoneFilsSimple(_nom,niv ,picture = pic )
+                obj_s = zonesimple.ZoneFilsSimple(_nom,niv ,picture = pic )
                 obt.ajout_fils_simple(obj_s)
                
             else: 

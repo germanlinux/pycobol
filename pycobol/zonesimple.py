@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass, field
 from collections import defaultdict
 from comportement  import *
-from zonegroupe import *
+from zonegroupe  import * 
 from typing import ClassVar
 from inspect import *
 from zonage import *

@@ -1,4 +1,6 @@
 from pycobol import zonegroupe as zn 
+from pycobol import zonesimple as zs 
+
 from pycobol import comportement as cp
 
 import unittest  
@@ -12,18 +14,18 @@ class TestZonegroupe(unittest.TestCase):
         obj_ = zn.ZoneGroupe('essai',1, 0)
         objfils = zn.ZoneGroupe('zonegrpfils', 2)
         obj_.ajout_fils_groupe(objfils)
-        objfilsimp = zn.ZoneFilsSimple('essaifils', 5, picture = '999')
+        objfilsimp = zs.ZoneFilsSimple('essaifils', 5, picture = '999')
         obj_.ajout_fils_simple(objfilsimp)
-        objfilsimp2 = zn.ZoneFilsSimple('essaifilssp', 5, picture = 'X(5)')
+        objfilsimp2 = zs.ZoneFilsSimple('essaifilssp', 5, picture = 'X(5)')
         objfils.ajout_fils_simple(objfilsimp2)
         obj_.maj_valeur()
         self.assertEqual (obj_.valeur_externe,"     000")
 
     def test_recurs2(self):
         obj_ = zn.ZoneGroupe('essai',1, 0)
-        objfilsimp = zn.ZoneFilsSimple('essaifils', 5, picture = '999')
-        objfilsimp2 = zn.ZoneFilsSimple('essaifilssp', 5, picture = 'X(5)')
-        objfilsimp3 = zn.ZoneFilsSimple('essaifils', 5, picture = '999')
+        objfilsimp = zs.ZoneFilsSimple('essaifils', 5, picture = '999')
+        objfilsimp2 = zs.ZoneFilsSimple('essaifilssp', 5, picture = 'X(5)')
+        objfilsimp3 = zs.ZoneFilsSimple('essaifils', 5, picture = '999')
         obj_.ajout_fils_simple(objfilsimp)
         obj_.ajout_fils_simple(objfilsimp2)
         obj_.ajout_fils_simple(objfilsimp3)
