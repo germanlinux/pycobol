@@ -49,8 +49,12 @@ class ZoneFilsSimple(ZoneGroupe):
 class ZoneSimpleRedefine(ZoneFilsSimple):
     ''' Cette classe gère les clauses redefines de type zone simple
     Le constructeur doit comporter la cible à redefinir
+
     >>> obj = ZoneFilsSimple('essaifils', 5, picture = '999')
     >>> obj2 = ZoneSimpleRedefine('essaifils', 'essairedefines' ,5, picture = 'XXX' )
+    >>> a = ZoneGroupe.get_arbre()
+    >>> print (len(a))
+    2
     '''
     def __init__(self, cible, *args, **kwargs):
         if type(cible)  == str:
@@ -62,3 +66,4 @@ class ZoneSimpleRedefine(ZoneFilsSimple):
 
 if __name__ == '__main__':  
     import doctest          
+    doctest.run_docstring_examples(ZoneSimpleRedefine,None, verbose = 1)
