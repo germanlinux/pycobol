@@ -68,8 +68,6 @@ class ZoneSimpleRedefine(ZoneFilsSimple):
         self.cible = cible
         arbre.redefine[args[0]] = cible
         arbre.inv_redefine[cible.nom] = self
-
-
         super().__init__(*args, **kwargs)
 
 
