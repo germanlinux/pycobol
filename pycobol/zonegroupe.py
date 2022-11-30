@@ -142,6 +142,14 @@ class ZoneGroupe:
         self.comportement_associe.move_value(self,valeur)
         self.propage(self.valeur_externe)
         self.retro_propagation()
+        ### maj des zones redefine
+        ### zone cible ?
+        arbre = ArbreZone()
+        if self.nom in arbre.inv_redefine:
+            print('il faut appliquer')
+            cible= arbre.inv_redefine[self.nom]
+            cible.propage(self.valeur_externe)
+            
     
     def propage(self, valeur):
         for un_fils in self.fils : 
