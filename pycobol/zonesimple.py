@@ -65,7 +65,7 @@ class ZoneSimpleRedefine(ZoneFilsSimple):
         if type(cible)  == str:
             arbre = ArbreZone()
             cible = arbre.recherche_nom(cible)   
-            print('EG',cible) 
+            print('EG',arbre.vidage()) 
         self.cible = cible
         arbre.redefine[args[0]] = cible
         arbre.inv_redefine[cible.nom] = self

@@ -98,7 +98,14 @@ class ArbreZone:
                  if _fils in self.inverse:
                         self.inverse[cle].extend(self.inverse[_fils])
                         break
-        
+
+    def vidage(self):
+        _liste= []
+        for item in self.zone:
+            _liste.append(item.nom )
+        return _liste
+            
+
 if __name__ == '__main__':  
     import doctest          
     doctest.run_docstring_examples(ArbreZone,None, verbose = 1)
