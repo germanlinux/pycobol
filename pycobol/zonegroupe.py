@@ -146,9 +146,14 @@ class ZoneGroupe:
         ### zone cible ?
         arbre = ArbreZone()
         if self.nom in arbre.inv_redefine:
-            print('il faut appliquer')
+            #print('il faut appliquer')
             cible= arbre.inv_redefine[self.nom]
-            cible.propage(self.valeur_externe)
+            cible.valeur_externe = self.valeur_externe
+        ### traitement des zones redefine 
+        if self.nom in arbre.redefine:
+            #print('il faut appliquer direct')
+            cible= arbre.redefine[self.nom]
+            cible.valeur_externe = self.valeur_externe
             
     
     def propage(self, valeur):
