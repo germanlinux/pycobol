@@ -3,6 +3,7 @@ sys.path.insert(0, "../pycobol")
 from pycobol import zonesimple as zs
 from pycobol import comportement as cp
 from pycobol import arbrezone as arb
+from pycobol import zonegroupe as zn  
 
 import unittest  
 
@@ -35,7 +36,9 @@ class Testredefine(unittest.TestCase):
         obj_.move_value('123ERICG456')
         print(objfilsimp3.valeur_externe)
         print(objfilsimp2.valeur_externe)
-
+        objr.move_value(789)
+        print(objfilsimp3.valeur_externe)
+        
 
 if __name__ == '__main__':
     unittest.main()
