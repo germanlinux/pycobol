@@ -23,9 +23,10 @@ class Testredefine(unittest.TestCase):
         self.assertEqual (obj2.valeur_externe,'00012')
         self.assertEqual (objr.valeur_externe,'00012')   
 
-    def test_aln3(self):    
+    def test_aln3(self): 
+        zs.ZoneGroupe.reset_arbre()   
         obj_ = zn.ZoneGroupe('essai',1, 0)
-        objfilsimp = zs.ZoneFilsSimple('essaifils', 5, picture = '999')
+        objfilsimp = zs.ZoneFilsSimple('essaifils1', 5, picture = '999')
         objfilsimp2 = zs.ZoneFilsSimple('essaifilssp', 5, picture = 'X(5)')
         objfilsimp3 = zs.ZoneFilsSimple('essaifils', 5, picture = '999')
         obj_.ajout_fils_simple(objfilsimp)
@@ -37,6 +38,7 @@ class Testredefine(unittest.TestCase):
         print(objfilsimp3.valeur_externe)
         print(objfilsimp2.valeur_externe)
         objr.move_value(789)
+        print(objr.valeur_externe)
         print(objfilsimp3.valeur_externe)
         
 
