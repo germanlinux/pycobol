@@ -18,6 +18,11 @@ Principes.
 La première étape vise à convertir la DATA-DIVISION  en objet Python
 Puis à utiliser des méthodes pour retranscrire les manipulations COBOL en Python.
 
+Il est possible d'instancier des structures Python se comportant comme des zones COBOL.
+Un eventail de classe est proposé pour manipuler des zones simples, zones groupes etc.
+
+
+
 Point d'etape
 -------------
 

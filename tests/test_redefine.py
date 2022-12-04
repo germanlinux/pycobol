@@ -40,7 +40,7 @@ class Testredefine(unittest.TestCase):
         objr.move_value(789)
         print(objr.valeur_externe)
         print(objfilsimp3.valeur_externe)
-        
+        print(obj_.valeur_externe)
 
 if __name__ == '__main__':
     unittest.main()

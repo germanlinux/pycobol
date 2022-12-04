@@ -154,7 +154,8 @@ class ZoneGroupe:
             #print('il faut appliquer direct')
             cible= arbre.redefine[self.nom]
             cible.valeur_externe = self.valeur_externe
-            
+            cible.propage(cible.valeur_externe)
+            cible.retro_propagation()
     
     def propage(self, valeur):
         for un_fils in self.fils : 
