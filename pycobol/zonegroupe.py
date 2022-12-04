@@ -175,7 +175,6 @@ class ZoneGroupe:
         _inverse = arbre.inverse
         if self.nom in _inverse:
             for item in _inverse[self.nom]:
-                print('suite', item)
                 r_item = arbre.recherche_nom(item)
                 r_item.maj_valeur()
                 

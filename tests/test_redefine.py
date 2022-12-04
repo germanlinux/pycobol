@@ -35,12 +35,10 @@ class Testredefine(unittest.TestCase):
         objr = zs.ZoneSimpleRedefine('essaifils','REDEF1' ,5, picture = 'X(3)')
         obj_.init_groupe() 
         obj_.move_value('123ERICG456')
-        print(objfilsimp3.valeur_externe)
-        print(objfilsimp2.valeur_externe)
         objr.move_value(789)
-        print(objr.valeur_externe)
-        print(objfilsimp3.valeur_externe)
-        print(obj_.valeur_externe)
+        self.assertEqual('789', objr.valeur_externe)
+        self.assertEqual('789', objfilsimp3.valeur_externe)
+        self.assertEqual(obj_.valeur_externe,'123ERICG789' )
 
 if __name__ == '__main__':
     unittest.main()
