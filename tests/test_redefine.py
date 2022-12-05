@@ -5,6 +5,8 @@ from pycobol import comportement as cp
 from pycobol import arbrezone as arb
 from pycobol import zonegroupe as zn  
 
+
+
 import unittest  
 
 class Testredefine(unittest.TestCase):
@@ -40,5 +42,23 @@ class Testredefine(unittest.TestCase):
         self.assertEqual('789', objfilsimp3.valeur_externe)
         self.assertEqual(obj_.valeur_externe,'123ERICG789' )
 
+    def test_aln4(self): 
+        zs.ZoneGroupe.reset_arbre() 
+        obj = zs.ZoneFilsSimple('essaifils', 5, picture = '99999999')
+        obj2 = zs.ZoneGroupeRedefine('essaifils', 'essairedefines' ,5) 
+        objj = zs.ZoneFilsSimple('jj', 6, picture = '99')
+        objmm = zs.ZoneFilsSimple('mm', 6, picture = '99')
+        objaa = zs.ZoneFilsSimple('aaaa', 6, picture = '9999')
+        obj2.ajout_fils_simple(objj)
+        obj2.ajout_fils_simple(objmm)
+        obj2.ajout_fils_simple(objaa)
+        obj2.init_groupe()
+        obj.move_value('10092022')
+        print(zs.ZoneGroupe.vidage())
+        self.assertEqual('10092022', obj2.valeur_externe )
+        self.assertEqual('10', objj.valeur_externe)
+        self.assertEqual('09', objmm.valeur_externe)
+        self.assertEqual('2022', objaa.valeur_externe )
+        
 if __name__ == '__main__':
     unittest.main()

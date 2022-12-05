@@ -103,7 +103,8 @@ class ArbreZone:
         _liste= []
         for item in self.zone:
             _liste.append(item.nom )
-        return _liste
+        _lref = list(self.redefine.keys())    
+        return _liste, _lref
             
 
 if __name__ == '__main__':  

@@ -146,12 +146,14 @@ class ZoneGroupe:
         ### zone cible ?
         arbre = ArbreZone()
         if self.nom in arbre.inv_redefine:
-            #print('il faut appliquer')
+            print('il faut appliquer 1 ', self.nom)
             cible= arbre.inv_redefine[self.nom]
             cible.valeur_externe = self.valeur_externe
+            cible.propage(cible.valeur_externe)
+            cible.retro_propagation()
         ### traitement des zones redefine 
         if self.nom in arbre.redefine:
-            #print('il faut appliquer direct')
+            print('il faut appliquer direct 2')
             cible= arbre.redefine[self.nom]
             cible.valeur_externe = self.valeur_externe
             cible.propage(cible.valeur_externe)
@@ -267,7 +269,11 @@ class ZoneGroupe:
     def reset_arbre():
         arbre = ArbreZone()
         arbre.reset()    
-    
+
+    @staticmethod            
+    def vidage():
+        arbre = ArbreZone()
+        return arbre.vidage()    
 
 if __name__ == '__main__':  
     import doctest          
