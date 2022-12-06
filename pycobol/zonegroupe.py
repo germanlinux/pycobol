@@ -188,13 +188,21 @@ class ZoneGroupe:
     @staticmethod
     def read_groupe_from_code(tcode):
         ''' cette fonction prend comme parametre en entrée un tableau de ligne
-        et en fonction du contenu active un constructeur de groupe ou de zone simple
+        et en fonction du contenu active un constructeur de groupe ou de zone simple et traite les redefines
         >>> tlignes = ZoneGroupe.fake_read_file()
         >>> len(tlignes)
         4
         >>> ZoneGroupe.read_groupe_from_code(tlignes)
         >>> len(ZoneGroupe.zone_groupe[0].fils)
         3
+        Pour un redefine :
+        >> tlignes = ZoneGroupe.fake_read_file_redefine()
+        >>> len(tlignes)
+        5
+        >>> ZoneGroupe.read_groupe_from_code(tlignes)
+        >>> len(ZoneGroupe.zone_groupe[0].fils)
+        3
+        >>> ZoneGroupe.vidage()
         '''
         import zonesimple
         _zonegrp_active = ''
@@ -248,10 +256,10 @@ class ZoneGroupe:
     @staticmethod            
     def fake_read_file(data= None):
         zg1 ='''
-                10            DAECH.                                   
-                    11            AECH   PICTURE  9(4).                 
-                    11            MECH   PICTURE  99.                      
-                    11            JECH   PICTURE  99.                 
+                10            MADATE.                                   
+                    11            AAAA   PICTURE  9(4).                 
+                    11            MOIS   PICTURE  99.                      
+                    11            JJ   PICTURE  99.                 
         '''            
         
         if not data:
@@ -260,6 +268,23 @@ class ZoneGroupe:
         lignes = [item  for item in t_zg1 if item]
         return(lignes)
 
+    @staticmethod            
+    def fake_read_file_redefine(data= None):
+        zg2 ='''
+                10            MADATE.                                   
+                    11            AAAA   PICTURE  9(4).                 
+                    11            MOIS   PICTURE  99.                      
+                    11            JJ   PICTURE  99.                 
+                10   DATEBRUT REDEFINE MADATE PIC 9(8).
+
+        '''            
+        
+        if not data:
+          data = zg1
+        t_zg1 = data.split('\n')
+        lignes = [item  for item in t_zg1 if item]
+        return(lignes)
+    
     @staticmethod            
     def get_arbre():
         arbre = ArbreZone()
