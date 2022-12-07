@@ -193,14 +193,17 @@ class ZoneGroupe:
         >>> len(tlignes)
         4
         >>> ZoneGroupe.read_groupe_from_code(tlignes)
-        >>> len(ZoneGroupe.zone_groupe[0].fils)
+        >>> arbre = (ZoneGroupe.get_arbre())
+        >>> len(arbre[0].fils)
         3
         Pour un redefine :
         >> tlignes = ZoneGroupe.fake_read_file_redefine()
+        >>> print(tlignes)   
         >>> len(tlignes)
         5
         >>> ZoneGroupe.read_groupe_from_code(tlignes)
-        >>> len(ZoneGroupe.zone_groupe[0].fils)
+        >>> arbre = ZoneGroupe.get_arbre()
+        >>> len(arbre[0].fils)
         3
         >>> ZoneGroupe.vidage()
         '''
@@ -280,7 +283,7 @@ class ZoneGroupe:
         '''            
         
         if not data:
-          data = zg1
+          data = zg2
         t_zg1 = data.split('\n')
         lignes = [item  for item in t_zg1 if item]
         return(lignes)
