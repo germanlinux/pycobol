@@ -303,12 +303,11 @@ class ZoneGroupe:
 if __name__ == '__main__':  
     import doctest          
     
-'''
+
     doctest.run_docstring_examples(ZoneGroupe,None, verbose = 1)
-    doctest.run_docstring_examples(ZoneFilsSimple,None, verbose = 1)
+    #doctest.run_docstring_examples(ZoneFilsSimple,None, verbose = 1)
     #doctest.run_docstring_examples(ZoneSimpleRedefine,None, verbose = 1)
-    #doctest.run_docstring_examples(ZoneGroupe.read_groupe_from_code,None, verbose = 1)
+    doctest.run_docstring_examples(ZoneGroupe.read_groupe_from_code,None, verbose = 1)
     #tlignes = ZoneGroupe.fake_read_file()
     #ZoneGroupe.read_groupe_from_code(tlignes)
     #doctest.run_docstring_examples(ZoneGroupe.recherche_nom,None, verbose = 1)
-    '''
