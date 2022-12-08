@@ -244,7 +244,8 @@ class ZoneGroupe:
                    obj_s = zonesimple.ZoneSimpleRedefine(cible, _nom,niv ,picture = pic) 
                 else:    
                     obj_s = zonesimple.ZoneFilsSimple(_nom,niv ,picture = pic )
-                obt.ajout_fils_simple(obj_s)
+                if obt :
+                    obt.ajout_fils_simple(obj_s)
                
             else: 
                 ## zone groupe
