@@ -229,13 +229,21 @@ class ZoneGroupe:
                 if len(arbre.zone) == 0:
                     niveaux_max = 0
                 else: 
-                    niveaux_max = arbre.zone[-1].rang    
+                    niveaux_max = arbre.zone[-1].rang
+                ##  traiter le redefine ##
+                flagredef = 0
+                if 'REDEFINE'  in ligne:
+                    cible,tab = Zone.traite_redefine(tab)
+                    flagredef = 1
                 (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
                 niv = Zone.extract_niveau(tab)
                 arbre = ArbreZone()
                 obt = arbre.recherche_rang(niv)
                 _nom =  Zone.extract_nom(tab)
-                obj_s = zonesimple.ZoneFilsSimple(_nom,niv ,picture = pic )
+                if flagredef:
+                   obj_s = zonesimple.ZoneSimpleRedefine(cible, _nom,niv ,picture = pic) 
+                else:    
+                    obj_s = zonesimple.ZoneFilsSimple(_nom,niv ,picture = pic )
                 obt.ajout_fils_simple(obj_s)
                
             else: 

@@ -83,7 +83,17 @@ class Zone:
          pic = ' '.join(t_ligne[debpic:finpic +1])
          nature_ = Nature_pic(pic)             
          return nature_.nature, pic, nature_.longueur , nature_.decimale
-    
+    @staticmethod
+    def traite_redefine(liste):
+        for cp, val in  enumerate(liste) :
+                if val == 'REDEFINE':
+                    nom = liste[cp-1]
+                    cible= liste[cp+1]
+                    del (liste[cp])
+                    del (liste[cp])
+                    break
+
+        return cible, liste       
     @staticmethod
     def traite_usage(t_ligne):
         usage = 'DISPLAY'
@@ -146,7 +156,7 @@ class Flottant(Zone):
         super().__init__(nom, 77, 'WS', type_ , usage, longueur_interne,None, None , pic, valeur_initiale)
         #print(self)
         Zone.zone_77.append(self)
-        
+
     def initialize(self):
         comportement_ = ComportementFloat( self.decimale, self.son_type , self.longueur_utile , self.valeur_initialisation )  
         comportement_.initialize()
