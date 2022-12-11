@@ -54,11 +54,26 @@ class Testredefine(unittest.TestCase):
         obj2.ajout_fils_simple(objaa)
         obj2.init_groupe()
         obj.move_value('10092022')
-        print(zs.ZoneGroupe.vidage())
         self.assertEqual('10092022', obj2.valeur_externe )
         self.assertEqual('10', objj.valeur_externe)
         self.assertEqual('09', objmm.valeur_externe)
         self.assertEqual('2022', objaa.valeur_externe )
+
+    def test_aln5(self): 
+        zs.ZoneGroupe.reset_arbre() 
+        tlignes = zn.ZoneGroupe.fake_read_file_redefine()
+        self.assertEqual(5,len(tlignes))
+        arbre =zn.ZoneGroupe.read_groupe_from_code(tlignes)
+        self.assertEqual(3, len(arbre.zone[0].fils))
+        arbre.autonomme(globals())
+        _madate.init_groupe()
+        _datebrut.move_value('20221209')
+        self.assertEqual('20221209',_madate.valeur_externe)
+        self.assertEqual('2022', _aaaa.valeur_externe)
+        self.assertEqual('12', _mois.valeur_externe)
+        self.assertEqual('09', _jj.valeur_externe)
+
+
         
 if __name__ == '__main__':
     unittest.main()

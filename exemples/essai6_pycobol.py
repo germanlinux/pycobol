@@ -9,14 +9,13 @@ zg2 ='''
                     11            MOIS   PICTURE  99.                      
                     11            JJ   PICTURE  99.                 
                 10   DATEBRUT REDEFINE MADATE PIC 9(8).
-
         '''  
 tlignes = zg.ZoneGroupe.fake_read_file_redefine()
 len(tlignes)
 arbre =zg.ZoneGroupe.read_groupe_from_code(tlignes)
-len(arbre[0].fils)
+len(arbre.zone[0].fils)
 print(zg.ZoneGroupe.vidage())
-arbre.autonome(globals())
+arbre.autonomme(globals())
 _madate.init_groupe()
 _datebrut.move_value('20221209')
 print(_madate.valeur_externe)

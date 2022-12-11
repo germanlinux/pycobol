@@ -146,14 +146,12 @@ class ZoneGroupe:
         ### zone cible ?
         arbre = ArbreZone()
         if self.nom in arbre.inv_redefine:
-            print('il faut appliquer 1 ', self.nom)
             cible= arbre.inv_redefine[self.nom]
             cible.valeur_externe = self.valeur_externe
             cible.propage(cible.valeur_externe)
             cible.retro_propagation()
         ### traitement des zones redefine 
         if self.nom in arbre.redefine:
-            print('il faut appliquer direct 2')
             cible= arbre.redefine[self.nom]
             cible.valeur_externe = self.valeur_externe
             cible.propage(cible.valeur_externe)
@@ -287,10 +285,7 @@ class ZoneGroupe:
                     11            AAAA   PICTURE  9(4).                 
                     11            MOIS   PICTURE  99.                      
                     11            JJ   PICTURE  99.                 
-                10   DATEBRUT REDEFINE MADATE PIC 9(8).
-
-        '''            
-        
+                10   DATEBRUT REDEFINE MADATE PIC 9(8).'''            
         if not data:
           data = zg2
         t_zg1 = data.split('\n')
