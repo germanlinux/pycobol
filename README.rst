@@ -53,7 +53,7 @@ Le module fonctionne en 2modes:
 * Soit en fournissant les lignes COBOL
 * Soit en instanciant soi-même les objets à manipuler
 
-Exemple à partir du COBOL:
+Exemple à partir du COBOL::
 
 zg2 ='''
                 10            MADATE.                                   
