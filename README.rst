@@ -45,6 +45,31 @@ Pour lancer les tests complets:
 python -m unittest discover
 ou poetry run python -m unittest discover
 
+Utilisation
+===========
+
+Le module fonctionne en 2modes:
+
+* Soit en fournissant les lignes COBOL
+* Soit en instanciant soi-même les objets à manipuler
+
+Exemple à partir du COBOL:
+
+zg2 ='''
+                10            MADATE.                                   
+                    11            AAAA   PICTURE  9(4).                 
+                    11            MOIS   PICTURE  99.                      
+                    11            JJ   PICTURE  99.                 
+                10   DATEBRUT REDEFINE MADATE PIC 9(8).'''     
+
+Utiliser la méthode : ZoneGroupe.fake_read_file_redefine(zg2) (mise en token)
+Puis la methode: ZoneGroupe.read_groupe_from_code(tlignes)  (mise en objet)
+
+4 instances seront disponibles prefixées par '_' suivi du nom cobol en minuscule (_mois , etc)  
+
+
+
+
 Comment contribuer ? .
 ======================
 
@@ -61,7 +86,7 @@ Feuille de route.
 =================
 
 - Developper la prise en charge des formats non pris en charge (exemple COMP ) FAIT
-- concevoir la classe des zones groupes: A FAIRE
+- concevoir la classe des zones groupes: FAIT
 - Developper la prise en charge des clauses de formatage (exemple BLANK WHEN ZERO):  A FAIRE
 
 
