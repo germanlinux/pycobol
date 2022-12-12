@@ -55,7 +55,7 @@ Le module fonctionne en 2modes:
 
 Exemple à partir du COBOL::
 
-zg2 ='''
+    zg2 ='''
                 10            MADATE.                                   
                     11            AAAA   PICTURE  9(4).                 
                     11            MOIS   PICTURE  99.                      
