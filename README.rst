@@ -65,7 +65,7 @@ Exemple à partir du COBOL::
 Utiliser la méthode : ZoneGroupe.fake_read_file_redefine(zg2) (mise en token)
 Puis la methode: ZoneGroupe.read_groupe_from_code(tlignes)  (mise en objet)
 
-4 instances seront disponibles prefixées par '_' suivi du nom cobol en minuscule (_mois , etc)  
+5 instances seront disponibles prefixées par '_' suivi du nom cobol en minuscule (_mois , etc)  
 
 
 
