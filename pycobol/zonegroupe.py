@@ -247,6 +247,7 @@ class ZoneGroupe:
                
             else: 
                 ## zone groupe
+                ## TODO : add redefine detection
                 niv = Zone.extract_niveau(tab)
                 _nom =  Zone.extract_nom(tab)
                 arbre = ArbreZone()
@@ -258,7 +259,8 @@ class ZoneGroupe:
                     arbre = ArbreZone()
                     obt = arbre.recherche_rang(niv)
                     obj_s  = ZoneGroupe(_nom, niv)
-                    obt.ajout_fils_simple(obj_s)
+                    if obt: 
+                      obt.ajout_fils_simple(obj_s)
                     
         return arbre            
                 ## est ce le niveau le plus haut ?

@@ -78,8 +78,10 @@ class ArbreZone:
                 return item
             if n == item.rang:
                 return item.pere
-        return a[-1]
-
+        if len(a) > 1 :       
+            return a[-1]
+        else:
+             return  0   
     def retroArbre(self):
         ''' Reconstitution des dependances des zones en partant des zones élémentaires
         

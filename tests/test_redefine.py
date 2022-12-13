@@ -73,6 +73,26 @@ class Testredefine(unittest.TestCase):
         self.assertEqual('12', _mois.valeur_externe)
         self.assertEqual('09', _jj.valeur_externe)
 
+    def test_aln6(self): 
+        zg6 ='''
+                10            MADATE PIC 9(8).
+                10   DATEBRUT REDEFINE MADATE.                                   
+                    11            AAAA   PICTURE  9(4).                 
+                    11            MOIS   PICTURE  99.                      
+                    11            JJ   PICTURE  99.'''  
+        zs.ZoneGroupe.reset_arbre() 
+        tlignes = zn.ZoneGroupe.fake_read_file_redefine(zg6)
+        self.assertEqual(5,len(tlignes))
+        arbre =zn.ZoneGroupe.read_groupe_from_code(tlignes)
+        self.assertEqual(3, len(arbre.zone[1].fils))
+        arbre.autonomme(globals())
+        _datebrut.init_groupe()
+        _madate.move_value('20221209')
+        self.assertEqual('20221209',_datebrut.valeur_externe)
+        self.assertEqual('2022', _aaaa.valeur_externe)
+        self.assertEqual('12', _mois.valeur_externe)
+        self.assertEqual('09', _jj.valeur_externe)
+    
 
         
 if __name__ == '__main__':
