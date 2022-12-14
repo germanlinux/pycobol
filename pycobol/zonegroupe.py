@@ -250,6 +250,12 @@ class ZoneGroupe:
                 ## TODO : add redefine detection
                 niv = Zone.extract_niveau(tab)
                 _nom =  Zone.extract_nom(tab)
+                ##  traiter le redefine ##
+                flagredef = 0
+                if 'REDEFINE'  in ligne:
+                    cible,tab = Zone.traite_redefine(tab)
+                    flagredef = 1
+                    ### TODO SUITE REDEFINE
                 arbre = ArbreZone()
                 if len(arbre.zone) == 0:
                     obj_p = ZoneGroupe(_nom, niv)
