@@ -258,13 +258,19 @@ class ZoneGroupe:
                     ### TODO SUITE REDEFINE
                 arbre = ArbreZone()
                 if len(arbre.zone) == 0:
-                    obj_p = ZoneGroupe(_nom, niv)
+                    if flagredef:
+                       obj_s = zonesimple.ZoneGroupeRedefine(cible, _nom,niv) 
+                    else:   
+                       obj_p = ZoneGroupe(_nom, niv)
                 else:
                     ### niveau inferieur
                     ###  ou niveau frere
                     arbre = ArbreZone()
                     obt = arbre.recherche_rang(niv)
-                    obj_s  = ZoneGroupe(_nom, niv)
+                    if flagredef:
+                       obj_s = zonesimple.ZoneGroupeRedefine(cible, _nom,niv) 
+                    else:   
+                       obj_p = ZoneGroupe(_nom, niv)
                     if obt: 
                       obt.ajout_fils_simple(obj_s)
                     
