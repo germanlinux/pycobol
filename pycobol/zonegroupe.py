@@ -246,8 +246,6 @@ class ZoneGroupe:
                     obt.ajout_fils_simple(obj_s)
                
             else: 
-                ## zone groupe
-                ## TODO : add redefine detection
                 niv = Zone.extract_niveau(tab)
                 _nom =  Zone.extract_nom(tab)
                 ##  traiter le redefine ##
@@ -255,24 +253,15 @@ class ZoneGroupe:
                 if 'REDEFINE'  in ligne:
                     cible,tab = Zone.traite_redefine(tab)
                     flagredef = 1
-                    ### TODO SUITE REDEFINE
-                arbre = ArbreZone()
-                if len(arbre.zone) == 0:
-                    if flagredef:
+                arbre = ArbreZone()    
+                if flagredef:
                        obj_s = zonesimple.ZoneGroupeRedefine(cible, _nom,niv) 
-                    else:   
+                else:   
                        obj_p = ZoneGroupe(_nom, niv)
-                else:
-                    ### niveau inferieur
-                    ###  ou niveau frere
-                    arbre = ArbreZone()
+                if len(arbre.zone) != 0:
                     obt = arbre.recherche_rang(niv)
-                    if flagredef:
-                       obj_s = zonesimple.ZoneGroupeRedefine(cible, _nom,niv) 
-                    else:   
-                       obj_p = ZoneGroupe(_nom, niv)
-                    if obt: 
-                      obt.ajout_fils_simple(obj_s)
+                    if obt:
+                        obt.ajout_fils_simple(obj_s)
                     
         return arbre            
                 ## est ce le niveau le plus haut ?
