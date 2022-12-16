@@ -221,6 +221,14 @@ class ZoneGroupe:
                     tab[-1] = tab[-1][:-1]
             else:
                 break
+            niv = Zone.extract_niveau(tab)
+            _nom =  Zone.extract_nom(tab)
+            flagredef = 0
+            if 'REDEFINE'  in ligne:
+                cible,tab = Zone.traite_redefine(tab)
+                flagredef = 1
+            arbre = ArbreZone()
+            obt = arbre.recherche_rang(niv)    
 
             if ' PIC '  in ligne  or ' PICTURE ' in ligne:
                 arbre = ArbreZone()
@@ -229,39 +237,20 @@ class ZoneGroupe:
                 else: 
                     niveaux_max = arbre.zone[-1].rang
                 ##  traiter le redefine ##
-                flagredef = 0
-                if 'REDEFINE'  in ligne:
-                    cible,tab = Zone.traite_redefine(tab)
-                    flagredef = 1
                 (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
-                niv = Zone.extract_niveau(tab)
-                arbre = ArbreZone()
-                obt = arbre.recherche_rang(niv)
-                _nom =  Zone.extract_nom(tab)
+                
                 if flagredef:
                    obj_s = zonesimple.ZoneSimpleRedefine(cible, _nom,niv ,picture = pic) 
                 else:    
                     obj_s = zonesimple.ZoneFilsSimple(_nom,niv ,picture = pic )
-                if obt :
-                    obt.ajout_fils_simple(obj_s)
                
-            else: 
-                niv = Zone.extract_niveau(tab)
-                _nom =  Zone.extract_nom(tab)
-                ##  traiter le redefine ##
-                flagredef = 0
-                if 'REDEFINE'  in ligne:
-                    cible,tab = Zone.traite_redefine(tab)
-                    flagredef = 1
-                arbre = ArbreZone()    
+            else:    
                 if flagredef:
                        obj_s = zonesimple.ZoneGroupeRedefine(cible, _nom,niv) 
                 else:   
                        obj_p = ZoneGroupe(_nom, niv)
-                if len(arbre.zone) != 0:
-                    obt = arbre.recherche_rang(niv)
-                    if obt:
-                        obt.ajout_fils_simple(obj_s)
+            if obt:
+                obt.ajout_fils_simple(obj_s)
                     
         return arbre            
                 ## est ce le niveau le plus haut ?
