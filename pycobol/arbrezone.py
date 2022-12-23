@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 class ArbreZone:
-    ''' cette classe est in conteneur pour stocker des objets de 
+    ''' cette classe est un conteneur pour stocker des objets de 
         classe mere et de classe fille
         Elle implémente le pattern singleton
     >>> obj = ArbreZone()

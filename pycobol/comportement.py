@@ -8,35 +8,36 @@ import re
 @dataclass
 class Comportement():
     ''' Permet de cadrer les variables de type ALN et NUM
-        >>> obj = Comportement('ALN' , 10 , None)
-        >>> obj.initialize()
-        >>> obj.valeur_externe
-        '          '
-        >>> obj = Comportement('ALN' , 10 , 'eric' )
-        >>> obj.initialize()
-        >>> obj.valeur_externe
-        'eric      '
-        >>> len(obj.valeur_externe)
-        10
-        >>> obj = Comportement('NUM' , 10 , None )
-        >>> obj.initialize()
-        >>> obj.valeur_externe
-        '0000000000'
-        >>> obj = Comportement('NUM' , 10 , 50 )
-        >>> obj.initialize()
-        >>> obj.valeur_externe
-        '0000000050'
-        >>> len(obj.valeur_externe)
-        10
-        >>> obj = Comportement('SNUM' , 10 , None )
-        >>> obj.initialize()
-        >>> obj.valeur_externe
-        '+0000000000'
-        >>> obj = Comportement('SNUM' , 10 , -50 )
-        >>> obj.initialize()
-        >>> obj.valeur_externe
-        '-0000000050'
-        >>> len(obj.valeur_externe)
+
+    >>> obj = Comportement('ALN' , 10 , None)
+    >>> obj.initialize()
+    >>> obj.valeur_externe
+    '          '
+    >>> obj = Comportement('ALN' , 10 , 'eric' )
+    >>> obj.initialize()
+    >>> obj.valeur_externe
+    'eric      '
+    >>> len(obj.valeur_externe)
+    10
+    >>> obj = Comportement('NUM' , 10 , None )
+    >>> obj.initialize()
+    >>> obj.valeur_externe
+    '0000000000'
+    >>> obj = Comportement('NUM' , 10 , 50 )
+    >>> obj.initialize()
+    >>> obj.valeur_externe
+    '0000000050'
+    >>> len(obj.valeur_externe)
+    10
+    >>> obj = Comportement('SNUM' , 10 , None )
+    >>> obj.initialize()
+    >>> obj.valeur_externe
+    '+0000000000'
+    >>> obj = Comportement('SNUM' , 10 , -50 )
+    >>> obj.initialize()
+    >>> obj.valeur_externe
+    '-0000000050'
+    >>> len(obj.valeur_externe)
         11
     '''    
     type_: str
@@ -132,7 +133,8 @@ class Comportement():
     @classmethod
     def from_object(cls, obj ):
         ''' Methode de classe retournant un objet comportement à partir d'une instance de zone
-            param: zone  objet zonage
+
+            :param: zone  objet zonage
         '''   
         return cls(obj.son_type , obj.longueur_utile, obj.valeur_initialisation)
 
@@ -241,6 +243,7 @@ class ComportementFloat(Comportement):
 class Value():
         ''' Cette classe prend en charge les valeurs : type str ou numerique 
         presence d 'un signe , partie entiere ou decimale
+        
         >>> obj = Value("eric")
         >>> obj.numerique
         False

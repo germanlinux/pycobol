@@ -14,6 +14,7 @@ from arbrezone import *
 @dataclass
 class ZoneFilsSimple(ZoneGroupe):
     ''' Cette classe permet de creer des zones simples qui iront sous de zones groupes
+    
     >>> obj = ZoneFilsSimple('essaifils', 5, picture = '999')
     '''
     
