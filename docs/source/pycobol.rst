@@ -1,8 +1,6 @@
 pycobol package
 ===============
 
-Submodules
-----------
 
 arbrezone module
 ------------------------
