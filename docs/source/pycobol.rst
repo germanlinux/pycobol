@@ -2,40 +2,40 @@ pycobol package
 ===============
 
 
-arbrezone module
-------------------------
+arbrezone
+---------
 
 .. automodule:: pycobol.arbrezone
    :members:
    :undoc-members:
    :show-inheritance:
 
-comportement module
----------------------------
+comportement
+------------
 
 .. automodule:: pycobol.comportement
    :members:
    :undoc-members:
    :show-inheritance:
 
-zonage module
----------------------
+zonage
+------
 
 .. automodule:: pycobol.zonage
    :members:
    :undoc-members:
    :show-inheritance:
 
-zonegroupe module
--------------------------
+zonegroupe
+----------
 
 .. automodule:: pycobol.zonegroupe
    :members:
    :undoc-members:
    :show-inheritance:
 
-zonesimple module
--------------------------
+zonesimple
+----------
 
 .. automodule:: pycobol.zonesimple
    :members:

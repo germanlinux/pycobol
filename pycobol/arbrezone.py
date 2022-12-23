@@ -4,12 +4,14 @@ class ArbreZone:
     ''' cette classe est un conteneur pour stocker des objets de 
         classe mere et de classe fille
         Elle implémente le pattern singleton
+        
     >>> obj = ArbreZone()
     >>> obj.zone.append('1')
     >>> obj2 = ArbreZone()
     >>> print(obj2.zone)
     ['1']
     '''
+
     _instance = None
 
     def __new__(cls, *args):

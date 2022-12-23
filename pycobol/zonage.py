@@ -65,7 +65,8 @@ class Zone:
 
     @staticmethod
     def traite_pic(t_ligne):
-         ''' return nature_.nature, pic, nature_.longueur , nature_.decimale'''
+         ''' return Nature.nature, pic, Nature.longueur , Nature.decimale'''
+
          debpic = -1
          finpic = -1
          for cp, val in  enumerate(t_ligne) :
@@ -169,37 +170,38 @@ class Flottant(Zone):
 class Nature_pic():
     ''' Traitement du format d'une clause PIC 
         :param str  pic : format pic à traiter
-        >>> obj = Nature_pic('999')
-        >>> obj.nature
-        'NUM'
-        >>> obj.longueur
-        3
-        >>> obj = Nature_pic('S999')
-        >>> obj.nature
-        'SNUM'
-        >>> obj.longueur
-        3
-        >>> obj.virgule
-        False
-        >>> obj = Nature_pic('99V9')
-        >>> obj.nature
-        'FLOAT'
-        >>> obj.longueur
-        3
-        >>> obj.longueur
-        3
-        >>> obj = Nature_pic('S99V9')
-        >>> obj.nature
-        'SFLOAT'
-        >>> obj.longueur
-        3
-        >>> obj.virgule
-        True
-        >>> obj = Nature_pic('XX')
-        >>> obj.nature
-        'ALN'
-        >>> obj.longueur
-        2
+
+    >>> obj = Nature_pic('999')
+    >>> obj.nature
+    'NUM'
+    >>> obj.longueur
+    3
+    >>> obj = Nature_pic('S999')
+    >>> obj.nature
+    'SNUM'
+    >>> obj.longueur
+    3
+    >>> obj.virgule
+    False
+    >>> obj = Nature_pic('99V9')
+    >>> obj.nature
+    'FLOAT'
+    >>> obj.longueur
+    3
+    >>> obj.longueur
+    3
+    >>> obj = Nature_pic('S99V9')
+    >>> obj.nature
+    'SFLOAT'
+    >>> obj.longueur
+    3
+    >>> obj.virgule
+    True
+    >>> obj = Nature_pic('XX')
+    >>> obj.nature
+    'ALN'
+    >>> obj.longueur
+    2
 
     '''
     support = {'X' :'ALN' , '9' :'NUM', 'S' :'SNUM' ,'A' :'ALP'}
