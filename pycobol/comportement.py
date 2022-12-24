@@ -134,7 +134,7 @@ class Comportement():
     def from_object(cls, obj ):
         ''' Methode de classe retournant un objet comportement à partir d'une instance de zone
 
-            :param: zone  objet zonage
+            :param: zone : objet zonage
         '''   
         return cls(obj.son_type , obj.longueur_utile, obj.valeur_initialisation)
 
@@ -147,7 +147,7 @@ class ComportementFloat(Comportement):
     @classmethod
     def from_object(cls, obj ):
         ''' Methode de classe retournant un objet comportement à partir d'une instance de zone
-            param: zone  objet zonage
+            :param: zone  objet zonage
         '''   
         return cls(obj.decimale, obj.son_type , obj.longueur_utile, obj.valeur_initialisation)
 
@@ -200,7 +200,7 @@ class ComportementFloat(Comportement):
     def move_value(self,objetzone,  newvaleur):
         ''' methode pour affecter une valeur à une zone
             L'objet comportement est dejà instancié il connait la valeur de départ
-            :newvaleur float ou int 
+            :newvaleur: float ou int 
          '''
         longueur_entier = self.longueur - self.decimale
         newvaleur_str  = str(abs(newvaleur))
@@ -243,7 +243,7 @@ class ComportementFloat(Comportement):
 class Value():
         ''' Cette classe prend en charge les valeurs : type str ou numerique 
         presence d 'un signe , partie entiere ou decimale
-        
+
         >>> obj = Value("eric")
         >>> obj.numerique
         False
