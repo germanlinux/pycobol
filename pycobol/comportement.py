@@ -8,6 +8,10 @@ import re
 @dataclass
 class Comportement():
     ''' Permet de cadrer les variables de type ALN et NUM
+    
+    :param type_:  str
+    :param longueur: int
+    :param valeur: str
 
     >>> obj = Comportement('ALN' , 10 , None)
     >>> obj.initialize()
@@ -58,6 +62,7 @@ class Comportement():
                 
 
     def initialize(self):
+        ''' charge les zones en fonction de leur nature'''
         self.valeur_externe = None 
         if self.valeur == None :
             self.valeur_externe = self.padding * self.longueur

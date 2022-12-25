@@ -32,6 +32,8 @@ class ArbreZone:
            pass
 
     def reset(self):
+        ''' Remise à zero de toutes les structures'''
+
         self.zone =[]
         self.inverse = []
         self.redefine= {}
@@ -117,6 +119,12 @@ class ArbreZone:
                         break
 
     def vidage(self):
+        ''' Retourne la liste des zones et la liste des zones redefinis
+
+        :return: un tuple de deux listes
+        :rtype: tuple(list, list)
+        '''
+         
         _liste= []
         for item in self.zone:
             _liste.append(item.nom )

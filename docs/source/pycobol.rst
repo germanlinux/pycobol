@@ -52,6 +52,4 @@ Module contents
 
 .. automodule:: pycobol
    :members:
-   :special-members: __init__
-   :undoc-members:
    :show-inheritance:
