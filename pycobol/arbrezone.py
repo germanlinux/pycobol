@@ -78,6 +78,14 @@ class ArbreZone:
 
 
     def recherche_rang(self, n):
+        ''' On essaye de trouver le rang COBOL (niveau) de l'element supérieur
+        
+        La valeur 0 est retournée par defaut.
+
+        :param n: rang de l'element en cours de traitement
+        :type n: int
+        :return: niveau superieur ou `0` '''
+
         a = self.zone[:]
         a.reverse()
         for item in a:
