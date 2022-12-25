@@ -4,6 +4,8 @@ from comportement  import *
 from typing import ClassVar
 @dataclass
 class Zone:
+    ''' Classe de base des zones COBOL'''
+
     nom: str
     rang : int 
     section: str    
@@ -21,7 +23,8 @@ class Zone:
         self.initialize()
 
     def initialize(self):
-       
+        '''injection du comportement'''
+
         comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_initialisation )  
        # print(comportement_)  
         comportement_.initialize()
@@ -32,6 +35,9 @@ class Zone:
     def move_value(self, newvalue ):
         ''' Cette methode permet d affecter des valeurs à une zone.
         Elle utilise les objets de la classe comportement.
+
+        :param newvalue: nouvelle valeur
+
         '''
         self.comportement_associe.move_value(self,newvalue)
 
@@ -149,6 +155,8 @@ class Zone:
 ###############################
 ###############################
 class Flottant(Zone):
+    ''' Gère les zones a virgule flottante PIC ...V...'''
+
     def __init__(self,decimale,  nom , pic ,valeur_initiale = None , usage = 'DISPLAY'):
         self.decimale = decimale
         type_ = Nature_pic(pic).nature
@@ -252,6 +260,7 @@ class Nature_pic():
 
 
 class ZoneIndependante(Zone):
+    ''' Zones qui sont en dehors des zones groupes'''
 
     def __init__(self, nom, pic, valeur = None ,usage= 'DISPLAY'  ): 
         type_ = Nature_pic(pic).nature
