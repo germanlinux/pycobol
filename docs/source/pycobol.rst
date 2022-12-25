@@ -46,10 +46,3 @@ zonesimple
    :special-members: __init__
    :undoc-members:
    :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: pycobol
-   :members:
-   :show-inheritance:
