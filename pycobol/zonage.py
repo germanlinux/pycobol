@@ -47,11 +47,16 @@ class Zone:
     @staticmethod
     def extract_niveau(t_ligne):
         ''' retourne le niveau cobol de la ligne
+
+        :param t_ligne: liste de ligne
+        :type t_ligne: list
+
         >>> Zone.extract_niveau(['10'] ,'WW04-DAEC'.])
         10
         >>> Zone.extract_niveau(['11'] ,'WW04-DAEC'.])
         11
         '''
+
         if  tniv := re.search('(\d+)', t_ligne[0]) :
             return int(tniv[1])
         else:
@@ -59,6 +64,10 @@ class Zone:
     @staticmethod
     def extract_nom(t_ligne):
         ''' retourne le nom de la zone
+
+        :param t_ligne: liste de ligne
+        :type t_ligne: list
+
         >>> Zone.extract_niveau(['10'] ,'WW04-DAEC.'])
         'WW04-DAEC'
         >>> Zone.extract_niveau(['11'] ,'WW04-DAEC'])
@@ -71,7 +80,13 @@ class Zone:
 
     @staticmethod
     def traite_pic(t_ligne):
-         ''' return Nature.nature, pic, Nature.longueur , Nature.decimale'''
+         ''' return Nature.nature, pic, Nature.longueur , Nature.decimale
+
+         :param t_ligne: liste de ligne
+         :type t_ligne: list
+    
+
+         '''
 
          debpic = -1
          finpic = -1
@@ -114,13 +129,16 @@ class Zone:
     @staticmethod
     def traite_value(t_ligne):
         ''' Traitement des values dans la working storage
-            :param str tableau mot de la ligne
-            >>> ligne =   ['77', 'MAZONE', 'PIC', 'X(10)', 'VALUE', 'SPACE']
-            >>> Zone.traite_value(ligne)
-            ''
-            >>> ligne =   ['77', 'MAZONE', 'PIC', 'X(10)', 'VALUE', "'er'"]
-            >>> Zone.traite_value(ligne)
-            'er'
+
+        :param t_ligne: liste de ligne
+        :type t_ligne: list
+        
+        >>> ligne =   ['77', 'MAZONE', 'PIC', 'X(10)', 'VALUE', 'SPACE']
+        >>> Zone.traite_value(ligne)
+        ''
+        >>> ligne =   ['77', 'MAZONE', 'PIC', 'X(10)', 'VALUE', "'er'"]
+        >>> Zone.traite_value(ligne)
+        'er'
         '''    
 
         debval = -1
@@ -177,7 +195,9 @@ class Flottant(Zone):
 
 class Nature_pic():
     ''' Traitement du format d'une clause PIC 
-        :param str  pic : format pic à traiter
+        
+    :param pic: format pic à traiter
+    :type pic: str
 
     >>> obj = Nature_pic('999')
     >>> obj.nature

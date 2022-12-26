@@ -46,22 +46,6 @@ class ArbreZone:
         :type nom: str
         :return: Un objet :class:`pycobol.ZoneGroupe` ou :class:`pycobol.ZoneFilsSimple`  ou `None` 
 
-        :exemple:
-
-        >>> tlignes = ZoneGroupe.fake_read_file()
-        >>> len(tlignes)
-        4
-        >>> ZoneGroupe.read_groupe_from_code(tlignes)
-        >>> len(ZoneGroupe.zone_groupe[0].fils)
-        3
-        >>> z1 = ZoneGroupe.recherche_nom('MADATE')
-        >>> z1.longueur_utile
-        8
-        >>> z2 = ZoneGroupe.recherche_nom('JJ')
-        >>> z2.longueur_utile
-        2
-
-
         '''
         for item in self.zone:
             if item.nom == nom: 

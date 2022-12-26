@@ -90,6 +90,8 @@ class Comportement():
     def move_value(self,objetzone,  newvaleur):
         ''' methode pour affecter une valeur à une zone
             L'objet comportement est dejà instancié il connait la valeur de départ
+            
+            :param newvaleur:  Nouvelle valeur a affecter (int ou str)
          '''
         if self.direction == 'left' :
             newvaleur = str(newvaleur) 
