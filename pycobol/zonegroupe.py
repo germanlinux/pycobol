@@ -240,17 +240,19 @@ class ZoneGroupe:
                 (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
                 
                 if flagredef:
-                   obj_s = zonesimple.ZoneSimpleRedefine(cible, _nom,niv ,picture = pic) 
+                   obj_s = zonesimple.ZoneSimpleRedefine(cible, _nom,niv ,picture = pic)
+                   
                 else:    
                     obj_s = zonesimple.ZoneFilsSimple(_nom,niv ,picture = pic )
-               
+                    if obt :
+                        obt.ajout_fils_simple(obj_s) 
             else:    
                 if flagredef:
-                       obj_s = zonesimple.ZoneGroupeRedefine(cible, _nom,niv) 
+                       obj_p = zonesimple.ZoneGroupeRedefine(cible, _nom,niv) 
                 else:   
                        obj_p = ZoneGroupe(_nom, niv)
-            if obt:
-                obt.ajout_fils_simple(obj_s)
+                       if obt :
+                            obt.ajout_fils_simple(obj_p)
                     
         return arbre            
                 ## est ce le niveau le plus haut ?
