@@ -25,7 +25,6 @@ zonage
 
 .. automodule:: pycobol.zonage
    :members:
-   :special-members: __init__
    :undoc-members:
    :show-inheritance:
 
