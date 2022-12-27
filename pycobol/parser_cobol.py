@@ -28,7 +28,8 @@ def extract_nom(t_ligne):
         >>> extract_niveau(['11'] ,'WW04-DAEC'])
         'WW04-DAEC'
         '''
-        if  tniv := re.search('(.+).?', t_ligne[1]) :
+        tniv = re.search('(.+).?', t_ligne[1])
+        if  tniv:
             return tniv[1]
         else:
             return None
