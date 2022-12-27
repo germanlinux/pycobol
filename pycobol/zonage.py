@@ -201,7 +201,4 @@ if __name__ == '__main__':
     print("debut des tests internes")
     import doctest
     doctest.run_docstring_examples(ZoneIndependante.from_ligne,None, verbose = False)
-    doctest.run_docstring_examples(Nature_pic,None, verbose = False)
-    doctest.run_docstring_examples(Zone.traite_value,None, verbose = False)
-    doctest.run_docstring_examples(Zone.extract_niveau, None, verbose = False)
     print("fin des tests internes")
