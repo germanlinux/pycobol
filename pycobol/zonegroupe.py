@@ -49,7 +49,7 @@ class ZoneGroupe:
     nom: str
     rang : int
     pere: int = 0
-    fils : list[int] = field(default_factory=list)
+    fils : list = field(default_factory=list)
     son_type: str = 'GRP'
     usage: str = 'DISPLAY'
     longueur_utile: int = 0  
