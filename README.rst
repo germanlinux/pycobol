@@ -31,6 +31,8 @@ Le traitement des zones élémentaires  de niveau 77 est en cours de developpeme
 Pycobol utilise deux types de test:
 - Doctest pour les tests de non regression
 - unittest pour les tests plus complets.
+Utilisation de SPHINX pour la documentation
+
 
 Depuis le répertoire du projet:
 -------------------------------
@@ -96,6 +98,11 @@ Eric German
 
 Journal
 =======
+Le 27/12/22:
+Mise en place de la documentation avec SPHINX
+Publication de la documentation sur le site read the docs
+
+
 Le 23/11/2022:
 --------------
 Refactorisation encore et encore
