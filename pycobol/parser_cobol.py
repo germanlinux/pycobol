@@ -11,8 +11,8 @@ def extract_niveau(t_ligne):
         >>>extract_niveau(['11'] ,'WW04-DAEC'.])
         11
         '''
-
-        if  tniv := re.search('(\d+)', t_ligne[0]) :
+        tniv = re.search(r'(\d+)', t_ligne[0])
+        if  tniv :
             return int(tniv[1])
         else:
             return 0
