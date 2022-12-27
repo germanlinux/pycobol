@@ -177,11 +177,11 @@ class ZoneIndependante(Zone):
             tab[-1] = tab[-1][:-1]    
         if tab[0] != '77':
             return None
-        (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
+        (type_,pic, longueur,decimale) =  traite_pic(tab)
         #longueur_interne  = longueur
         valeur_externe = None
-        valeur = Zone.traite_value(tab)
-        usage = Zone.traite_usage(tab)
+        valeur = traite_value(tab)
+        usage = traite_usage(tab)
         if decimale:        
             return Flottant(decimale, tab[1] ,  pic, valeur, usage )
         else:

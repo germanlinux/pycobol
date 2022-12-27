@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass, field
 
 from comportement  import *
-
+from parser_cobol import *
 from typing import ClassVar
 from inspect import *
 from zonage import *
@@ -221,11 +221,11 @@ class ZoneGroupe:
                     tab[-1] = tab[-1][:-1]
             else:
                 break
-            niv = Zone.extract_niveau(tab)
-            _nom =  Zone.extract_nom(tab)
+            niv = extract_niveau(tab)
+            _nom = extract_nom(tab)
             flagredef = 0
             if 'REDEFINE'  in ligne:
-                cible,tab = Zone.traite_redefine(tab)
+                cible,tab = traite_redefine(tab)
                 flagredef = 1
             arbre = ArbreZone()
             obt = arbre.recherche_rang(niv)    
@@ -237,7 +237,7 @@ class ZoneGroupe:
                 else: 
                     niveaux_max = arbre.zone[-1].rang
                 ##  traiter le redefine ##
-                (type_,pic, longueur,decimale) =  Zone.traite_pic(tab)
+                (type_,pic, longueur,decimale) =  traite_pic(tab)
                 
                 if flagredef:
                    obj_s = zonesimple.ZoneSimpleRedefine(cible, _nom,niv ,picture = pic)

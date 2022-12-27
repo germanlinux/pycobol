@@ -42,6 +42,13 @@ zonesimple
 
 .. automodule:: pycobol.zonesimple
    :members:
-   :special-members: __init__
    :undoc-members:
    :show-inheritance:
+
+parser_cobol
+------------
+
+.. automodule:: pycobol.parser_cobol
+   :members:
+   :undoc-members:
+   :show-inheritance:   

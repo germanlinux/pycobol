@@ -1,5 +1,5 @@
 
-
+import re
 def extract_niveau(t_ligne):
         ''' retourne le niveau cobol de la ligne
 
@@ -17,7 +17,7 @@ def extract_niveau(t_ligne):
         else:
             return 0
   
-  def extract_nom(t_ligne):
+def extract_nom(t_ligne):
         ''' retourne le nom de la zone
 
         :param t_ligne: liste de ligne
