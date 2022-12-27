@@ -201,4 +201,5 @@ if __name__ == '__main__':
     print("debut des tests internes")
     import doctest
     doctest.run_docstring_examples(ZoneIndependante.from_ligne,None, verbose = False)
+    doctest.testmod()
     print("fin des tests internes")
