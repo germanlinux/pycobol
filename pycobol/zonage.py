@@ -3,6 +3,9 @@ from dataclasses import dataclass, field
 from comportement  import *
 from parser_cobol import *
 from typing import ClassVar
+###########################
+### class Zone          ###
+###########################
 @dataclass
 class Zone:
     ''' Classe de base des zones COBOL'''
@@ -44,6 +47,7 @@ class Zone:
 
     
 ###############################
+### class Flottant          ###
 ###############################
 class Flottant(Zone):
     ''' Gère les zones a virgule flottante PIC ...V...'''
@@ -68,7 +72,9 @@ class Flottant(Zone):
 
 
 
-
+###############################
+### class ZoneIndependante  ###
+###############################
 class ZoneIndependante(Zone):
     ''' Zones qui sont en dehors des zones groupes'''
 
@@ -200,6 +206,5 @@ class ZoneIndependante(Zone):
 if __name__ == '__main__':
     print("debut des tests internes")
     import doctest
-    doctest.run_docstring_examples(ZoneIndependante.from_ligne,None, verbose = False)
     doctest.testmod()
     print("fin des tests internes")

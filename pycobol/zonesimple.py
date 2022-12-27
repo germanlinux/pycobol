@@ -4,8 +4,7 @@ from collections import defaultdict
 from comportement  import *
 from zonegroupe  import * 
 from typing import ClassVar
-from inspect import *
-from zonage import *
+from parser_cobol import *
 from arbrezone import *
 #################################
 #   classe Zonefilssimple       #

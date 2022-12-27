@@ -20,6 +20,15 @@ comportement
    :undoc-members:
    :show-inheritance:
 
+
+parser_cobol
+------------
+
+.. automodule:: pycobol.parser_cobol
+   :members:
+   :undoc-members:
+   :show-inheritance:      
+
 zonage
 ------
 
@@ -45,10 +54,3 @@ zonesimple
    :undoc-members:
    :show-inheritance:
 
-parser_cobol
-------------
-
-.. automodule:: pycobol.parser_cobol
-   :members:
-   :undoc-members:
-   :show-inheritance:   
