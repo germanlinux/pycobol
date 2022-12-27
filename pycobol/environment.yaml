@@ -1,0 +1,6 @@
+name: docs
+channels:
+  - defaults
+dependencies:
+  - sphinx
+  - typing
