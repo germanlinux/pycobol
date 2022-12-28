@@ -206,6 +206,7 @@ class ZoneGroupe:
         >>> ZoneGroupe.vidage()
         '''
         import zonesimple
+        import redefine
         _zonegrp_active = ''
         _niveaux_max = 99
         ### to do : mutualiser
@@ -240,15 +241,15 @@ class ZoneGroupe:
                 (type_,pic, longueur,decimale) =  traite_pic(tab)
                 
                 if flagredef:
-                   obj_s = zonesimple.ZoneSimpleRedefine(cible, _nom,niv ,picture = pic)
+                   obj_s = redefine.ZoneSimpleRedefine(cible, _nom,niv ,picture = pic)
                    
                 else:    
-                    obj_s = zonesimple.ZoneFilsSimple(_nom,niv ,picture = pic )
+                    obj_s = redefine.ZoneFilsSimple(_nom,niv ,picture = pic )
                     if obt :
                         obt.ajout_fils_simple(obj_s) 
             else:    
                 if flagredef:
-                       obj_p = zonesimple.ZoneGroupeRedefine(cible, _nom,niv) 
+                       obj_p = redefine.ZoneGroupeRedefine(cible, _nom,niv) 
                 else:   
                        obj_p = ZoneGroupe(_nom, niv)
                        if obt :
