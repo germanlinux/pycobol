@@ -4,7 +4,7 @@ from pycobol import zonesimple as zs
 from pycobol import comportement as cp
 from pycobol import arbrezone as arb
 from pycobol import zonegroupe as zn  
-
+from parser_cobol import *
 
 
 import unittest  
@@ -63,7 +63,7 @@ class Testredefine(unittest.TestCase):
         zs.ZoneGroupe.reset_arbre() 
         tlignes = zn.ZoneGroupe.fake_read_file_redefine()
         self.assertEqual(5,len(tlignes))
-        arbre =zn.ZoneGroupe.read_groupe_from_code(tlignes)
+        arbre =read_groupe_from_code(tlignes)
         self.assertEqual(3, len(arbre.zone[0].fils))
         arbre.autonomme(globals())
         _madate.init_groupe()
@@ -83,7 +83,7 @@ class Testredefine(unittest.TestCase):
         zs.ZoneGroupe.reset_arbre() 
         tlignes = zn.ZoneGroupe.fake_read_file_redefine(zg6)
         self.assertEqual(5,len(tlignes))
-        arbre =zn.ZoneGroupe.read_groupe_from_code(tlignes)
+        arbre =read_groupe_from_code(tlignes)
         self.assertEqual(3, len(arbre.zone[1].fils))
         arbre.autonomme(globals())
         _datebrut.init_groupe()

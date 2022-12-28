@@ -5,7 +5,7 @@ from comportement  import *
 from zonegroupe  import * 
 from typing import ClassVar
 from parser_cobol import *
-from arbrezone import *
+
 #################################
 #   classe Zonefilssimple       #
 #################################

@@ -19,15 +19,7 @@ comportement
    :special-members: __init__
    :undoc-members:
    :show-inheritance:
-
-
-parser_cobol
-------------
-
-.. automodule:: pycobol.parser_cobol
-   :members:
-   :undoc-members:
-   :show-inheritance:      
+   
 
 zonage
 ------
@@ -54,3 +46,18 @@ zonesimple
    :undoc-members:
    :show-inheritance:
 
+nature_pic
+----------
+
+.. autoclass:: pycobol.parser_cobol.Nature_pic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+redefine
+--------
+
+.. automodule:: pycobol.redefine
+   :members:
+   :undoc-members:
+   :show-inheritance:

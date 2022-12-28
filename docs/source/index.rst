@@ -11,6 +11,7 @@ Welcome to pycobol's documentation!
    :caption: Contents:
 
    pycobol
+   extension
 
 Indices and tables
 ==================
