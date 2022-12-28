@@ -98,10 +98,11 @@ Eric German
 
 Journal
 =======
+
 Le 27/12/22:
 Mise en place de la documentation avec SPHINX
 Publication de la documentation sur le site read the docs
-
+Refactorisations profondes
 
 Le 23/11/2022:
 --------------
