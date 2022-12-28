@@ -126,8 +126,34 @@ def traite_value(t_ligne):
         
     return value_
 
+def fake_read_file(data= None):
+        zg1 ='''
+                10            MADATE.                                   
+                    11            AAAA   PICTURE  9(4).                 
+                    11            MOIS   PICTURE  99.                      
+                    11            JJ   PICTURE  99.                 
+        '''            
+        
+        if not data:
+          data = zg1
+        t_zg1 = data.split('\n')
+        lignes = [item  for item in t_zg1 if item]
+        return(lignes)
 
-
+            
+def fake_read_file_redefine(data= None):
+        zg2 ='''
+                10            MADATE.                                   
+                    11            AAAA   PICTURE  9(4).                 
+                    11            MOIS   PICTURE  99.                      
+                    11            JJ   PICTURE  99.                 
+                10   DATEBRUT REDEFINE MADATE PIC 9(8).'''            
+        if not data:
+          data = zg2
+        t_zg1 = data.split('\n')
+        lignes = [item  for item in t_zg1 if item]
+        return(lignes)
+        
 def read_groupe_from_code(tcode):
         ''' cette fonction prend comme parametre en entrée un tableau de ligne
         et en fonction du contenu active un constructeur de groupe ou de zone simple et traite les redefines

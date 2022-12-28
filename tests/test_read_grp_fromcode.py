@@ -64,20 +64,20 @@ zg7 = '''
 class TestZonegroupeline(unittest.TestCase):
       def test_lecture_groupe1(self):
             for cp, extrait in enumerate([zg1, zg2, zg3]):
-                  tlignes = zn.ZoneGroupe.fake_read_file(extrait)
+                  tlignes = fake_read_file(extrait)
                   read_groupe_from_code(tlignes)
                   self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),len(tlignes) - 1)
                   zn.ZoneGroupe.reset_arbre()
 
       def test_lecture_groupe2(self):
-                  tlignes = zn.ZoneGroupe.fake_read_file(zg4)
+                  tlignes = fake_read_file(zg4)
                   read_groupe_from_code(tlignes)
                   self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),2) 
                   self.assertEqual (len(zn.ZoneGroupe.get_arbre()[2].fils),2) 
 
       def test_lecture_groupe3(self):
                   zn.ZoneGroupe.reset_arbre()
-                  tlignes = zn.ZoneGroupe.fake_read_file(zg5)
+                  tlignes = fake_read_file(zg5)
                   read_groupe_from_code(tlignes)
                   self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),3) 
                   self.assertEqual (len(zn.ZoneGroupe.get_arbre()[2].fils),2) 
@@ -85,7 +85,7 @@ class TestZonegroupeline(unittest.TestCase):
 
       def test_lecture_groupe4(self):
                   zn.ZoneGroupe.reset_arbre()
-                  tlignes = zn.ZoneGroupe.fake_read_file(zg6)
+                  tlignes = fake_read_file(zg6)
                   read_groupe_from_code(tlignes)
                   self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),2) 
                   self.assertEqual (len(zn.ZoneGroupe.get_arbre()[1].fils),2) 
@@ -93,7 +93,7 @@ class TestZonegroupeline(unittest.TestCase):
 
       def test_lecture_groupe5(self):
                   zn.ZoneGroupe.reset_arbre()
-                  tlignes = zn.ZoneGroupe.fake_read_file(zg7)
+                  tlignes = fake_read_file(zg7)
                   read_groupe_from_code(tlignes)
                   self.assertEqual (len(zn.ZoneGroupe.get_arbre()[0].fils),3) 
                   self.assertEqual (len(zn.ZoneGroupe.get_arbre()[1].fils),2) 
