@@ -7,9 +7,9 @@ def extract_niveau(t_ligne):
         :param t_ligne: liste de ligne
         :type t_ligne: list
 
-        >>>extract_niveau(['10'] ,'WW04-DAEC'.])
+        >>> extract_niveau(['10'] ,'WW04-DAEC'.])
         10
-        >>>extract_niveau(['11'] ,'WW04-DAEC'.])
+        >>> extract_niveau(['11'] ,'WW04-DAEC'.])
         11
         '''
         tniv = re.search(r'(\d+)', t_ligne[0])
@@ -40,8 +40,6 @@ def traite_pic(t_ligne):
 
          :param t_ligne: liste de ligne
          :type t_ligne: list
-    
-
          '''
 
          debpic = -1
