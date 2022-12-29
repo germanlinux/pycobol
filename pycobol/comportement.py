@@ -42,7 +42,7 @@ class Comportement():
     >>> obj.valeur_externe
     '-0000000050'
     >>> len(obj.valeur_externe)
-        11
+    11
     '''    
     type_: str
     longueur: int
@@ -256,9 +256,7 @@ class Value():
         False
         >>> obj = Value(1961)
         >>> obj.numerique
-        True 
-        
-        '''
+        True'''
         origine: str
         formate :str    = field(init = False)
         non_signe: str  = field(init = False)
@@ -294,6 +292,6 @@ class Value():
 
 if __name__ == '__main__':  
     import doctest          
-    doctest.run_docstring_examples(Comportement,None, verbose = 0)
-    doctest.run_docstring_examples(Value,None, verbose = 1)
-    
+    #doctest.run_docstring_examples(Comportement,None, verbose = 0)
+    #doctest.run_docstring_examples(Value,None, verbose = 1)
+    doctest.testmod()
