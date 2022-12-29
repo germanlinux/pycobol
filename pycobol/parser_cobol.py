@@ -153,7 +153,7 @@ def fake_read_file_redefine(data= None):
         t_zg1 = data.split('\n')
         lignes = [item  for item in t_zg1 if item]
         return(lignes)
-        
+
 def read_groupe_from_code(tcode):
         ''' cette fonction prend comme parametre en entrée un tableau de ligne
         et en fonction du contenu active un constructeur de groupe ou de zone simple et traite les redefines
@@ -320,6 +320,8 @@ class Nature_pic():
         self.longueur = long
  
 
-
+if __name__ == '__main__':  
+    import doctest          
+    doctest.run_docstring_examples(traite_filler,None, verbose = 1)
 
     

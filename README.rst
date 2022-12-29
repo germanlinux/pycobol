@@ -90,7 +90,9 @@ Feuille de route.
 - Developper la prise en charge des formats non pris en charge (exemple COMP ) FAIT
 - concevoir la classe des zones groupes: FAIT
 - Developper la prise en charge des clauses de formatage (exemple BLANK WHEN ZERO):  A FAIRE
-
+- Prendre en charge les clauses redefine : FAIT
+- Prendre en charge les FILLERS: A FAIRE
+- Prendre en charge les clauses OCCURS : A FAIRE
 
 Merci
 

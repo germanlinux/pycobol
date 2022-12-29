@@ -79,7 +79,10 @@ class ZoneGroupe:
     def ajout_fils_groupe(self, other):
         if other.rang <= self.rang :
             raise RuntimeError(f'Erreur sur le rang   {self.nom} >> {other.nom}') 
-        other.pere = self        
+        other.pere = self
+        if other.nom.lower() == 'filler':
+            _nom = ZoneGroupe.traite_filler(other.nom , self.nom)
+            other.nom = _nom
         self.longueur_utile += other.longueur_utile
         self.fils.append(other)
 
@@ -183,7 +186,32 @@ class ZoneGroupe:
     ######################
     # methodes statiques #
     ######################
-    
+    @staticmethod
+    def traite_filler(filler, nom):
+        '''Une zone filler peut avoir des doublons, le nom sera donc formé du nom de 
+        la zone accolé  avec le nom de la structure supérieure. 
+        En cas de doublon un indice est ajouté à l'ensemnle.
+
+        :param filler: nom de la zone , a priori souvent égale à filler
+        :param nom: nom de la structure supérieure
+        :type filler: str
+        :type nom: str
+
+        >>> traite_filler('filler', 'sup')
+        'filler_sup'
+        '''
+
+        _tmp_nom = filler + '_'  + nom
+        arbre = ArbreZone()
+        cp = 0
+        while 1:
+          tmp = arbre.recherche_nom(_tmp_nom)
+          if tmp == None:
+            break
+          cp += 1
+          _tmp_nom += f'_{str(cp)}'    
+        return _tmp_nom
+                    
     @staticmethod            
     def get_arbre():
         arbre = ArbreZone()
