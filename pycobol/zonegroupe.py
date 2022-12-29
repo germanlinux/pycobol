@@ -17,6 +17,7 @@ class ZoneGroupe:
     ''' Cette classe prend en charge la creation d'une zone groupe. 
     Par nature cette zone est de type ALN.
     Sa longueur est la somme des longueurs des composants qui la composent
+    
     >>> obj = ZoneGroupe('zoneessai', 1, 0)
     >>> obj.nom
     'zoneessai'
