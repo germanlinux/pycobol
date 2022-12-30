@@ -133,23 +133,17 @@ def fake_read_file(data= None):
                     11            MOIS   PICTURE  99.                      
                     11            JJ   PICTURE  99.                 
         '''            
-        
-        if not data:
-          data = zg1
-        t_zg1 = data.split('\n')
-        lignes = [item  for item in t_zg1 if item]
-        return(lignes)
-
-            
-def fake_read_file_redefine(data= None):
         zg2 ='''
                 10            MADATE.                                   
                     11            AAAA   PICTURE  9(4).                 
                     11            MOIS   PICTURE  99.                      
                     11            JJ   PICTURE  99.                 
                 10   DATEBRUT REDEFINE MADATE PIC 9(8).'''            
+        
         if not data:
-          data = zg2
+          data = zg1
+        if data == 'REDEFINE' :
+            data = zg2
         t_zg1 = data.split('\n')
         lignes = [item  for item in t_zg1 if item]
         return(lignes)

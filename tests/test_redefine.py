@@ -61,7 +61,7 @@ class Testredefine(unittest.TestCase):
 
     def test_aln5(self): 
         zs.ZoneGroupe.reset_arbre() 
-        tlignes = fake_read_file_redefine()
+        tlignes = fake_read_file('REDEFINE')
         self.assertEqual(5,len(tlignes))
         arbre =read_groupe_from_code(tlignes)
         self.assertEqual(3, len(arbre.zone[0].fils))
@@ -81,7 +81,7 @@ class Testredefine(unittest.TestCase):
                     11            MOIS   PICTURE  99.                      
                     11            JJ   PICTURE  99.'''  
         zs.ZoneGroupe.reset_arbre() 
-        tlignes = fake_read_file_redefine(zg6)
+        tlignes = fake_read_file(zg6)
         self.assertEqual(5,len(tlignes))
         arbre =read_groupe_from_code(tlignes)
         self.assertEqual(3, len(arbre.zone[1].fils))
