@@ -10,21 +10,21 @@ fake_read_file
 .. autofunction:: pycobol.parser_cobol.fake_read_file
 
 
-fake_read_file_redefine
------------------------
-.. autofunction:: pycobol.parser_cobol.fake_read_file_redefine
-
 read_groupe_from_code
 ---------------------
 .. autofunction:: pycobol.parser_cobol.read_groupe_from_code
 
+extracteurs 
+------------
+
+
 Traite ligne 
 ------------
-.. autofunction:: pycobol.parser_cobol.traite_value
-.. autofunction:: pycobol.parser_cobol.traite_usage
-.. autofunction:: pycobol.parser_cobol.traite_redefine
+.. autofunction:: pycobol.extracteurs.traite_value
+.. autofunction:: pycobol.extracteurs.traite_usage
+.. autofunction:: pycobol.extracteurs.traite_redefine
 
 Extracteurs
 -----------
-.. autofunction:: pycobol.parser_cobol.extract_nom
-.. autofunction:: pycobol.parser_cobol.extract_niveau
+.. autofunction:: pycobol.extracteurs.extract_nom
+.. autofunction:: pycobol.extracteurs.extract_niveau

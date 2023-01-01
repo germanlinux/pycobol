@@ -49,7 +49,7 @@ zonesimple
 nature_pic
 ----------
 
-.. autoclass:: pycobol.parser_cobol.Nature_pic
+.. autoclass:: pycobol.extracteurs.Nature_pic
    :members:
    :undoc-members:
    :show-inheritance:
