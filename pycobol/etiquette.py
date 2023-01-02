@@ -9,9 +9,12 @@ class Etiquette():
     nom: str
     instructions: list = []
 
+
 @dataclass
 class  Instruction():
     ''' Une instruction est un objet, une méthode et un ou plusieur parametres
     '''
-    pass
+    obj: object
+    method: str
+    arg: str 
     
