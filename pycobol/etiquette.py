@@ -17,4 +17,12 @@ class  Instruction():
     obj: object
     method: str
     arg: str 
+
+@dataclasses
+class Program()    
+    ''' squellette d'un programme
+    '''
+    pas_programme: list = []
     
+    
+
