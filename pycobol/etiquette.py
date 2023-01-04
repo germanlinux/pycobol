@@ -18,11 +18,19 @@ class  Instruction():
     method: str
     arg: str 
 
+    def display(self, qqchose, *args):
+        if type(qqchose) == str :
+            print(qqchose)
+        elif type(qqchose) == list:
+            pass
+
+        return
+                    
 @dataclasses
 class Program()    
     ''' squellette d'un programme
     '''
     pas_programme: list = []
     
-    
+
 
