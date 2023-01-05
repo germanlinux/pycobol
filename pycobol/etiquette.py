@@ -19,13 +19,22 @@ class  Instruction():
     arg: str 
 
     def display(self, qqchose, *args):
+        ''' le format de qqchose :
+        Une chaine de caractere ?  "eric"
+        Un tuple ?: (nomcobol,"chaine", nomcobol2" ) etc''' 
+ 
         if type(qqchose) == str :
             print(qqchose)
-        elif type(qqchose) == list:
-            pass
+        else:
+            chaine = ""
+            for item in qqchose:
+                if type(item) == str :
+                    chaine += item
+                else:
+                    chaine += item.valeur_externe
+            print(chaine)            
+        return None
 
-        return
-                    
 @dataclasses
 class Program()    
     ''' squellette d'un programme
