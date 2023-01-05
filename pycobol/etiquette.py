@@ -1,13 +1,13 @@
 from dataclasses import dataclass, field
 
 @dataclass
-class Etiquette():
+class Etiquette:
     ''' Cette classe est destinée a définir des etiquettes comme dans les programmes COBOL
     avec la notion de paragraphe.
 
     '''
     nom: str
-    instructions: list = []
+    instructions: str
 
 
 @dataclass
@@ -21,8 +21,18 @@ class  Instruction():
     def display(self, qqchose, *args):
         ''' le format de qqchose :
         Une chaine de caractere ?  "eric"
-        Un tuple ?: (nomcobol,"chaine", nomcobol2" ) etc''' 
- 
+        Un tuple ?: (nomcobol,"chaine", nomcobol2" ) etc 
+        >>> from minimock import Mock
+        >>> ZoneIndependante= Mock('ZoneIndependante')
+        >>> ZoneIndependante.mock_returns = Mock('ZoneIndependante')
+        >>> ZoneIndependante.valeur_externe.mock_returns = Mock(returns ='00012')
+        >>> data1 = ZoneIndependante('MADATA')
+        ...
+        >>> data1.valeur_externe
+        '00012'
+        '''
+
+
         if type(qqchose) == str :
             print(qqchose)
         else:
@@ -35,11 +45,14 @@ class  Instruction():
             print(chaine)            
         return None
 
-@dataclasses
-class Program()    
+@dataclass
+class Program():   
     ''' squellette d'un programme
     '''
-    pas_programme: list = []
+    pas_programme: str
     
-
+if __name__ == '__main__':  
+    import doctest          
+    doctest.run_docstring_examples(Instruction.display,None, verbose = 1)
+    #doctest.testmod()
 
