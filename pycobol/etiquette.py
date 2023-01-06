@@ -24,8 +24,7 @@ class  Instruction():
         Un tuple ?: (nomcobol,"chaine", nomcobol2" ) etc 
         >>> from minimock import Mock
         >>> ZoneIndependante= Mock('ZoneIndependante')
-        >>> ZoneIndependante.mock_returns = Mock('ZoneIndependante')
-        >>> ZoneIndependante.valeur_externe.mock_returns = Mock(returns ='00012')
+        >>> ZoneIndependante.mock_returns = Mock('ZoneIndependante', valeur_externe = '00012'  )
         >>> data1 = ZoneIndependante('MADATA')
         ...
         >>> data1.valeur_externe
