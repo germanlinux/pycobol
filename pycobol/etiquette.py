@@ -14,11 +14,8 @@ class Etiquette:
 class  Instruction():
     ''' Une instruction est un objet, une méthode et un ou plusieur parametres
     '''
-    obj: object
-    method: str
-    arg: str 
-
-    def display(self, qqchose, *args):
+    
+    def display(self, *args):
         ''' le format de qqchose :
         Une chaine de caractere ?  "eric"
         Un tuple ?: (nomcobol,"chaine", nomcobol2" ) etc 
@@ -29,19 +26,23 @@ class  Instruction():
         ...
         >>> data1.valeur_externe
         '00012'
+        >>> a = Instruction()
+        >>> a.display("essai")
+        essai
+        >>> a.display(data1)
+        00012
+        >>> a.display(data1,' essai' )
+        00012 essai
         '''
 
-
-        if type(qqchose) == str :
-            print(qqchose)
-        else:
-            chaine = ""
-            for item in qqchose:
+        qqchose = list(args)
+        chaine = ""
+        for item in qqchose:
                 if type(item) == str :
                     chaine += item
-                else:
-                    chaine += item.valeur_externe
-            print(chaine)            
+        else:
+                chaine += item.valeur_externe
+        print(chaine)            
         return None
 
 @dataclass
