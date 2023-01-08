@@ -35,7 +35,7 @@ class  Instruction():
         00012 essai
         '''
 
-        qqchose = tup
+        qqchose = liste
         chaine = ""
         for item in qqchose:
                 if type(item) == str :
