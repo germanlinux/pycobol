@@ -1,10 +1,8 @@
-import re
-from dataclasses import dataclass, field
-from collections import defaultdict
-from comportement  import *
-from zonegroupe  import * 
-from typing import ClassVar
-from parser_cobol import *
+from dataclasses import dataclass
+from comportement  import Comportement
+from zonegroupe  import ZoneGroupe, ArbreZone
+#from typing import ClassVar
+from parser_cobol import Nature_pic
 
 #################################
 #   classe Zonefilssimple       #

@@ -1,4 +1,3 @@
-import re
 from dataclasses import dataclass, field
 
 from comportement  import *
@@ -6,7 +5,7 @@ from parser_cobol import *
 from typing import ClassVar
 from inspect import *
 from zonage import *
-from arbrezone import *
+from arbrezone import ArbreZone
 #################################
 #   classe ZoneGroupe           #
 #################################
@@ -124,10 +123,10 @@ class ZoneGroupe:
         '''
         longueur_ = 0
         for item in self.fils:
-             if item.son_type == 'GRP':
+            if item.son_type == 'GRP':
                 longueur_ +=  item.maj_longueur()
 
-             else:
+            else:
                 longueur_ += item.longueur_utile
                 item.comportement_associe = Comportement(item.son_type,item.longueur_utile, None )    
         self.longueur_utile = longueur_
@@ -142,7 +141,6 @@ class ZoneGroupe:
         #self.comportement_associe = comportement_
 
     def move_value(self, valeur):
-        obj_valeur = Value(valeur)
         self.comportement_associe.move_value(self,valeur)
         self.propage(self.valeur_externe)
         self.retro_propagation()
