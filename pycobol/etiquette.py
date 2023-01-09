@@ -16,9 +16,10 @@ class  Instruction():
     '''
     
     def display(self, liste):
-        ''' le format de qqchose :
-        Une chaine de caractere ?  "eric"
-        Un tuple ?: (nomcobol,"chaine", nomcobol2" ) etc 
+        '''
+        :param liste: un ou plusieurs textes / objets a afficher
+        :type liste: list  
+
         >>> from minimock import Mock
         >>> ZoneIndependante= Mock('ZoneIndependante')
         >>> ZoneIndependante.mock_returns = Mock('ZoneIndependante', valeur_externe = '00012'  )

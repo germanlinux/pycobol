@@ -12,6 +12,7 @@ Welcome to pycobol's documentation!
 
    pycobol
    extension
+   execution
 
 Indices and tables
 ==================
