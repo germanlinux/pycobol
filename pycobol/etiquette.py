@@ -7,8 +7,10 @@ class Etiquette:
 
     '''
     nom: str
-    instructions: str
+    instructions: str =''
 
+    def add_instruction(self, instruction):
+        self.instructions.append(instruction)
 
 @dataclass
 class  Instruction():
@@ -50,7 +52,19 @@ class  Instruction():
 class Program():   
     ''' squellette d'un programme
     '''
+    nom: str 
     pas_programme: str
+
+    def __post_init__(self):
+        _et = Etiquette('Debut_programme', [])
+        add_etiquette(self,_et)
+        
+
+    def add_etiquette(self, etape):
+        self.pas_programme.add(etape)
+
+        
+
     
 if __name__ == '__main__':  
     import doctest          
