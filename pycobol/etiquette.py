@@ -56,7 +56,9 @@ class  Instruction():
         print(chaine)            
         return None
 
-
+    def stop_run(self):
+        return None
+            
 
 @dataclass
 class Program():   
