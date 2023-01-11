@@ -1,10 +1,10 @@
 from dataclasses import dataclass, field
 
-from comportement  import *
-from parser_cobol import *
-from typing import ClassVar
-from inspect import *
-from zonage import *
+from comportement  import Comportement
+#from parser_cobol import *
+#from typing import ClassVar
+#from inspect import *
+#from zonage import *
 from arbrezone import ArbreZone
 #################################
 #   classe ZoneGroupe           #
@@ -57,7 +57,7 @@ class ZoneGroupe:
     valeur_externe: str = ''
     section: str = 'NON RENSEIGNE'
     comportement_associe: object = None
-    arbreInverse :ClassVar[list] = []
+    #arbreInverse :ClassVar[list] = []
 
     def __post_init__(self):
         arbre = ArbreZone()
@@ -108,10 +108,10 @@ class ZoneGroupe:
         '''
         valeur_str_ =''
         for item in self.fils:
-             if item.son_type == 'GRP':
-                valeur_str_ +=  item.maj_valeur()
-             else:
-                valeur_str_ += item.valeur_externe    
+            if item.son_type == 'GRP':
+               valeur_str_ +=  item.maj_valeur()
+            else:
+               valeur_str_ += item.valeur_externe    
         self.valeur_externe = valeur_str_
         return self.valeur_externe
     
@@ -205,7 +205,7 @@ class ZoneGroupe:
         cp = 0
         while 1:
           tmp = arbre.recherche_nom(_tmp_nom)
-          if tmp == None:
+          if tmp is None:
             break
           cp += 1
           _tmp_nom += f'_{str(cp)}'    
@@ -225,6 +225,7 @@ class ZoneGroupe:
     def vidage():
         arbre = ArbreZone()
         return arbre.vidage()    
+
 
 if __name__ == '__main__':  
     import doctest          
