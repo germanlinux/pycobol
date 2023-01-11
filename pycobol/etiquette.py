@@ -12,6 +12,14 @@ class Etiquette:
     def add_instruction(self, instruction):
         self.instructions.append(instruction)
 
+
+    def recherche_nom(self, nom):
+        for item in self.instructions:
+            if item.nom == nom:
+                return item
+        else:
+            return None            
+
 @dataclass
 class  Instruction():
     ''' Une instruction est un objet, une méthode et un ou plusieur parametres
@@ -48,6 +56,8 @@ class  Instruction():
         print(chaine)            
         return None
 
+
+
 @dataclass
 class Program():   
     ''' squellette d'un programme
@@ -58,12 +68,18 @@ class Program():
     def __post_init__(self):
         _et = Etiquette('Debut_programme', [])
         add_etiquette(self,_et)
-        
+
 
     def add_etiquette(self, etape):
         self.pas_programme.add(etape)
 
-        
+    def vidage(self):
+        ''' retourne une chaine de caractère contenant la liste des etiquettes d'un programme
+        '''
+        _chaine =''
+        for item in self.pas_programme:
+            chaine += '{item.nom}\n'
+        return _chaine        
 
     
 if __name__ == '__main__':  
