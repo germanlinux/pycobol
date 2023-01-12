@@ -54,11 +54,11 @@ class  Instruction():
                 else:
                     chaine += item.valeur_externe
         print(chaine)            
-        return None
+        return True
 
     def stop_run(self):
-        return None
-            
+        return False
+
 
 @dataclass
 class Program():   
@@ -71,7 +71,6 @@ class Program():
         _et = Etiquette('Debut_programme', [])
         add_etiquette(self,_et)
 
-
     def add_etiquette(self, etape):
         self.pas_programme.add(etape)
 
@@ -83,6 +82,11 @@ class Program():
             chaine += '{item.nom}\n'
         return _chaine        
 
+    def run(self):
+        for item in self.pas_programme:
+            ### execute instruction
+            pass
+            
     
 if __name__ == '__main__':  
     import doctest          
