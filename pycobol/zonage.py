@@ -1,7 +1,7 @@
 import re
-from dataclasses import dataclass, field
-from comportement  import *
-from parser_cobol import *
+from dataclasses import dataclass
+from comportement  import Comportement, ComportementFloat
+from parser_cobol import Nature_pic, traite_pic, traite_value, traite_usage
 from typing import ClassVar
 ###########################
 ### class Zone          ###
@@ -30,7 +30,7 @@ class Zone:
         '''injection du comportement'''
 
         comportement_ = Comportement(self.son_type , self.longueur_utile , self.valeur_initialisation )  
-       # print(comportement_)  
+        # print(comportement_)  
         comportement_.initialize()
         self.valeur_externe = comportement_.valeur_externe
         self.valeur_interne = comportement_.valeur
@@ -56,7 +56,7 @@ class Flottant(Zone):
         self.decimale = decimale
         type_ = Nature_pic(pic).nature
         longueur_interne = Nature_pic(pic).longueur
-        dec = Nature_pic(pic).decimale
+        #dec = Nature_pic(pic).decimale
         super().__init__(nom, 77, 'WS', type_ , usage, longueur_interne,None, None , pic, valeur_initiale)
         #print(self)
         Zone.zone_77.append(self)
@@ -81,7 +81,7 @@ class ZoneIndependante(Zone):
     def __init__(self, nom, pic, valeur = None ,usage= 'DISPLAY'  ): 
         type_ = Nature_pic(pic).nature
         longueur_interne = Nature_pic(pic).longueur
-        dec = Nature_pic(pic).decimale
+        #dec = Nature_pic(pic).decimale
         super().__init__(nom, 77, 'WS', type_ , usage, longueur_interne,None, None , pic, valeur )
         Zone.zone_77.append(self)
     @classmethod
@@ -175,7 +175,7 @@ class ZoneIndependante(Zone):
         if ligne[-1] == '\n':
             ligne= ligne[:-1]
         
-        ligne_origine = ligne
+        #ligne_origine = ligne
         ligne = ligne.strip()
         result = re.sub(' +', ' ', ligne)
         tab = result.split(' ')
@@ -185,7 +185,7 @@ class ZoneIndependante(Zone):
             return None
         (type_,pic, longueur,decimale) =  traite_pic(tab)
         #longueur_interne  = longueur
-        valeur_externe = None
+        #valeur_externe = None
         valeur = traite_value(tab)
         usage = traite_usage(tab)
         if decimale:        
