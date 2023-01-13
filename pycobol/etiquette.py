@@ -85,8 +85,10 @@ class Program():
     def run(self):
         for item in self.pas_programme:
             ### execute instruction
-            pass
+            _item = Instruction()
+            exe = getattr(_item, item[0])
             
+
     
 if __name__ == '__main__':  
     import doctest          
