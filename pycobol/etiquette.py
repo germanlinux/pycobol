@@ -63,23 +63,28 @@ class  Instruction():
 @dataclass
 class Program():   
     ''' squellette d'un programme
+
+    >>> pgm = Program('demo')
+    >>> pgm.vidage()
+    
     '''
-    nom: str 
-    pas_programme: str
+    nom: str = 'default'
+    pas_programme: str  =''
 
     def __post_init__(self):
         _et = Etiquette('Debut_programme', [])
-        add_etiquette(self,_et)
+        self.pas_programme = []
+        self.add_etiquette(_et)
 
     def add_etiquette(self, etape):
-        self.pas_programme.add(etape)
+        self.pas_programme.append(etape)
 
     def vidage(self):
         ''' retourne une chaine de caractère contenant la liste des etiquettes d'un programme
         '''
         _chaine =''
         for item in self.pas_programme:
-            chaine += '{item.nom}\n'
+            _chaine += f'{item.nom}\n'
         return _chaine        
 
     def run(self):
@@ -87,11 +92,15 @@ class Program():
             ### execute instruction
             _item = Instruction()
             exe = getattr(_item, item[0])
-            
+            res = exe(item[1])
+            if res is False: 
+                break
+
+
 
     
 if __name__ == '__main__':  
     import doctest          
-    doctest.run_docstring_examples(Instruction.display,None, verbose = 1)
-    #doctest.testmod()
+    #doctest.run_docstring_examples(Instruction.display,None, verbose = 1)
+    doctest.testmod()
 
