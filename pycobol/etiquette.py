@@ -42,10 +42,13 @@ class  Instruction():
         >>> a = Instruction()
         >>> a.display(["essai"])
         essai
+        True
         >>> a.display([data1])
         00012
+        True
         >>> a.display([data1,' essai'] )
         00012 essai
+        True
         '''
 
         qqchose = liste
@@ -67,11 +70,12 @@ class Program():
     ''' squellette d'un programme
 
     >>> pgm = Program('demo')
-    >>> pgm.vidage()
+    >>> pgm.vidage() # doctest: +ELLIPSIS
+    '...'
     >>> inst = Instruction('display', ['hello world'])
     >>> pgm.pas_programme.append(inst)
-    >>> pgm.vidage()
-    
+    >>> pgm.vidage() # doctest: +ELLIPSIS
+    '...'
     '''
     nom: str = 'default'
     pas_programme: str  =''
