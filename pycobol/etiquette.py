@@ -24,7 +24,9 @@ class Etiquette:
 class  Instruction():
     ''' Une instruction est un objet, une méthode et un ou plusieur parametres
     '''
-    
+    nom:str =''
+    arg : str = ''
+
     def display(self, liste):
         '''
         :param liste: un ou plusieurs textes / objets a afficher
@@ -65,6 +67,9 @@ class Program():
     ''' squellette d'un programme
 
     >>> pgm = Program('demo')
+    >>> pgm.vidage()
+    >>> inst = Instruction('display', ['hello world'])
+    >>> pgm.pas_programme.append(inst)
     >>> pgm.vidage()
     
     '''
