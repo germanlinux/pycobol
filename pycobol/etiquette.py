@@ -76,6 +76,7 @@ class Program():
     >>> pgm.pas_programme.append(inst)
     >>> pgm.vidage() # doctest: +ELLIPSIS
     '...'
+    pgm.run()
     '''
     nom: str = 'default'
     pas_programme: str  =''
