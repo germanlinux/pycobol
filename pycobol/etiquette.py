@@ -103,12 +103,11 @@ class Program():
     def run(self):
         for item in self.pas_programme:
             ### execute instruction
-            if item == Etiquette:
+            if type(item) == Etiquette:
                 print('Etiquette:', item.nom)
             else:    
-                _item = Instruction()
-                exe = getattr(_item, item[0])
-                res = exe(item[1])
+                exe = getattr(item, item.nom)
+                res = exe(item.arg)
                 if res is False: 
                     break
 
