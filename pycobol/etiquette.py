@@ -94,17 +94,23 @@ class Program():
         '''
         _chaine =''
         for item in self.pas_programme:
-            _chaine += f'{item.nom}\n'
+            if type(item) == Etiquette:
+                _chaine += f'Etiquette:{item.nom}\n'
+            else: 
+                _chaine += f'instruction:{item.nom}\n'
         return _chaine        
 
     def run(self):
         for item in self.pas_programme:
             ### execute instruction
-            _item = Instruction()
-            exe = getattr(_item, item[0])
-            res = exe(item[1])
-            if res is False: 
-                break
+            if item == Etiquette:
+                print('Etiquette:', item.nom)
+            else:    
+                _item = Instruction()
+                exe = getattr(_item, item[0])
+                res = exe(item[1])
+                if res is False: 
+                    break
 
 
 
