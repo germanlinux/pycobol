@@ -105,9 +105,13 @@ class Program():
             ### execute instruction
             if type(item) == Etiquette:
                 print('Etiquette:', item.nom)
-            else:    
-                exe = getattr(item, item.nom)
-                res = exe(item.arg)
+            else:
+                if item.arg:    
+                    exe = getattr(item, item.nom)
+                    res = exe(item.arg)
+                else:
+                    res = exe()
+                    
                 if res is False: 
                     break
 
