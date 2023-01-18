@@ -62,6 +62,7 @@ class  Instruction():
         return True
 
     def stop_run(self):
+        print('fin du programme')
         return False
 
 
@@ -106,8 +107,8 @@ class Program():
             if type(item) == Etiquette:
                 print('Etiquette:', item.nom)
             else:
+                exe = getattr(item, item.nom)
                 if item.arg:    
-                    exe = getattr(item, item.nom)
                     res = exe(item.arg)
                 else:
                     res = exe()
