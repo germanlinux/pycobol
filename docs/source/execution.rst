@@ -5,17 +5,23 @@ pycobol execution
 Etiquette
 ---------
 
-.. autoclass:: pycobol.etiquette.Etiquette
+.. autoclass:: pycobol.execution.Etiquette
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. autoclass:: pycobol.etiquette.Program
+Program
+-------  
+
+.. autoclass:: pycobol.execution.Program
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. autoclass:: pycobol.etiquette.Instruction
+Instruction
+-----------
+
+.. autoclass:: pycobol.execution.Instruction
    :members:
    :undoc-members:
    :show-inheritance:
