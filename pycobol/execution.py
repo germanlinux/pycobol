@@ -81,7 +81,7 @@ class Program():
     '''
     nom: str = 'default'
     pas_programme: str  =''
-
+    last_etiquette: str =''
     def __post_init__(self):
         _et = Etiquette('Debut_programme', [])
         self.pas_programme = []
@@ -89,6 +89,7 @@ class Program():
 
     def add_etiquette(self, etape):
         self.pas_programme.append(etape)
+        self.last_etiquette = etape
 
     def vidage(self):
         ''' retourne une chaine de caractère contenant la liste des etiquettes d'un programme
