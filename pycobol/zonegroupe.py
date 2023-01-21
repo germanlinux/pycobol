@@ -63,7 +63,7 @@ class ZoneGroupe:
         arbre = ArbreZone()
         arbre.zone.append(self)
 
-    def __str(self):
+    def __str__(self):
         if self.pere == 0:
             pere = 'ROOT'
         else:
@@ -227,7 +227,7 @@ class ZoneGroupe:
         return arbre.vidage()    
 
 
-if __name__ == '__main__':  
+if __name__ == '__main__':   # pragma: no cover
     import doctest          
     
 
