@@ -91,6 +91,9 @@ class Program():
         self.pas_programme.append(etape)
         self.last_etiquette = etape
 
+    def add_step(self, step):
+        self.pas_programme.append(step)   
+
     def vidage(self):
         ''' retourne une chaine de caractère contenant la liste des etiquettes d'un programme
         '''
