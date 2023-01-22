@@ -212,7 +212,7 @@ class Nature_pic():
         self.longueur = long
  
 
-if __name__ == '__main__':  
+if __name__ == '__main__':   # pragma: no cover
     import doctest          
     doctest.run_docstring_examples(traite_filler,None, verbose = 1)
     doctest.testmod()
