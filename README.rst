@@ -33,6 +33,12 @@ Pycobol utilise deux types de test:
 - unittest pour les tests plus complets.
 Utilisation de SPHINX pour la documentation
 
+La documentation est publiée sur le site read_the_doc
+
+Utilisation de propector pour la qualité du code
+
+Utilisation de coverage pour mesurer la couverture du code
+
 
 Depuis le répertoire du projet:
 -------------------------------
@@ -93,6 +99,8 @@ Feuille de route.
 - Prendre en charge les clauses redefine : FAIT
 - Prendre en charge les FILLERS: A FAIRE
 - Prendre en charge les clauses OCCURS : A FAIRE
+- Mise en place d'un moteur d'exécution : EN COURS
+
 
 Merci
 
