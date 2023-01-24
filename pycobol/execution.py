@@ -91,6 +91,7 @@ class Program():
         self.pas_programme.append(etape)
         self.last_etiquette = etape
 
+    #### obsolete
     def add_step(self, step):
         self.pas_programme.append(step)   
 
@@ -110,6 +111,9 @@ class Program():
             ### execute instruction
             if type(item) == Etiquette:
                 print('Etiquette:', item.nom)
+                #######
+                ###  boucle instruction d une etiquette
+                
             else:
                 exe = getattr(item, item.nom)
                 if item.arg:    
