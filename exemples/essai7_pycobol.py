@@ -6,7 +6,7 @@ from pycobol import execution as exe
 pgm = exe.Program('demo')
 print(pgm.vidage())
 inst = exe.Instruction('display', ['hello world'])
-pgm.pas_programme.append(inst)
+pgm.add_step(inst)
 inst = exe.Instruction('stop_run', [])
 pgm.add_step(inst)
 

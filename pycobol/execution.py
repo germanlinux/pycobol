@@ -103,7 +103,7 @@ class Program():
         for item in self.pas_programme:
             if type(item) == Etiquette:
                 _chaine += f'Etiquette:{item.nom}\n'
-                for it in item:
+                for it in item.instructions:
                     _chaine += f'instruction:{it.nom}\n'
             else: 
                 _chaine += f'instruction:{item.nom}\n'
@@ -116,10 +116,10 @@ class Program():
                 print('Etiquette:', item.nom)
                 #######
                 ###  boucle instruction d une etiquette
-                for it in item:
-                    exe = getattr(item, item.nom)
-                    if item.arg:    
-                        res = exe(item.arg)
+                for it in item.instructions:
+                    exe = getattr(it, it.nom)
+                    if it.arg:    
+                        res = exe(it.arg)
                     else:
                         res = exe()
                     if res is False: 
