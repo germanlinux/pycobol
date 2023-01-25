@@ -91,9 +91,10 @@ class Program():
         self.pas_programme.append(etape)
         self.last_etiquette = etape
 
-    #### obsolete
+    #### refactoring
     def add_step(self, step):
-        self.pas_programme.append(step)   
+        _etiq = self.last_etiquette
+        _etiq.add_instruction(step)   
 
     def vidage(self):
         ''' retourne une chaine de caractère contenant la liste des etiquettes d'un programme
@@ -102,6 +103,8 @@ class Program():
         for item in self.pas_programme:
             if type(item) == Etiquette:
                 _chaine += f'Etiquette:{item.nom}\n'
+                for it in item:
+                    _chaine += f'instruction:{it.nom}\n'
             else: 
                 _chaine += f'instruction:{item.nom}\n'
         return _chaine        
@@ -113,7 +116,15 @@ class Program():
                 print('Etiquette:', item.nom)
                 #######
                 ###  boucle instruction d une etiquette
-                
+                for it in item:
+                    exe = getattr(item, item.nom)
+                    if item.arg:    
+                        res = exe(item.arg)
+                    else:
+                        res = exe()
+                    if res is False: 
+                        break
+    
             else:
                 exe = getattr(item, item.nom)
                 if item.arg:    
