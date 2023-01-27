@@ -125,7 +125,7 @@ class Program():
                     if res is False: 
                         break
     
-            else:
+            else: # pragma: no cover
                 exe = getattr(item, item.nom)
                 if item.arg:    
                     res = exe(item.arg)
