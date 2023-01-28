@@ -100,8 +100,13 @@ def read_groupe_from_code(tcode):
                 ## est ce le niveau le plus haut ?
                 ##  ca peut etre une zone groupe dans une zone groupe  
           
+def load_procedure(tligne):
+    pass
 
-
+def fake_read_file_proc(data= None):
+        zg1 ='''        PROCEDURE DIVISION.
+                             DISPLAY "Hello world".
+                             STOP-RUN.'''            
 
 if __name__ == '__main__':  
     import doctest          
