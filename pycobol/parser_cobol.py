@@ -109,10 +109,8 @@ def fake_read_file_proc(data= None):
                              STOP-RUN.'''
         if not data:
           data = zg1
-        if data == 'REDEFINE' :
-            data = zg2
         t_zg1 = data.split('\n')
-        lignes = [item  for item in t_zg1 if item]
+        lignes = [item  for item in t_zg1 if item and item[0] != '*']
         return(lignes)                               
 
 if __name__ == '__main__':  
