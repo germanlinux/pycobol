@@ -100,8 +100,11 @@ def read_groupe_from_code(tcode):
                 ## est ce le niveau le plus haut ?
                 ##  ca peut etre une zone groupe dans une zone groupe  
           
-def load_procedure(tligne):
-    pass
+def load_procedure(tcode):
+    for ligne in tcode:
+            if ligne[-1] == '\n':
+                ligne= ligne[:-1]
+                
 
 def fake_read_file_proc(data= None):
         zg1 ='''        PROCEDURE DIVISION.
