@@ -106,7 +106,14 @@ def load_procedure(tligne):
 def fake_read_file_proc(data= None):
         zg1 ='''        PROCEDURE DIVISION.
                              DISPLAY "Hello world".
-                             STOP-RUN.'''            
+                             STOP-RUN.'''
+        if not data:
+          data = zg1
+        if data == 'REDEFINE' :
+            data = zg2
+        t_zg1 = data.split('\n')
+        lignes = [item  for item in t_zg1 if item]
+        return(lignes)                               
 
 if __name__ == '__main__':  
     import doctest          
