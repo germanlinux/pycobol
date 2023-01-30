@@ -102,6 +102,15 @@ def read_groupe_from_code(tcode):
                 ##  ca peut etre une zone groupe dans une zone groupe  
           
 def load_procedure(tcode):
+    ''' Cette fonction transforme une liste de ligne cobol en modele Python
+
+    :param liste: programme COBOL a charger
+    :type liste: list  
+
+    >>> tligne = fake_read_file_proc()
+    >>> pgm = laod_procedure(tligne)
+    >>> pgm.vidage()
+    '''
     for ligne in tcode:
             if ligne[-1] == '\n':
                 ligne= ligne[:-1]
@@ -113,8 +122,11 @@ def load_procedure(tcode):
                 pgm = Program('demo')
 
     return pgm
-         
+
 def fake_read_file_proc(data= None):
+    ''' Cette fonction emule le chargement d'une série de ligne issues de la lecture
+    d'un fichier contenant une procedure cobol'''
+
         zg1 ='''        PROCEDURE DIVISION.
                              DISPLAY "Hello world".
                              STOP-RUN.'''
@@ -127,8 +139,8 @@ def fake_read_file_proc(data= None):
 if __name__ == '__main__':  
     import doctest          
     #    print("debut des tests internes")
-    doctest.run_docstring_examples(traite_filler,None, verbose = 1)
-    doctest.testmod()
+    doctest.run_docstring_examples(load_procedure,None, verbose = 1)
+    #doctest.testmod()
     print("fin des tests internes")
 
     
