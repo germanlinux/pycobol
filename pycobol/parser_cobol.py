@@ -2,6 +2,7 @@ import re
 from arbrezone import *
 from zonegroupe import * 
 from extracteurs import *
+from execution import *
 def fake_read_file(data= None):
         zg1 ='''
                 10            MADATE.                                   
@@ -104,8 +105,15 @@ def load_procedure(tcode):
     for ligne in tcode:
             if ligne[-1] == '\n':
                 ligne= ligne[:-1]
-                
+            if 'PROCEDURE DIVISION' in ligne:
+                ## c est le debut du programme 
+                ## on releve le nombre d espace avant (normalement 7) pour tarer les lignes
+                lignew = ligne.lstrip
+                debut = len(ligne) - len(lignew)
+                pgm = Program('demo')
 
+    return pgm
+         
 def fake_read_file_proc(data= None):
         zg1 ='''        PROCEDURE DIVISION.
                              DISPLAY "Hello world".
