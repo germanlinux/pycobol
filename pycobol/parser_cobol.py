@@ -108,8 +108,11 @@ def load_procedure(tcode):
     :type liste: list  
 
     >>> tligne = fake_read_file_proc()
-    >>> pgm = laod_procedure(tligne)
-    >>> pgm.vidage()
+    >>> pgm = load_procedure(tligne)
+    >>> print(pgm.vidage()) # doctest: +ELLIPSIS
+    E...
+    <BLANKLINE>
+
     '''
     for ligne in tcode:
             if ligne[-1] == '\n':
@@ -117,7 +120,7 @@ def load_procedure(tcode):
             if 'PROCEDURE DIVISION' in ligne:
                 ## c est le debut du programme 
                 ## on releve le nombre d espace avant (normalement 7) pour tarer les lignes
-                lignew = ligne.lstrip
+                lignew = ligne.lstrip()
                 debut = len(ligne) - len(lignew)
                 pgm = Program('demo')
 
@@ -127,14 +130,14 @@ def fake_read_file_proc(data= None):
     ''' Cette fonction emule le chargement d'une série de ligne issues de la lecture
     d'un fichier contenant une procedure cobol'''
 
-        zg1 ='''        PROCEDURE DIVISION.
+    zg1 ='''        PROCEDURE DIVISION.
                              DISPLAY "Hello world".
                              STOP-RUN.'''
-        if not data:
+    if not data:
           data = zg1
-        t_zg1 = data.split('\n')
-        lignes = [item  for item in t_zg1 if item and item[0] != '*']
-        return(lignes)                               
+    t_zg1 = data.split('\n')
+    lignes = [item  for item in t_zg1 if item and item[0] != '*']
+    return(lignes)                               
 
 if __name__ == '__main__':  
     import doctest          
