@@ -126,8 +126,13 @@ def load_procedure(tcode):
             elif:
                 lignew = ligne.lstrip()
                 if debut == len(lignew):  # c est une etiquette
-                    pass
-                    
+                    esent = ligne.strip()
+                    if esent[-1] == '.' :
+                        esent = esent[:-1]
+                    _etq = Etiquette(esent)
+                    pgm.add_etiquette(_etq) 
+                else:  # une instruction
+                    pass       
 
     return pgm
 
