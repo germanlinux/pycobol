@@ -5,9 +5,6 @@ build:
   os: ubuntu-20.04
   tools:
     python: "3.9"
-name: pycobol
-channels:
-  - defaults
 dependencies:
   - sphinx
   - typing
