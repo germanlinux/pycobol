@@ -117,13 +117,14 @@ def load_procedure(tcode):
     for ligne in tcode:
             if ligne[-1] == '\n':
                 ligne= ligne[:-1]
+
             if 'PROCEDURE DIVISION' in ligne:
                 ## c est le debut du programme 
                 ## on releve le nombre d espace avant (normalement 7) pour tarer les lignes
                 lignew = ligne.lstrip()
                 debut = len(ligne) - len(lignew)
                 pgm = Program('demo')
-            elif:
+            else:
                 lignew = ligne.lstrip()
                 if debut == len(lignew):  # c est une etiquette
                     esent = ligne.strip()
