@@ -123,6 +123,11 @@ def load_procedure(tcode):
                 lignew = ligne.lstrip()
                 debut = len(ligne) - len(lignew)
                 pgm = Program('demo')
+            elif:
+                lignew = ligne.lstrip()
+                if debut == len(lignew):  # c est une etiquette
+                    pass
+                    
 
     return pgm
 
