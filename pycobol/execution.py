@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-
+from typing import ClassVar
 @dataclass
 class Etiquette:
     ''' Cette classe est destinée a définir des etiquettes comme dans les programmes COBOL
@@ -26,7 +26,7 @@ class  Instruction():
     '''
     nom:str =''
     arg : str = ''
-
+    support : ClassVar[list] = ['DISPLAY', 'STOP RUN']
     def display(self, liste):
         '''
         :param liste: un ou plusieurs textes / objets a afficher
@@ -35,8 +35,8 @@ class  Instruction():
         >>> from minimock import Mock
         >>> ZoneIndependante= Mock('ZoneIndependante')
         >>> ZoneIndependante.mock_returns = Mock('ZoneIndependante', valeur_externe = '00012'  )
-        >>> data1 = ZoneIndependante('MADATA')
-        ...
+        >>> data1 = ZoneIndependante('MADATA')  # doctest:  +ELLIPSIS
+        C...
         >>> data1.valeur_externe
         '00012'
         >>> a = Instruction()
@@ -71,13 +71,15 @@ class Program():
     ''' squellette d'un programme
 
     >>> pgm = Program('demo')
-    >>> pgm.vidage() # doctest: +ELLIPSIS
+    >>> pgm.vidage() # doctest:  +ELLIPSIS
     '...'
     >>> inst = Instruction('display', ['hello world'])
     >>> pgm.pas_programme.append(inst)
     >>> pgm.vidage() # doctest: +ELLIPSIS
     '...'
-    pgm.run()
+    >>> pgm.run() # doctest: +ELLIPSIS
+    E...
+    h...
     '''
     nom: str = 'default'
     pas_programme: str  =''

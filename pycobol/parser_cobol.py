@@ -143,7 +143,7 @@ def fake_read_file_proc(data= None):
 
     zg1 ='''        PROCEDURE DIVISION.
                              DISPLAY "Hello world".
-                             STOP-RUN.'''
+                             STOP RUN.'''
     if not data:
           data = zg1
     t_zg1 = data.split('\n')
