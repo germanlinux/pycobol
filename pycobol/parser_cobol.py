@@ -100,6 +100,13 @@ def read_groupe_from_code(tcode):
         return arbre            
                 ## est ce le niveau le plus haut ?
                 ##  ca peut etre une zone groupe dans une zone groupe  
+def recherche_instruction(ligne):
+    t_stop = re.match('STOP RUN', ligne)
+    if t_stop:
+        _inst = Instruction('stop_run')
+        return _inst
+
+
           
 def load_procedure(tcode):
     ''' Cette fonction transforme une liste de ligne cobol en modele Python
@@ -133,7 +140,8 @@ def load_procedure(tcode):
                     _etq = Etiquette(esent)
                     pgm.add_etiquette(_etq) 
                 else:  # une instruction
-                    pass       
+                    _inst  = recherche_instruction(lignew)
+                          
 
     return pgm
 
