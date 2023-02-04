@@ -105,7 +105,11 @@ def recherche_instruction(ligne):
     if t_stop:
         _inst = Instruction('stop_run')
         return _inst
-
+    t_display = re.match('DISPLAY ', ligne)
+    if t_display:
+        suite = t_display.span()[1]
+        _inst = Instruction('display')
+        return _inst    
 
           
 def load_procedure(tcode):
@@ -141,7 +145,7 @@ def load_procedure(tcode):
                     pgm.add_etiquette(_etq) 
                 else:  # une instruction
                     _inst  = recherche_instruction(lignew)
-                          
+
 
     return pgm
 
