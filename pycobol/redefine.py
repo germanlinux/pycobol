@@ -1,5 +1,5 @@
-from zonesimple  import * 
-from arbrezone import *
+from zonesimple  import ZoneFilsSimple , ZoneGroupe
+from arbrezone import ArbreZone
 
 #################################
 #   class  redefine       #
