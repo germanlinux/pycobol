@@ -108,6 +108,9 @@ def recherche_instruction(ligne):
     t_display = re.match('DISPLAY ', ligne)
     if t_display:
         suite = t_display.span()[1]
+        # on fait une boucle pour rechercher les mots 
+        # il faudra une autre boucle pour trouver les donnees
+        re-guil = r'<=\"'
         _inst = Instruction('display')
         return _inst    
 
