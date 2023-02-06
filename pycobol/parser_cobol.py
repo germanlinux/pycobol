@@ -2,7 +2,7 @@ import re
 from arbrezone import *
 from zonegroupe import * 
 from extracteurs import *
-from execution import *
+from execution import Program, Etiquette, Instruction
 def fake_read_file(data= None):
     zg1 ='''
             10            MADATE.                                   
@@ -110,7 +110,7 @@ def recherche_instruction(ligne):
         suite = t_display.span()[1]
         # on fait une boucle pour rechercher les mots 
         # il faudra une autre boucle pour trouver les donnees
-        re_guil = r'<=\"'
+        re_guil = re.findall(r'(?P<quote>\")(.+)(?P=quote)', suite)
         _inst = Instruction('display')
         return _inst    
 
