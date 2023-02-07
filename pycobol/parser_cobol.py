@@ -107,10 +107,10 @@ def recherche_instruction(ligne):
         return _inst
     t_display = re.match('DISPLAY ', ligne)
     if t_display:
-        suite = t_display.span()[1]
+        suite = ligne[t_display.span()[1]:]
         # on fait une boucle pour rechercher les mots 
         # il faudra une autre boucle pour trouver les donnees
-        re_guil = re.findall(r'(?P<quote>\")(.+)(?P=quote)', suite)
+        re_guil = re.search(r'(?P<quote>\")(.+)(?P=quote)', suite)
         _inst = Instruction('display')
         return _inst    
 
