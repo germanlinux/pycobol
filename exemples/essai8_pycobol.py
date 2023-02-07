@@ -8,5 +8,7 @@ zg1 ='''        PROCEDURE DIVISION.
 
 lignes_cobol = parser_cobol.fake_read_file_proc(zg1)
 pgm = parser_cobol.load_procedure(lignes_cobol)
+print('Contenu')
 print(pgm.vidage())
+print('Execution')
 pgm.run()
