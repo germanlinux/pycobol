@@ -108,10 +108,18 @@ def recherche_instruction(ligne):
     t_display = re.match('DISPLAY ', ligne)
     if t_display:
         suite = ligne[t_display.span()[1]:]
+        if suite[-1] == '.' :
+            suite =  suite[:-1]
         # on fait une boucle pour rechercher les mots 
         # il faudra une autre boucle pour trouver les donnees
-        re_guil = re.search(r'(?P<quote>\")(.+)(?P=quote)', suite)
-        _inst = Instruction('display')
+        argl = []
+        while  len(suite) >  1: 
+            re_guil = re.search(r'(?P<quote>\")(.+)(?P=quote)', suite)
+            if re_guil:
+                argl.append(re_guil[2])
+                suite= suite[re_guil.span(2)[1]:]    
+
+        _inst = Instruction('display',argl)
         return _inst    
 
           
@@ -148,7 +156,7 @@ def load_procedure(tcode):
                     pgm.add_etiquette(_etq) 
                 else:  # une instruction
                     _inst  = recherche_instruction(lignew)
-
+                    pgm.add_step(_inst)
 
     return pgm
 
