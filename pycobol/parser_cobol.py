@@ -113,12 +113,17 @@ def recherche_instruction(ligne):
         # on fait une boucle pour rechercher les mots 
         # il faudra une autre boucle pour trouver les donnees
         argl = []
-        while  len(suite) >  1: 
-            re_guil = re.search(r'(?P<quote>\")(.+)(?P=quote)', suite)
-            if re_guil:
+        while  len(suite) >  1:
+        ### traiter les espaces 
+            re_guil = re.match(r'(?P<quote>\")(.+)(?P=quote)', suite)
+            if re_guil: # c est une chaine de caractere
                 argl.append(re_guil[2])
                 suite= suite[re_guil.span(2)[1]:]    
-
+            else: # c est un nom de donnée
+                re_data= re.match(r'([a-zA-Z0-9]+)', suite)
+                if re_data:
+                    argl.append(re_data[1])
+                         
         _inst = Instruction('display',argl)
         return _inst    
 
