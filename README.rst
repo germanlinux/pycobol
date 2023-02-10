@@ -25,19 +25,44 @@ Un eventail de classe est proposé pour manipuler des zones simples, zones group
 
 Point d'etape
 -------------
+* Exemple d'hello world avec pycobol
+
+Dans un programme Python::
+ from pycobol import parser_cobol
+ zg1 ='''        PROCEDURE DIVISION.
+                            DISPLAY "Hello world !".
+                            STOP RUN.'''
+ lignes_cobol = parser_cobol.fake_read_file_proc(zg1)
+ pgm = parser_cobol.load_procedure(lignes_cobol)
+ print('Contenu')
+ print(pgm.vidage())
+ print('Execution')
+ pgm.run()
+
+Il affichera::
+ Contenu
+ Etiquette:Debut_programme
+ instruction:display
+ instruction:stop_run
+ Execution
+ Etiquette: Debut_programme
+ Hello world !
+ fin du programme
+
+
+* Utilisation de coverage pour mesurer la couverture du code
+
+* Utilisation de propector pour la qualité du code
+
+* Utilisation de SPHINX pour la documentation
+
+* La documentation est publiée sur le site read_the_doc
 
 Le projet utilise POETRY pour sa mise en oeuvre.
 Le traitement des zones élémentaires  de niveau 77 est en cours de developpement
 Pycobol utilise deux types de test:
 - Doctest pour les tests de non regression
 - unittest pour les tests plus complets.
-Utilisation de SPHINX pour la documentation
-
-La documentation est publiée sur le site read_the_doc
-
-Utilisation de propector pour la qualité du code
-
-Utilisation de coverage pour mesurer la couverture du code
 
 
 Depuis le répertoire du projet:
