@@ -28,6 +28,7 @@ Point d'etape
 * Exemple d'hello world avec pycobol
 
 Dans un programme Python::
+
  from pycobol import parser_cobol
  zg1 ='''        PROCEDURE DIVISION.
                             DISPLAY "Hello world !".
@@ -40,6 +41,7 @@ Dans un programme Python::
  pgm.run()
 
 Il affichera::
+
  Contenu
  Etiquette:Debut_programme
  instruction:display
