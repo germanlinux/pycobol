@@ -114,7 +114,7 @@ def recherche_instruction(ligne):
         # il faudra une autre boucle pour trouver les donnees
         argl = []
         while  len(suite) >  1:
-        ### traiter les espaces 
+            suite = suite.lstrip() 
             re_guil = re.match(r'(?P<quote>\")(.+)(?P=quote)', suite)
             if re_guil: # c est une chaine de caractere
                 argl.append(re_guil[2])
@@ -123,7 +123,7 @@ def recherche_instruction(ligne):
                 re_data= re.match(r'([a-zA-Z0-9]+)', suite)
                 if re_data:
                     argl.append(re_data[1])
-                         
+
         _inst = Instruction('display',argl)
         return _inst    
 
