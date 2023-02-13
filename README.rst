@@ -54,17 +54,21 @@ Il affichera::
 
 * Utilisation de coverage pour mesurer la couverture du code
 
-* Utilisation de propector pour la qualité du code
+* Utilisation de prospector pour la qualité du code
 
 * Utilisation de SPHINX pour la documentation
 
 * La documentation est publiée sur le site read_the_doc
 
 Le projet utilise POETRY pour sa mise en oeuvre.
+
 Le traitement des zones élémentaires  de niveau 77 est en cours de developpement
+
 Pycobol utilise deux types de test:
-- Doctest pour les tests de non regression
-- unittest pour les tests plus complets.
+
+* Doctest pour les tests de non regression
+
+* unittest pour les tests plus complets.
 
 
 Depuis le répertoire du projet:
@@ -73,7 +77,7 @@ Depuis le répertoire du projet:
 Pour lancer les tests intégrés.
 
  python .\pycobol\zonage.py
-ou poetry run python .\pycobol\zonage.py
+ ou poetry run python .\pycobol\zonage.py
 
 Pour lancer les tests complets:
 
@@ -98,6 +102,7 @@ Exemple à partir du COBOL::
                 10   DATEBRUT REDEFINE MADATE PIC 9(8).'''     
 
 Utiliser la méthode : ZoneGroupe.fake_read_file_redefine(zg2) (mise en token)
+
 Puis la methode: ZoneGroupe.read_groupe_from_code(tlignes)  (mise en objet)
 
 5 instances seront disponibles prefixées par '_' suivi du nom cobol en minuscule (_mois , etc)  
