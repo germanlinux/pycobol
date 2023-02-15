@@ -1,5 +1,5 @@
 import re
-from arbrezone import *
+from arbrezone import ArbreZone
 from zonegroupe import * 
 from extracteurs import *
 from execution import Program, Etiquette, Instruction
@@ -47,10 +47,7 @@ def read_groupe_from_code(tcode):
     3
     >>> ZoneGroupe.vidage()
     '''
-    import zonesimple
     import redefine
-    _zonegrp_active = ''
-    _niveaux_max = 99
     ### to do : mutualiser
     for ligne in tcode:
         if ligne[-1] == '\n':
@@ -94,11 +91,11 @@ def read_groupe_from_code(tcode):
             else:   
                    obj_p = ZoneGroupe(_nom, niv)
                    if obt :
-                        obt.ajout_fils_simple(obj_p)
+                       obt.ajout_fils_simple(obj_p)
                 
     return arbre            
-            ## est ce le niveau le plus haut ?
-            ##  ca peut etre une zone groupe dans une zone groupe  
+    ## est ce le niveau le plus haut ?
+    ##  ca peut etre une zone groupe dans une zone groupe  
 
 def recherche_instruction(ligne):
     t_stop = re.match('STOP RUN', ligne)
@@ -142,27 +139,24 @@ def load_procedure(tcode):
 
     '''
     for ligne in tcode:
-            if ligne[-1] == '\n':
-                ligne= ligne[:-1]
+       if ligne[-1] == '\n':
+           ligne= ligne[:-1]
 
-            if 'PROCEDURE DIVISION' in ligne:
-                ## c est le debut du programme 
-                ## on releve le nombre d espace avant (normalement 7) pour tarer les lignes
-                lignew = ligne.lstrip()
-                debut = len(ligne) - len(lignew)
-                pgm = Program('demo')
-            else:
-                lignew = ligne.lstrip()
-                if debut == len(lignew):  # c est une etiquette
-                    esent = ligne.strip()
-                    if esent[-1] == '.' :
-                        esent = esent[:-1]
-                    _etq = Etiquette(esent)
-                    pgm.add_etiquette(_etq) 
-                else:  # une instruction
-                    _inst  = recherche_instruction(lignew)
-                    pgm.add_step(_inst)
-
+       if 'PROCEDURE DIVISION' in ligne:
+          lignew = ligne.lstrip()
+          debut = len(ligne) - len(lignew)
+          pgm = Program('demo')
+       else:
+           lignew = ligne.lstrip()
+           if debut == len(lignew):  # c est une etiquette
+               esent = ligne.strip()
+               if esent[-1] == '.' :
+                   esent = esent[:-1]
+               _etq = Etiquette(esent)
+               pgm.add_etiquette(_etq) 
+           else:  # une instruction
+               _inst  = recherche_instruction(lignew)
+               pgm.add_step(_inst)
     return pgm
 
 def fake_read_file_proc(data= None):
