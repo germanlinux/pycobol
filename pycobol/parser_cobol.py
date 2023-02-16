@@ -1,6 +1,6 @@
 import re
 from arbrezone import ArbreZone
-from zonegroupe import * 
+from zonegroupe import ZoneGroupe
 from extracteurs import *
 from execution import Program, Etiquette, Instruction
 def fake_read_file(data= None):
@@ -71,11 +71,6 @@ def read_groupe_from_code(tcode):
         obt = arbre.recherche_rang(niv)    
         if ' PIC '  in ligne  or ' PICTURE ' in ligne:
             arbre = ArbreZone()
-            if len(arbre.zone) == 0:
-                niveaux_max = 0
-            else: 
-                niveaux_max = arbre.zone[-1].rang
-            ##  traiter le redefine ##
             (type_,pic, longueur,decimale) =  traite_pic(tab)
             
             if flagredef:
@@ -87,11 +82,11 @@ def read_groupe_from_code(tcode):
                     obt.ajout_fils_simple(obj_s) 
         else:    
             if flagredef:
-                   obj_p = redefine.ZoneGroupeRedefine(cible, _nom,niv) 
+                obj_p = redefine.ZoneGroupeRedefine(cible, _nom,niv) 
             else:   
-                   obj_p = ZoneGroupe(_nom, niv)
-                   if obt :
-                       obt.ajout_fils_simple(obj_p)
+                obj_p = ZoneGroupe(_nom, niv)
+                if obt :
+                    obt.ajout_fils_simple(obj_p)
                 
     return arbre            
     ## est ce le niveau le plus haut ?
