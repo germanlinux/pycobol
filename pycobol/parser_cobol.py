@@ -1,7 +1,7 @@
 import re
 from arbrezone import ArbreZone
 from zonegroupe import ZoneGroupe
-from extracteurs import *
+from extracteurs import extract_nom, extract_niveau, traite_pic, traite_redefine
 from execution import Program, Etiquette, Instruction
 def fake_read_file(data= None):
     zg1 ='''
