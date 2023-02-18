@@ -10,7 +10,7 @@ zg2 ='''
                     11            JJ   PICTURE  99.                 
                 10   DATEBRUT REDEFINE MADATE PIC 9(8).
         '''  
-tlignes = zg.ZoneGroupe.fake_read_file_redefine()
+tlignes = zg.ZoneGroupe.fake_read_file(zg2)
 len(tlignes)
 arbre =zg.ZoneGroupe.read_groupe_from_code(tlignes)
 len(arbre.zone[0].fils)
