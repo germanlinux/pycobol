@@ -84,6 +84,7 @@ class Program():
     nom: str = 'default'
     pas_programme: str  =''
     last_etiquette: str =''
+    data: str =''
     def __post_init__(self):
         _et = Etiquette('Debut_programme', [])
         self.pas_programme = []
@@ -109,7 +110,10 @@ class Program():
                     _chaine += f'instruction:{it.nom}\n'
             else: 
                 _chaine += f'instruction:{item.nom}\n'
-        return _chaine        
+        return _chaine   
+             
+    def add_data(self, pdata):
+        self.data = pdata    
 
     def run(self):
         for item in self.pas_programme:
