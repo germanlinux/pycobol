@@ -66,8 +66,9 @@ class  Instruction():
         return False
 
     def accept(self, data):
-        input _value
-        pass
+        valeur = input()
+        data.move_value(valeur)
+        
         
 @dataclass
 class Program():   
