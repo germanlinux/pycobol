@@ -65,7 +65,10 @@ class  Instruction():
         print('fin du programme')
         return False
 
-
+    def accept(self, data):
+        input _value
+        pass
+        
 @dataclass
 class Program():   
     ''' squellette d'un programme
@@ -111,7 +114,7 @@ class Program():
             else: 
                 _chaine += f'instruction:{item.nom}\n'
         return _chaine   
-             
+
     def add_data(self, pdata):
         self.data = pdata    
 
