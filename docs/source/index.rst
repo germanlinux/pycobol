@@ -6,17 +6,19 @@
 Welcome to pycobol's documentation!
 ===================================
 
-.. include:: ../../README.rst
+
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
+   :caption: Contenu:
 
    pycobol
    extension
    execution
    
    tutorial
+
+.. include:: ../../README.rst
 
 Indices and tables
 ==================
