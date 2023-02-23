@@ -16,7 +16,7 @@ Welcome to pycobol's documentation!
    extension
    execution
    
-   Tutorial
+   tutorial
 
 Indices and tables
 ==================
