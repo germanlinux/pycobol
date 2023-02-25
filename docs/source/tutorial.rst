@@ -23,3 +23,8 @@ Installation
 
 Il n'y a pas encore de paquet installable par la commande PIP
 Aussi l'installation se fait par clonage du dépot github.
+
+Contenu des répertoires
+-----------------------
+
+Le répertoire exemples contient des petits programmes d'essai.
