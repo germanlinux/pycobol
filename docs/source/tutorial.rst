@@ -28,3 +28,5 @@ Contenu des répertoires
 -----------------------
 
 Le répertoire exemples contient des petits programmes d'essai.
+
+Le répertoire cobol contient des petits programmes cobol. 
