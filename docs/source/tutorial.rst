@@ -29,4 +29,5 @@ Contenu des répertoires
 
 Le répertoire exemples contient des petits programmes d'essai.
 
-Le répertoire cobol contient des petits programmes cobol. 
+Le répertoire cobol contient les sources de petits programmes cobol.
+Ils peuvent etre compilés avec opencobol. 

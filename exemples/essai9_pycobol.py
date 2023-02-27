@@ -2,7 +2,7 @@
 import sys
 sys.path.insert(0, "../pycobol")
 from pycobol import parser_cobol
-
+from pycobol import execution
 
 zg1 ='''        PROCEDURE DIVISION.
                             DISPLAY "Hello world !".
@@ -23,12 +23,15 @@ print('Execution')
 pgm.run()
 '''
 
-pgm = exe.Program('demo')
-print(pgm.vidage())
-inst = exe.Instruction('accept', _NOM)
-pgm.add_step(inst)
-inst = exe.Instruction('stop_run', [])
-pgm.add_step(inst)
+pgm = execution.Program('demo')
+_inst = execution.Instruction('display', ["saisir votre nom"])
+pgm.add_step(_inst)
+_inst = execution.Instruction('accept', [_nom])
+pgm.add_step(_inst)
+_inst = execution.Instruction('display', ["bonjour ", _nom])
+pgm.add_step(_inst)
+_inst = execution.Instruction('stop_run', [])
+pgm.add_step(_inst)
 
 print(pgm.vidage()) 
 pgm.run()

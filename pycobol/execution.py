@@ -27,6 +27,7 @@ class  Instruction():
     nom:str =''
     arg : str = ''
     support : ClassVar[list] = ['DISPLAY', 'STOP RUN']
+
     def display(self, liste):
         '''
         :param liste: un ou plusieurs textes / objets a afficher
@@ -67,8 +68,8 @@ class  Instruction():
 
     def accept(self, data):
         valeur = input()
-        data.move_value(valeur)
-        
+        data[0].move_value(valeur)
+
         
 @dataclass
 class Program():   
