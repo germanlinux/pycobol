@@ -114,18 +114,24 @@ class Program():
                 for it in item.instructions:
                     _chaine += f'instruction:{it.nom}\n'
             else: 
-                _chaine += f'instruction:{item.nom}\n'
+                _chaine += f'instruction:{item.nom} arg: {item.arg}\n'
         return _chaine   
 
     def add_data(self, pdata):
         self.data = pdata    
 
-    def run(self):
+    def run(self,**arg):
+        mode_ = 0
+        if arg:
+            if arg['mode'] != 0: 
+                mode_ = 1
+
         for item in self.pas_programme:
             ### execute instruction
             if type(item) == Etiquette:
-                print('Etiquette:', item.nom)
-                #######
+                if mode_ == 1:
+                    print('Etiquette:', item.nom)
+                    #######
                 ###  boucle instruction d une etiquette
                 for it in item.instructions:
                     exe = getattr(it, it.nom)

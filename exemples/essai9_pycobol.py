@@ -34,4 +34,4 @@ _inst = execution.Instruction('stop_run', [])
 pgm.add_step(_inst)
 
 print(pgm.vidage()) 
-pgm.run()
+pgm.run(mode =1)
