@@ -67,8 +67,15 @@ class  Instruction():
         return False
 
     def accept(self, data):
-        valeur = input()
-        data[0].move_value(valeur)
+        if len(data) > 2: 
+            if data[1].upcase() == 'FROM' and data[2] == 'DATE':
+                #recup date machine
+                # format 6            
+                pass
+        # forme simple
+        else:
+            valeur = input()
+            data[0].move_value(valeur)
 
         
 @dataclass
