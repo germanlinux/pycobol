@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from datetime import date
 from typing import ClassVar
 @dataclass
 class Etiquette:
@@ -67,11 +68,23 @@ class  Instruction():
         return False
 
     def accept(self, data):
-        if len(data) > 2: 
-            if data[1].upcase() == 'FROM' and data[2] == 'DATE':
+        ''' emulation de l instruction COBOL ACCEPT
+        Formes possibles:
+        - ACCEPT VAR   => demande une saisie sur la console
+        - ACCEPT VAR FROM VAR2 => recupere une valeur sur VAR2 et la passe à VAR
+        (exemple pour une variable d envirronnement) 
+        - ACCEPT VAR FROM DATE => recupere la date système sur 6 caractères: yymmdd
+        >>> accept(None,[])
+        '''
+        
+        if len(data) > 1:  
+            if data[1] == 'DATE':
                 #recup date machine
                 # format 6            
-                pass
+                _date = date.today()
+                str_date = _date.strftime('%y%m%d')
+                data[0].move_value(str_date)
+
         # forme simple
         else:
             valeur = input()
