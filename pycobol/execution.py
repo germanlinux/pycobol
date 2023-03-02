@@ -74,9 +74,15 @@ class  Instruction():
         - ACCEPT VAR FROM VAR2 => recupere une valeur sur VAR2 et la passe à VAR
         (exemple pour une variable d envirronnement) 
         - ACCEPT VAR FROM DATE => recupere la date système sur 6 caractères: yymmdd
-        >>> accept(None,[])
+
+        >>> from minimock import Mock
+        >>> obj = Mock('Obj')
+        >>> obj.mock_returns = Mock('Obj')
+        >>> inst = Instruction.accept(None,[obj])
+        >>> 
+
         '''
-        
+
         if len(data) > 1:  
             if data[1] == 'DATE':
                 #recup date machine
@@ -177,6 +183,6 @@ class Program():
     
 if __name__ == '__main__':   # pragma: no cover
     import doctest          
-    #doctest.run_docstring_examples(Instruction.display,None, verbose = 1)
-    doctest.testmod()
+    doctest.run_docstring_examples(Instruction.accept,None, verbose = 1)
+    #doctest.testmod()
 
