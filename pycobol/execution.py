@@ -78,9 +78,8 @@ class  Instruction():
         >>> from minimock import Mock
         >>> obj = Mock('Obj')
         >>> obj.mock_returns = Mock('Obj')
-        >>> inst = Instruction.accept(None,[obj])
-        >>> 
-
+        >>> inst = Instruction.accept(None,[obj,'DATE']) # doctest:  +ELLIPSIS
+        Cal...
         '''
 
         if len(data) > 1:  
