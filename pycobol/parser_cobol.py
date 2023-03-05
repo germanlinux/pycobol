@@ -118,6 +118,11 @@ def recherche_instruction(ligne):
 
         _inst = Instruction('display',argl)
         return _inst    
+    t_accept = re.match('ACCEPT ', ligne)
+    if t_accept:
+        suite = ligne[t_accept.span()[1]:]
+        if suite[-1] == '.' :
+            suite =  suite[:-1]
 
           
 def load_procedure(tcode):
