@@ -21,7 +21,7 @@ Puis à utiliser des méthodes pour retranscrire les manipulations COBOL en Pyth
 Il est possible d'instancier des structures Python se comportant comme des zones COBOL.
 Un eventail de classe est proposé pour manipuler des zones simples, zones groupes etc.
 
-
+La documentation du projet est sur [read_the_doc](https://pycobol.readthedocs.io/fr/latest/)
 
 Point d'etape
 -------------
