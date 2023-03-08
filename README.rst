@@ -23,6 +23,7 @@ Un eventail de classe est proposé pour manipuler des zones simples, zones group
 
 La documentation du projet est sur `le site read_the_doc <https://pycobol.readthedocs.io/fr/latest/>`_
 
+
 Point d'etape
 -------------
 * Exemple d'hello world avec pycobol
@@ -129,7 +130,7 @@ Feuille de route.
 - concevoir la classe des zones groupes: FAIT
 - Developper la prise en charge des clauses de formatage (exemple BLANK WHEN ZERO):  A FAIRE
 - Prendre en charge les clauses redefine : FAIT
-- Prendre en charge les FILLERS: A FAIRE
+- Prendre en charge les FILLERS: FAIT
 - Prendre en charge les clauses OCCURS : A FAIRE
 - Mise en place d'un moteur d'exécution : EN COURS
 
