@@ -88,7 +88,7 @@ ou poetry run python -m unittest discover
 Utilisation
 ===========
 
-Le module fonctionne en 2modes:
+Le module fonctionne en 2 modes:
 
 * Soit en fournissant les lignes COBOL
 * Soit en instanciant soi-même les objets à manipuler
