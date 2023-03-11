@@ -124,10 +124,11 @@ def recherche_instruction(ligne):
         suite = ligne[t_accept.span()[1]:]
         if suite[-1] == '.' :
             suite =  suite[:-1]
-            t_from = re.search(r'FROM\s+DATE', suite)
-            if t_from:
-                f_date = 1
-                
+        t_from = re.search(r'FROM\s+DATE', suite)
+        if t_from:
+            f_date = 1
+        t_data_ = re.search(r'([^ ]+)',suite )
+                 
           
 def load_procedure(tcode):
     ''' Cette fonction transforme une liste de ligne cobol en modele Python
