@@ -128,7 +128,13 @@ def recherche_instruction(ligne):
         if t_from:
             f_date = 1
         t_data_ = re.search(r'([^ ]+)',suite )
-                 
+        if t_data_:
+           data_ = t_data_[1]
+        if f_date:
+            _inst= Instruction('accept',[data_])
+        else:
+            _inst= Instruction('accept',[data_ , 'DATE'])
+        return _inst        
           
 def load_procedure(tcode):
     ''' Cette fonction transforme une liste de ligne cobol en modele Python
