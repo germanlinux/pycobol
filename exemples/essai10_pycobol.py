@@ -5,7 +5,8 @@ from pycobol import parser_cobol
 from pycobol import execution
 
 zg1 ='''        PROCEDURE DIVISION.
-                            DISPLAY "Hello world !".
+                            ACCEPT DATE6 FROM DATE.
+                            DISPLAY "Hello world !" DATE6.
                             STOP RUN.'''
 zg2 ='''
                 77    NOM PIC X(20).'''  
