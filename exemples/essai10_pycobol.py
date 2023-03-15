@@ -9,7 +9,7 @@ zg1 ='''        PROCEDURE DIVISION.
                             DISPLAY "Hello world !" DATE6.
                             STOP RUN.'''
 zg2 ='''
-                77    NOM PIC X(20).'''  
+                77    DATE6 PIC X(6).'''  
 tlignes = parser_cobol.fake_read_file(zg2)
 len(tlignes)
 arbre =parser_cobol.read_groupe_from_code(tlignes)
