@@ -15,7 +15,6 @@ len(tlignes)
 arbre =parser_cobol.read_groupe_from_code(tlignes)
 arbre.autonomme(globals())
 lignes_cobol = parser_cobol.fake_read_file_proc(zg1)
-'''
 pgm = parser_cobol.load_procedure(lignes_cobol)
 print('Contenu')
 print(pgm.vidage())
@@ -35,4 +34,4 @@ _inst = execution.Instruction('stop_run', [])
 pgm.add_step(_inst)
 
 print(pgm.vidage()) 
-pgm.run(mode =1)
+pgm.run(mode =1) '''
