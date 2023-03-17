@@ -131,9 +131,10 @@ def recherche_instruction(ligne):
         if t_data_:
            data_ = t_data_[1]
         if f_date:
-            _inst= Instruction('accept',[data_])
-        else:
             _inst= Instruction('accept',[data_ , 'DATE'])
+        else:
+            _inst= Instruction('accept',[data_])
+            
         return _inst        
           
 def load_procedure(tcode):
