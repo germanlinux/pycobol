@@ -110,12 +110,12 @@ def recherche_instruction(ligne):
             re_guil = re.match(r'(?P<quote>\")(.+)(?P=quote)', suite)
             if re_guil: # c est une chaine de caractere
                 argl.append(re_guil[2])
-                suite= suite[re_guil.span(2)[1]:]    
+                suite= suite[re_guil.span(2)[1] + 1:]    
             else: # c est un nom de donnée
                 re_data= re.match(r'([a-zA-Z0-9]+)', suite)
                 if re_data:
                     argl.append(re_data[1])
-
+                    suite= suite[re_data.span()[1]:]   
         _inst = Instruction('display',argl)
         return _inst    
     t_accept = re.match('ACCEPT ', ligne)
