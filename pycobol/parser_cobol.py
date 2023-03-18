@@ -114,7 +114,9 @@ def recherche_instruction(ligne):
             else: # c est un nom de donnée
                 re_data= re.match(r'([a-zA-Z0-9]+)', suite)
                 if re_data:
-                    argl.append(re_data[1])
+                    arbre = ArbreZone()
+                    _data= arbre.recherche_nom(re_data[1])
+                    argl.append(_data)
                     suite= suite[re_data.span()[1]:]   
         _inst = Instruction('display',argl)
         return _inst    
@@ -130,10 +132,13 @@ def recherche_instruction(ligne):
         t_data_ = re.search(r'([^ ]+)',suite )
         if t_data_:
            data_ = t_data_[1]
+           arbre = ArbreZone()
+           _data= arbre.recherche_nom(t_data_[1])
+                    
         if f_date:
-            _inst= Instruction('accept',[data_ , 'DATE'])
+            _inst= Instruction('accept',[_data , 'DATE'])
         else:
-            _inst= Instruction('accept',[data_])
+            _inst= Instruction('accept',[_data])
             
         return _inst        
           
