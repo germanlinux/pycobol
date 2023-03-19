@@ -1,15 +1,21 @@
 [tool.poetry]
 name = "pycobol"
 version = "0.1.0"
-description = ""
+description = "make cobol in python or python like cobol"
 authors = ["Eric German <german.eric@gmail.com>"]
+license = "MIT"
+readme = "README.rst"
+repository ="https://github.com/germanlinux/pycobol"
+homepage = "https://github.com/germanlinux/pycobol"
+documentation = "https://pycobol.readthedocs.io/fr/latest/"
+keywords = ["cobol", "parser"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 
 [tool.poetry.dev-dependencies]
 #pytest = "^5.2"
-jupyter = "^1.0.0"
+#jupyter = "^1.0.0"
 MiniMock = "^1.2.8"
 
 [build-system]
