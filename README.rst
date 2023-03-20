@@ -23,6 +23,17 @@ Un eventail de classe est proposé pour manipuler des zones simples, zones group
 
 La documentation du projet est sur `le site read_the_doc <https://pycobol.readthedocs.io/fr/latest/>`_
 
+Installation:
+-------------
+
+Deux méthodes: 
+
+* Par récuperation du projet depuis github
+* Par la commande pip install pycobol
+
+
+Privilégier l'installation à partir de github
+
 
 Point d'etape
 -------------
@@ -142,7 +153,15 @@ Eric German
 Journal
 =======
 
+1er trimestre 2023:
+-------------------
+Developpement du moteur d'exécution
+Publication du paquet sur pypi:l'installation avec PIP est opérationnelle
+
+
+
 Le 27/12/22:
+------------
 Mise en place de la documentation avec SPHINX
 Publication de la documentation sur le site read the docs
 Refactorisations profondes
