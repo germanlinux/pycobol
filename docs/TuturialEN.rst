@@ -5,7 +5,7 @@ Contexte
 --------
 
 PyCOBOL a été développé avec comme objectif principal d'avoir a mettre en place 
-un projet de grande ampleur. Le but est avant tout pédagogique: utlisation d'environnement virtuel
+un projet Python de grande ampleur. Le but est avant tout pédagogique: utlisation d'environnement virtuel
 doctests, tests , couverture de code, documentation etc.
 
 Le COBOL est un pretexte comme un autre mais je me suis pris au jeu.
