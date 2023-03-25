@@ -134,6 +134,10 @@ et en ajoutant des cas de test dans le fichier pic77ok.txt
 - Ajouter de la documentation
 - En apportant des idées.
 
+- Pour ajouter des verbes COBOL : 
+    - Ajouter la méthode dans la classe *Instruction*.
+    - Ajouter les motifs de traduction dans *parser_cobol.py*
+
 Feuille de route.
 =================
 
