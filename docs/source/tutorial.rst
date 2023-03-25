@@ -21,8 +21,10 @@ Un programme COBOL a principalement deux parties distinctes: la description des 
 Installation
 ------------
 
-Il n'y a pas encore de paquet installable par la commande PIP
-Aussi l'installation se fait par clonage du dépot github.
+L'installation se fait par clonage du dépot github ou par la commande *pip*:
+
+*pip install pycobol*
+
 
 Contenu des répertoires
 -----------------------
