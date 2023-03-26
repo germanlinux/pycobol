@@ -101,6 +101,15 @@ class  Instruction():
           MOVE LITTERAL TO DATA.
           MOVE NUMERIC TO DATA.
           MOVE DATA TO DATA.
+          >>> from minimock import Mock
+        >>> obj = Mock('Obj')
+        >>> obj.mock_returns = Mock('Obj')
+        >>> inst = Instruction.move(None,['ESSAI', DATA]) # doctest:  +ELLIPSIS
+        Cal...
+        >>> inst = Instruction.move(None,[1234, DATA]) # doctest:  +ELLIPSIS
+        Cal...
+        >>> inst = Instruction.move(None,[EMETT, DATA]) # doctest:  +ELLIPSIS
+        Cal...
         '''
 
         
