@@ -95,6 +95,14 @@ class  Instruction():
             valeur = input()
             data[0].move_value(valeur)
 
+    def move(self,data):
+        ''' emulation de l'instruction COBOL MOVE TO
+        formes possibles: 
+          MOVE LITTERAL TO DATA.
+          MOVE NUMERIC TO DATA.
+          MOVE DATA TO DATA.
+        '''
+
         
 @dataclass
 class Program():   
