@@ -1,7 +1,7 @@
 import re
 from arbrezone import ArbreZone
 from zonegroupe import ZoneGroupe
-from extracteurs import extract_nom, extract_niveau, traite_pic, traite_redefine, Nature_pic
+from extracteurs import extract_nom, extract_niveau, traite_pic, traite_redefine
 from execution import Program, Etiquette, Instruction
 def fake_read_file(data= None):
     zg1 ='''
@@ -131,7 +131,6 @@ def recherche_instruction(ligne):
             f_date = 1
         t_data_ = re.search(r'([^ ]+)',suite )
         if t_data_:
-           data_ = t_data_[1]
            arbre = ArbreZone()
            _data= arbre.recherche_nom(t_data_[1])
                     
