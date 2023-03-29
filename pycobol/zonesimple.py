@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from comportement  import Comportement
 from zonegroupe  import ZoneGroupe, ArbreZone
 #from typing import ClassVar
-from parser_cobol import Nature_pic
+from extracteurs import Nature_pic
 
 #################################
 #   classe Zonefilssimple       #

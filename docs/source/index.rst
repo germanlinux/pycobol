@@ -15,6 +15,7 @@ Welcome to pycobol's documentation!
    pycobol
    extension
    execution
+   parser_cobol
    
    tutorial
 

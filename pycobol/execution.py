@@ -98,10 +98,11 @@ class  Instruction():
     def move(self,data):
         ''' emulation de l'instruction COBOL MOVE TO
         formes possibles: 
-          MOVE LITTERAL TO DATA.
-          MOVE NUMERIC TO DATA.
-          MOVE DATA TO DATA.
-          >>> from minimock import Mock
+        - MOVE LITTERAL TO DATA.
+        - MOVE NUMERIC TO DATA.
+        - MOVE DATA TO DATA.
+      
+        >>> from minimock import Mock
         >>> obj = Mock('Obj')
         >>> obj.mock_returns = Mock('Obj')
         >>> inst = Instruction.move(None,['ESSAI', DATA]) # doctest:  +ELLIPSIS
@@ -110,7 +111,10 @@ class  Instruction():
         Cal...
         >>> inst = Instruction.move(None,[EMETT, DATA]) # doctest:  +ELLIPSIS
         Cal...
+
         '''
+        pass
+
 
         
 @dataclass

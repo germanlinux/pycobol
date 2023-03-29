@@ -1,18 +1,6 @@
 pycobol extension
 =================
 
-parser_cobol
-------------
-
-
-fake_read_file
---------------
-.. autofunction:: pycobol.parser_cobol.fake_read_file
-
-
-read_groupe_from_code
----------------------
-.. autofunction:: pycobol.parser_cobol.read_groupe_from_code
 
 extracteurs 
 ------------

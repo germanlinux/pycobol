@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass
 from comportement  import Comportement, ComportementFloat
-from parser_cobol import Nature_pic, traite_pic, traite_value, traite_usage
+from extracteurs import Nature_pic, traite_pic, traite_value, traite_usage
 from typing import ClassVar
 ###########################
 ### class Zone          ###
