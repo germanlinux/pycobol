@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from datetime import date
 from typing import ClassVar
+from extracteurs import extract_type_data
 @dataclass
 class Etiquette:
     ''' Cette classe est destinée a définir des etiquettes comme dans les programmes COBOL
@@ -95,6 +96,8 @@ class  Instruction():
             valeur = input()
             data[0].move_value(valeur)
 
+        return True    
+
     def move(self,data):
         ''' emulation de l'instruction COBOL MOVE TO
         formes possibles: 
@@ -113,8 +116,11 @@ class  Instruction():
         Cal...
 
         '''
-        pass
-
+        qqchose = data
+        ### a dedupliquer
+        tpype = extract_type_data(data[0]) 
+                       
+        return True            
 
         
 @dataclass
