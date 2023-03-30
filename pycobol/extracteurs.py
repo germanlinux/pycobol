@@ -1,4 +1,16 @@
 import re
+def extract_type_data(objet):
+    if type(objet) == str :
+                    return 'ALP'
+    elif type(objet) == int:
+                    return 'NUM'
+    elif type(objet) == float
+                    return 'NUM'    
+    else:
+        raise  Exception(f"FORMAT NON RECONNU: {type(object)}")
+
+    return 1
+                    
 def extract_niveau(t_ligne):
         ''' retourne le niveau cobol de la ligne
 
