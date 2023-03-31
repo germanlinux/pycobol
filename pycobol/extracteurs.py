@@ -7,9 +7,7 @@ def extract_type_data(objet):
     elif type(objet) == float
                     return 'NUM'    
     else:
-        raise  Exception(f"FORMAT NON RECONNU: {type(object)}")
-
-    return 1
+        return 'DATA'
                     
 def extract_niveau(t_ligne):
         ''' retourne le niveau cobol de la ligne
