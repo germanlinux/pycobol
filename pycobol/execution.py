@@ -119,7 +119,11 @@ class  Instruction():
         qqchose = data
         ### a dedupliquer
         tpype = extract_type_data(data[0]) 
-                       
+        if tpype == 'DATA': # c est une donne de la data division
+            # il faut recuperer la valeur
+            # et la passer à l autre donnée.
+            
+
         return True            
 
         
