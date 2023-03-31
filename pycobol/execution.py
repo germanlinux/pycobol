@@ -122,7 +122,9 @@ class  Instruction():
         if tpype == 'DATA': # c est une donne de la data division
             # il faut recuperer la valeur
             # et la passer à l autre donnée.
-            
+        else: 
+            #  c est une valeur
+            data[1].move_value(data[0])    
 
         return True            
 
