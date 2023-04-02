@@ -4,7 +4,7 @@ def extract_type_data(objet):
                     return 'ALP'
     elif type(objet) == int:
                     return 'NUM'
-    elif type(objet) == float
+    elif type(objet) == float:
                     return 'NUM'    
     else:
         return 'DATA'
