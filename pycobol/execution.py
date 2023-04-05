@@ -120,11 +120,11 @@ class  Instruction():
         ### a dedupliquer
         tpype = extract_type_data(data[0]) 
         if tpype == 'DATA': # c est une donne de la data division
-            # il faut recuperer la valeur
-            # et la passer à l autre donnée.
+            ###  ajouter un controle 
             data[1].move_value(data[0].valeur_externe) 
         else: 
-            #  c est une valeur
+            #  c est une valeur ajouter un autre controle
+            
             data[1].move_value(data[0])    
         return True            
 

@@ -87,6 +87,7 @@ class ZoneGroupe:
         self.fils.append(other)
 
     def move_to(self, other):
+        ''' methode interne '''
         valeur = self.valeur_externe
         if type(other) == str :
             arbre = ArbreZone()

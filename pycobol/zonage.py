@@ -194,6 +194,7 @@ class ZoneIndependante(Zone):
             return cls(tab[1] ,  pic, valeur, usage)
     
     def move_from(self, emetteur):
+        ''' Not implemented'''
         pass    
 
     def init_variable(self):
