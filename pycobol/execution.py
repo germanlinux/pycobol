@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import ClassVar
 from extracteurs import extract_type_data
+import controls
 @dataclass
 class Etiquette:
     ''' Cette classe est destinée a définir des etiquettes comme dans les programmes COBOL
@@ -119,12 +120,14 @@ class  Instruction():
         qqchose = data
         ### a dedupliquer
         tpype = extract_type_data(data[0]) 
-        if tpype == 'DATA': # c est une donne de la data division
+        if tpype == 'DATA': # c est une donnee de la data division
             ###  ajouter un controle 
-            data[1].move_value(data[0].valeur_externe) 
+            if controls.controle_compatible(data[0], data[1]):
+                data[1].move_value(data[0].valeur_externe) 
+                
         else: 
             #  c est une valeur ajouter un autre controle
-            
+
             data[1].move_value(data[0])    
         return True            
 
@@ -209,7 +212,7 @@ class Program():
                     
                 if res is False: 
                     break
-
+        
 
 
     

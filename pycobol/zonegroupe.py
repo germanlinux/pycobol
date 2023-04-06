@@ -44,12 +44,23 @@ class ZoneGroupe:
     >>> obj.longueur_utile
     10
     >>> obj.init_groupe()
+    
+    :param nom: 
+    :type nom: str
+    :param rang:
+    :type rang: int
+    :param pere:
+    :type pere: int
+    :param fils:
+    :type fils: obj
+    :param son_type: 
+    :type son_type: str
     '''
 
     nom: str
-    rang : int
+    rang: int
     pere: int = 0
-    fils : list = field(default_factory=list)
+    fils: list = field(default_factory=list)
     son_type: str = 'GRP'
     usage: str = 'DISPLAY'
     longueur_utile: int = 0  
@@ -57,6 +68,7 @@ class ZoneGroupe:
     valeur_externe: str = ''
     section: str = 'NON RENSEIGNE'
     comportement_associe: object = None
+
     #arbreInverse :ClassVar[list] = []
 
     def __post_init__(self):
