@@ -5,7 +5,7 @@ def controle_compatible(e, r):
         emetteur_type = e.son_type
     except: 
         ## c est un type de base
-        ## lequel 
+        ## lequel ? : int, float , str ?
         
 
     if 'FLOAT' in a.son_type and 'FLOAT' in b.son_type:
