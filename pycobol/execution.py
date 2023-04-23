@@ -124,7 +124,8 @@ class  Instruction():
             ###  ajouter un controle 
             if controls.controle_compatible(data[0], data[1]):
                 data[1].move_value(data[0].valeur_externe) 
-                
+            else:
+                raise NotImplementedError()      
         else: 
             #  c est une valeur ajouter un autre controle
 
