@@ -1,4 +1,21 @@
+class DataFormatNotCompatible(Exception):
+    '''Définition de nos propres Exceptions. Elle se déclenche si la donnée receptrice n'est pas 
+    compatible avec la donnée emetrice. 
+    exemple: faire un move d'un nombre flottant dans une zone alphanumérique.'''
+    
+    def __init__(self, nom):
+        super().__init__(f"la donnée receptrice  <{nom}> n'est pas compatible avec la donnée emetrice")
+
+
 class Constant:
+    ''' cette classe fictive ne sert qu'a porter des attributs ajoutés manuellement
+    Les objets ainsi crées se comporteront comme un véritable objet porteur de données.
+    elle n'a ni methode ni attribut.
+    Utilisation:
+    e_ = Constant()
+    e_.son_type ='ALN'
+    e = e_
+    '''
     pass
 
 def controle_compatible(e, r):

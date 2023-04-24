@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import ClassVar
 from extracteurs import extract_type_data
-import controls
+from controls import controle_compatible, DataFormatNotCompatible
 @dataclass
 class Etiquette:
     ''' Cette classe est destinée a définir des etiquettes comme dans les programmes COBOL
@@ -122,16 +122,16 @@ class  Instruction():
         tpype = extract_type_data(data[0]) 
         if tpype == 'DATA': # c est une donnee de la data division
             ###  ajouter un controle 
-            if controls.controle_compatible(data[0], data[1]):
-                data[1].move_value(data[0].valeur_externe) 
+            if controle_compatible(data[0], data[1]):
+                data[1].move_value(data[1].valeur_externe) 
             else:
-                raise NotImplementedError()      
+                raise DataFormatNotCompatible(data[0].nom)      
         else: 
             #  c est une valeur ajouter un autre controle
-            if controls.controle_compatible(data[0], data[1]):
+            if controle_compatible(data[0], data[1]):
                  data[1].move_value(data[0])  
             else:
-                raise NotImplementedError()          
+                raise DataFormatNotCompatible(data[1].nom)          
         return True            
 
         
