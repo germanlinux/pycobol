@@ -92,6 +92,10 @@ def read_groupe_from_code(tcode):
     ## est ce le niveau le plus haut ?
     ##  ca peut etre une zone groupe dans une zone groupe  
 
+def decode_move(reg)
+    ...
+    
+
 def recherche_instruction(ligne):
     t_stop = re.match('STOP RUN', ligne)
     if t_stop:
@@ -140,7 +144,11 @@ def recherche_instruction(ligne):
             _inst= Instruction('accept',[_data])
             
         return _inst        
-          
+     t_move = re.match('MOVE ', ligne)   
+     if t_move:
+        _inst = decode_move(t_move)
+        return _inst
+
 def load_procedure(tcode):
     ''' Cette fonction transforme une liste de ligne cobol en modele Python
 
