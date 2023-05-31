@@ -92,10 +92,12 @@ def read_groupe_from_code(tcode):
     ## est ce le niveau le plus haut ?
     ##  ca peut etre une zone groupe dans une zone groupe  
 
-def decode_move(reg)
-    ...
+def decode_move(reg, ligne)
+    suite = ligne[reg.span()[1]:]
+    if suite[-1] == '.' :
+        suite =  suite[:-1]
+    tdonnee = suite.split(' ')
     
-
 def recherche_instruction(ligne):
     t_stop = re.match('STOP RUN', ligne)
     if t_stop:
@@ -146,7 +148,7 @@ def recherche_instruction(ligne):
         return _inst        
      t_move = re.match('MOVE ', ligne)   
      if t_move:
-        _inst = decode_move(t_move)
+        _inst = decode_move(t_move, ligne)
         return _inst
 
 def load_procedure(tcode):
