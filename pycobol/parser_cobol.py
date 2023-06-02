@@ -97,7 +97,9 @@ def decode_move(reg, ligne)
     if suite[-1] == '.' :
         suite =  suite[:-1]
     tdonnee = suite.split(' ')
-    
+    # la derniere zone est forcement une variable
+    cible = tdonnee[-1]
+
 def recherche_instruction(ligne):
     t_stop = re.match('STOP RUN', ligne)
     if t_stop:
